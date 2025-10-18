@@ -1,0 +1,45 @@
+# Godot-specific ignores
+.godot/
+*.import
+
+# Godot Engine executables
+5.Codebase/Godot_v4.5-stable_win64.exe
+5.Codebase/Godot_v4.5-stable_win64_console.exe
+9.Pre-Built V1.0/Godot_v4.5.1-stable_linux.arm64
+
+# Export builds
+builds/
+exports/
+*.zip
+*.tar.gz
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+*.md
