@@ -1,0 +1,93 @@
+name: 'Build Godot'
+description: 'Build Godot applications for Windows and Linux'
+
+inputs:
+  build-dir:
+    description: 'The chosen build directory'
+    required: true
+    default: 'build'
+  godot-executable:
+    description: 'The path to the Godot executable'
+    required: false
+    default: /Applications/Godot.app/Contents/MacOS/Godot
+  windows-preset:
+    description: 'Godot export preset name for Windows builds'
+    required: false
+    default: 'Windows Desktop'
+  windows-filename:
+    description: 'Filename for the Windows build artifact inside the build directory'
+    required: false
+    default: 'game.exe'
+  linux-preset:
+    description: 'Godot export preset name for Linux builds'
+    required: false
+    default: 'Linux'
+  linux-filename:
+    description: 'Filename for the Linux build artifact inside the build directory'
+    required: false
+    default: 'game.x86_64'
+  build-windows:
+    description: 'Whether to build for Windows'
+    required: false
+    default: 'true'
+  build-linux:
+    description: 'Whether to build for Linux'
+    required: false
+    default: 'true'
+  windows-artifact-name:
+    description: 'Name of the Windows artifact'
+    required: false
+    default: 'windows'
+  linux-artifact-name:
+    description: 'Name of the Linux artifact'
+    required: false
+    default: 'linux'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Open Godot editor for reimport
+      shell: bash
+      run: ${{ inputs.godot-executable }} --import --headless --verbose
+      
+    - name: Build Windows application
+      if: inputs.build-windows == 'true'
+      shell: bash
+      run: |
+        mkdir -p "${{ inputs.build-dir }}/windows"
+        ${{ inputs.godot-executable }} --headless --export-debug "${{ inputs.windows-preset }}" "${{ inputs.build-dir }}/windows/${{ inputs.windows-filename }}"
+        [ "$(ls -A "${{ inputs.build-dir }}/windows")" ]
+
+    - name: Compress Windows build
+      if: inputs.build-windows == 'true'
+      shell: bash
+      run: |
+        cd "${{ inputs.build-dir }}/windows"
+        zip -m ./windows.zip ./*
+
+    - uses: actions/upload-artifact@v4
+      if: inputs.build-windows == 'true'
+      with:
+        name: ${{ inputs.windows-artifact-name }}
+        path: ${{ inputs.build-dir }}/windows/windows.zip
+
+    - name: Build Linux application
+      if: inputs.build-linux == 'true'
+      shell: bash
+      run: |
+        mkdir -p "${{ inputs.build-dir }}/linux"
+        ${{ inputs.godot-executable }} --headless --export-debug "${{ inputs.linux-preset }}" "${{ inputs.build-dir }}/linux/${{ inputs.linux-filename }}"
+        [ "$(ls -A "${{ inputs.build-dir }}/linux")" ]
+
+    - name: Compress Linux build (to preserve permissions)
+      if: inputs.build-linux == 'true'
+      shell: bash
+      run: |
+        cd "${{ inputs.build-dir }}/linux"
+        tar -cvf ./linux.tar ./*
+
+    - uses: actions/upload-artifact@v4
+      if: inputs.build-linux == 'true'
+      with:
+        name: ${{ inputs.linux-artifact-name }}
+        path: ${{ inputs.build-dir }}/linux/linux.tar

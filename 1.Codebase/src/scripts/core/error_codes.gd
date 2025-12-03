@@ -1,0 +1,151 @@
+extends RefCounted
+class_name ErrorCodes
+enum General {
+	SUCCESS = 0,
+	UNKNOWN_ERROR = 1,
+	INVALID_PARAMETER = 2,
+	NULL_REFERENCE = 3,
+	NOT_INITIALIZED = 4,
+	OPERATION_FAILED = 5,
+}
+enum AI {
+	PROVIDER_NOT_CONFIGURED = 100,
+	INVALID_API_KEY = 101,
+	INVALID_MODEL_NAME = 102,
+	PROVIDER_UNAVAILABLE = 103,
+	REQUEST_TIMEOUT = 120,
+	REQUEST_FAILED = 121,
+	RATE_LIMITED = 122,
+	QUEUE_FULL = 123,
+	INVALID_PROMPT = 124,
+	EMPTY_RESPONSE = 140,
+	PARSE_ERROR = 141,
+	SAFETY_FILTER_BLOCKED = 142,
+	INVALID_RESPONSE_FORMAT = 143,
+	NETWORK_ERROR = 160,
+	CONNECTION_REFUSED = 161,
+	HTTP_ERROR = 162,
+	VOICE_NOT_SUPPORTED = 180,
+	VOICE_CAPTURE_FAILED = 181,
+	TRANSCRIPTION_FAILED = 182,
+}
+enum SaveSystem {
+	SAVE_FAILED = 200,
+	INVALID_SLOT = 201,
+	SAVE_DIRECTORY_ERROR = 202,
+	SERIALIZATION_ERROR = 203,
+	DISK_FULL = 204,
+	LOAD_FAILED = 220,
+	FILE_NOT_FOUND = 221,
+	CORRUPTED_SAVE = 222,
+	DESERIALIZATION_ERROR = 223,
+	VERSION_MISMATCH = 224,
+	DELETE_FAILED = 240,
+	CANNOT_DELETE_AUTOSAVE = 241,
+}
+enum GameState {
+	INVALID_STAT_VALUE = 300,
+	STAT_NOT_FOUND = 301,
+	INVALID_STAT_MODIFICATION = 302,
+	SKILL_NOT_FOUND = 320,
+	INVALID_SKILL_VALUE = 321,
+	SKILL_CHECK_FAILED = 322,
+	EVENT_LOG_FULL = 340,
+	INVALID_EVENT = 341,
+	INVALID_PHASE = 360,
+	PHASE_TRANSITION_FAILED = 361,
+}
+enum Assets {
+	ASSET_NOT_FOUND = 400,
+	INVALID_ASSET_ID = 401,
+	ASSET_LOAD_FAILED = 402,
+	ASSET_REGISTRY_ERROR = 403,
+	BACKGROUND_NOT_FOUND = 420,
+	BACKGROUND_LOAD_FAILED = 421,
+	CHARACTER_NOT_FOUND = 440,
+	EXPRESSION_NOT_FOUND = 441,
+}
+enum UI {
+	DISPLAY_INIT_FAILED = 500,
+	INVALID_RESOLUTION = 501,
+	FONT_LOAD_FAILED = 502,
+	SCENE_LOAD_FAILED = 520,
+	SCENE_TRANSITION_FAILED = 521,
+	INVALID_SCENE = 522,
+	CONTROL_NOT_FOUND = 540,
+	INVALID_CONTROL_STATE = 541,
+}
+enum Audio {
+	AUDIO_INIT_FAILED = 600,
+	AUDIO_FILE_NOT_FOUND = 601,
+	AUDIO_PLAYBACK_FAILED = 602,
+	INVALID_AUDIO_STREAM = 603,
+	VOICE_INIT_FAILED = 620,
+	VOICE_INPUT_FAILED = 621,
+	VOICE_OUTPUT_FAILED = 622,
+}
+enum Localization {
+	TRANSLATION_NOT_FOUND = 700,
+	INVALID_LANGUAGE_CODE = 701,
+	TRANSLATION_FILE_ERROR = 702,
+}
+enum Achievement {
+	ACHIEVEMENT_NOT_FOUND = 800,
+	ACHIEVEMENT_ALREADY_UNLOCKED = 801,
+	INVALID_ACHIEVEMENT_ID = 802,
+}
+const ERROR_MESSAGES := {
+	General.UNKNOWN_ERROR: "ERR_UNKNOWN",
+	General.INVALID_PARAMETER: "ERR_INVALID_PARAM",
+	General.NULL_REFERENCE: "ERR_NULL_REF",
+	General.NOT_INITIALIZED: "ERR_NOT_INIT",
+	AI.PROVIDER_NOT_CONFIGURED: "ERR_AI_PROVIDER_NOT_CONFIGURED",
+	AI.INVALID_API_KEY: "ERR_AI_INVALID_KEY",
+	AI.REQUEST_TIMEOUT: "ERR_AI_TIMEOUT",
+	AI.RATE_LIMITED: "ERR_AI_RATE_LIMITED",
+	AI.EMPTY_RESPONSE: "ERR_AI_EMPTY_RESPONSE",
+	SaveSystem.SAVE_FAILED: "ERR_SAVE_FAILED",
+	SaveSystem.LOAD_FAILED: "ERR_LOAD_FAILED",
+	SaveSystem.INVALID_SLOT: "ERR_INVALID_SLOT",
+	SaveSystem.FILE_NOT_FOUND: "ERR_FILE_NOT_FOUND",
+	SaveSystem.CORRUPTED_SAVE: "ERR_CORRUPTED_SAVE",
+}
+static func get_error_message(error_code: int) -> String:
+	return ERROR_MESSAGES.get(error_code, ERROR_MESSAGES[General.UNKNOWN_ERROR])
+static func get_error_category(error_code: int) -> String:
+	if error_code >= 0 and error_code < 100:
+		return "General"
+	elif error_code >= 100 and error_code < 200:
+		return "AI"
+	elif error_code >= 200 and error_code < 300:
+		return "SaveSystem"
+	elif error_code >= 300 and error_code < 400:
+		return "GameState"
+	elif error_code >= 400 and error_code < 500:
+		return "Assets"
+	elif error_code >= 500 and error_code < 600:
+		return "UI"
+	elif error_code >= 600 and error_code < 700:
+		return "Audio"
+	elif error_code >= 700 and error_code < 800:
+		return "Localization"
+	elif error_code >= 800 and error_code < 900:
+		return "Achievement"
+	else:
+		return "Unknown"
+static func is_critical_error(error_code: int) -> bool:
+	return error_code in [
+		General.NULL_REFERENCE,
+		General.NOT_INITIALIZED,
+		SaveSystem.CORRUPTED_SAVE,
+		SaveSystem.DISK_FULL,
+		GameState.INVALID_STAT_VALUE,
+	]
+static func is_recoverable(error_code: int) -> bool:
+	return error_code in [
+		AI.REQUEST_TIMEOUT,
+		AI.RATE_LIMITED,
+		AI.NETWORK_ERROR,
+		Assets.ASSET_LOAD_FAILED,
+		Audio.AUDIO_PLAYBACK_FAILED,
+	]

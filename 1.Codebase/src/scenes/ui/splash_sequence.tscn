@@ -1,0 +1,156 @@
+[gd_scene load_steps=5 format=3 uid="uid://splashsequence01"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/splash_sequence.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/US_logo-1.png" id="2_logo"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/Engine Logo.png" id="4_engine_logo"]
+[ext_resource type="FontFile" path="res://1.Codebase/src/assets/font/Ticketing.ttf" id="3_font"]
+
+[node name="SplashSequence" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="EngineLogoLayer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineLogoLayer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="EngineLogoLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_engine_logo")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="EngineLogoLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = "Powered by Godot Engine"
+horizontal_alignment = 1
+
+[node name="AuthorLogoLayer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AuthorLogoLayer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="AuthorLogoLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_logo")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="AuthorLogoLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = "Developed for a University of Sussex Final Year Project"
+horizontal_alignment = 1
+
+[node name="WarningLayer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WarningLayer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="WarningTitle" type="Label" parent="WarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "WARNING"
+horizontal_alignment = 1
+
+[node name="AIWarning" type="Label" parent="WarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+text = "This game uses Artificial Intelligence. Your input data will be sent to third-party AI service providers."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ContentWarning" type="Label" parent="WarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+text = "Warning: This game contains themes of existential horror, psychological manipulation (PUA), and dark humor.
+The story explores the extreme consequences of 'forced positivity' and 'nihilism', which may cause discomfort.
+All scenarios are satirical creations intended to explore the absurdity of humanity and the cosmos."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Plagiarism" type="Label" parent="WarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "Disclaimer: This story is entirely fictional and intended to explore philosophical and social themes.
+All characters and events are artistic creations. Any resemblance to actual persons, living or dead, is purely coincidental.
+This game does not intend to insinuate any real persons, groups, or events, nor is there any intent of plagiarism."
+horizontal_alignment = 1
+
+[node name="MetaphysicsWarningLayer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MetaphysicsWarningLayer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="WarningTitle" type="Label" parent="MetaphysicsWarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "SCIENTIFIC ACCURACY DISCLAIMER"
+horizontal_alignment = 1
+
+[node name="DisclaimerText" type="Label" parent="MetaphysicsWarningLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+text = "All references to 'Energy', 'Negative Energy', 'Entropy', and related terminology in this game are strictly metaphysical and fictional. They are not based on scientific principles.
+
+Players are expressly warned not to interpret these game mechanics as representations of reality. The logic governing this game world is purely thematic and does not reflect real-world physics or natural laws."
+horizontal_alignment = 1
+autowrap_mode = 3

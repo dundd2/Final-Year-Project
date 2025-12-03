@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://creative_statement_page"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/creative_statement.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.15, 0.2, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.8, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="CreativeStatementPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.15, 0.25, 0.9)
+
+[node name="MenuContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuContainer"]
+custom_minimum_size = Vector2(680, 420)
+layout_mode = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Creative Statement"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatementLabel" type="RichTextLabel" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[b]Creative Statement[/b]\n\nAll characters, events, and religious metaphors in this game are purely fictional and intended for satirical purposes. There is no intention to allude to any real-life individuals, groups, or beliefs."
+fit_content = true
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="MenuContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(280, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/CloseButton" to="." method="_on_close_pressed"]

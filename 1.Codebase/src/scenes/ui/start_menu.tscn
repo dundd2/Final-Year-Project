@@ -1,0 +1,250 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq03mdrg084b8"]
+
+[ext_resource type="Script" uid="uid://brwqomxvhqtnh" path="res://1.Codebase/src/scripts/ui/start_menu.gd" id="1"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/game name.png" id="2"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/home.png" id="3"]
+[ext_resource type="FontFile" path="res://1.Codebase/src/assets/font/LibreBaskerville-Bold.ttf" id="4"]
+[ext_resource type="FontFile" path="res://1.Codebase/src/assets/font/Play-Regular.ttf" id="5"]
+[ext_resource type="FontFile" path="res://1.Codebase/src/assets/font/Ticketing.ttf" id="6"]
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/screensaver_layer.gd" id="7"]
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/ambient_weather.gd" id="8"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.15, 0.2, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3")
+expand_mode = 5
+
+
+[node name="AmbientWeather" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8")
+
+[node name="DarkOverlay" type="ColorRect" parent="AmbientWeather"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="LightningFlash" type="ColorRect" parent="AmbientWeather"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScreensaverLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7")
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.05, 0.1, 0.65)
+
+[node name="MenuContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="MenuContainer"]
+custom_minimum_size = Vector2(700, 650)
+layout_mode = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LogoContainer" type="CenterContainer" parent="MenuContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/LogoContainer"]
+custom_minimum_size = Vector2(600, 250)
+layout_mode = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="MenuContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PrimaryButtonsGrid" type="GridContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="StartButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "開始新遊戲"
+
+[node name="ContinueButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "繼續遊戲"
+
+[node name="SaveLoadButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "存檔 / 讀檔"
+
+[node name="JournalButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "日記"
+
+[node name="AchievementsButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "成就"
+
+[node name="SettingsButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "設定"
+
+[node name="IntroButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 18
+text = "遊戲介紹"
+
+[node name="QuitButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid"]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 20
+text = "離開遊戲"
+
+[node name="ContinueInfo" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 2
+visible = false
+text = "No save data available yet."
+
+[node name="FooterButtons" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="CreativeStatementButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/FooterButtons"]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 11
+text = "Creative Statement"
+
+[node name="TermsButton" type="Button" parent="MenuContainer/Panel/VBoxContainer/FooterButtons"]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 11
+text = "條款與隱私"
+
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/SaveLoadButton" to="." method="_on_save_load_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/JournalButton" to="." method="_on_journal_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/AchievementsButton" to="." method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/IntroButton" to="." method="_on_intro_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/ScrollContainer/ButtonsContainer/PrimaryButtonsGrid/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/FooterButtons/CreativeStatementButton" to="." method="_on_creative_statement_button_pressed"]
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/FooterButtons/TermsButton" to="." method="_on_terms_button_pressed"]

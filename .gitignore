@@ -1,0 +1,39 @@
+# Godot-specific ignores
+.godot/
+*.import
+
+# Export builds
+builds/
+exports/
+*.zip
+*.tar.gz
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Temporary files
+*.tmp
+*.bak
+*.cache

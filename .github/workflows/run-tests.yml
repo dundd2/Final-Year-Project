@@ -1,0 +1,354 @@
+name: Run Unit Tests
+
+on:
+  # Run tests on push to main or any branch starting with 'claude/'
+  push:
+    branches:
+      - main
+      - 'claude/**'
+
+  # Run tests on pull requests targeting main
+  pull_request:
+    branches:
+      - main
+
+  # Allow manual triggering
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: "4.5.1"
+  GODOT_VERSION_FULL: "4.5.1-stable"
+
+jobs:
+  unit-tests:
+    name: Run Unit Tests
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false  # LFS not needed for tests
+
+      - name: Cache Godot executable
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            godot_executable
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Download Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          echo "Downloading Godot ${{ env.GODOT_VERSION }}..."
+          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION_FULL }}/Godot_v${{ env.GODOT_VERSION_FULL }}_linux.x86_64.zip -O godot.zip
+          unzip -q godot.zip
+          mv Godot_v${{ env.GODOT_VERSION_FULL }}_linux.x86_64 godot_executable
+          chmod +x godot_executable
+          ./godot_executable --version
+
+      - name: Verify Godot installation
+        run: |
+          echo "Godot version:"
+          ./godot_executable --version
+          echo ""
+          echo "Godot path: $(pwd)/godot_executable"
+
+      - name: Import project assets
+        run: |
+          echo "Importing project assets for headless mode..."
+          # Run Godot editor in headless mode to import all assets
+          timeout 60 ./godot_executable --headless --editor --quit --path . 2>&1 || true
+          echo "Import complete"
+
+      - name: Create test output directory
+        run: mkdir -p test-results
+
+      - name: Run all unit tests
+        id: run-tests
+        run: |
+          echo "Running all unit tests..."
+          echo "============================================"
+
+          # Run all tests using the scene (loads autoloads properly)
+          timeout 120 ./godot_executable --headless --path . res://1.Codebase/src/scenes/tests/all_tests_runner.tscn 2>&1 | tee test-results/test-output.log || true
+
+          # Store exit code
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          echo "test_exit_code=$TEST_EXIT_CODE" >> $GITHUB_OUTPUT
+
+          echo ""
+          echo "============================================"
+          echo "Test execution completed with exit code: $TEST_EXIT_CODE"
+        continue-on-error: true
+
+      - name: Parse test results
+        id: parse-results
+        run: |
+          echo "Parsing test results..."
+
+          OUTPUT_FILE="test-results/test-output.log"
+          SUMMARY_FILE="test-results/summary.md"
+
+          # Initialize summary
+          echo "# 🧪 Test Results Summary" > $SUMMARY_FILE
+          echo "" >> $SUMMARY_FILE
+          echo "**Branch:** \`${{ github.ref_name }}\`" >> $SUMMARY_FILE
+          echo "**Commit:** \`${{ github.sha }}\`" >> $SUMMARY_FILE
+          echo "**Triggered by:** ${{ github.actor }}" >> $SUMMARY_FILE
+          echo "" >> $SUMMARY_FILE
+
+          if [ ! -f "$OUTPUT_FILE" ]; then
+            echo "❌ Test output file not found!" >> $SUMMARY_FILE
+            echo "test_status=error" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          # Count test results (ensure single integer output)
+          TOTAL_TESTS=$(grep "✅ PASS\|❌ FAIL" "$OUTPUT_FILE" 2>/dev/null | wc -l | tr -d ' ')
+          PASSED_TESTS=$(grep "✅ PASS" "$OUTPUT_FILE" 2>/dev/null | wc -l | tr -d ' ')
+          FAILED_TESTS=$(grep "❌ FAIL" "$OUTPUT_FILE" 2>/dev/null | wc -l | tr -d ' ')
+
+          # Ensure they are valid integers
+          TOTAL_TESTS=${TOTAL_TESTS:-0}
+          PASSED_TESTS=${PASSED_TESTS:-0}
+          FAILED_TESTS=${FAILED_TESTS:-0}
+
+          # Look for test summary in output
+          if grep -q "TEST SUMMARY" "$OUTPUT_FILE"; then
+            echo "## Test Statistics" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "| Metric | Value |" >> $SUMMARY_FILE
+            echo "|--------|-------|" >> $SUMMARY_FILE
+
+            # Extract from summary if available
+            SUMMARY_TOTAL=$(grep "Total Tests:" "$OUTPUT_FILE" | grep -o '[0-9]*' | head -1 || echo "$TOTAL_TESTS")
+            SUMMARY_PASSED=$(grep "✅ Passed:" "$OUTPUT_FILE" | grep -o '[0-9]*' | head -1 || echo "$PASSED_TESTS")
+            SUMMARY_FAILED=$(grep "❌ Failed:" "$OUTPUT_FILE" | grep -o '[0-9]*' | head -1 || echo "$FAILED_TESTS")
+            PASS_RATE=$(grep "Pass Rate:" "$OUTPUT_FILE" | grep -o '[0-9.]*%' | head -1 || echo "N/A")
+
+            echo "| Total Tests | $SUMMARY_TOTAL |" >> $SUMMARY_FILE
+            echo "| ✅ Passed | $SUMMARY_PASSED |" >> $SUMMARY_FILE
+            echo "| ❌ Failed | $SUMMARY_FAILED |" >> $SUMMARY_FILE
+            echo "| Pass Rate | $PASS_RATE |" >> $SUMMARY_FILE
+
+            TOTAL_TESTS=$SUMMARY_TOTAL
+            PASSED_TESTS=$SUMMARY_PASSED
+            FAILED_TESTS=$SUMMARY_FAILED
+          else
+            echo "## Test Statistics" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "| Metric | Value |" >> $SUMMARY_FILE
+            echo "|--------|-------|" >> $SUMMARY_FILE
+            echo "| Total Tests | $TOTAL_TESTS |" >> $SUMMARY_FILE
+            echo "| ✅ Passed | $PASSED_TESTS |" >> $SUMMARY_FILE
+            echo "| ❌ Failed | $FAILED_TESTS |" >> $SUMMARY_FILE
+
+            if [ "$TOTAL_TESTS" -gt 0 ]; then
+              PASS_RATE=$(awk "BEGIN {printf \"%.1f%%\", ($PASSED_TESTS / $TOTAL_TESTS) * 100}")
+              echo "| Pass Rate | $PASS_RATE |" >> $SUMMARY_FILE
+            fi
+          fi
+
+          echo "" >> $SUMMARY_FILE
+
+          # Output results
+          echo "total_tests=$TOTAL_TESTS" >> $GITHUB_OUTPUT
+          echo "passed_tests=$PASSED_TESTS" >> $GITHUB_OUTPUT
+          echo "failed_tests=$FAILED_TESTS" >> $GITHUB_OUTPUT
+
+          # Determine overall status
+          if [ "$FAILED_TESTS" -gt 0 ]; then
+            echo "## ❌ Tests Failed" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "The following tests failed:" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo '```' >> $SUMMARY_FILE
+            grep "❌ FAIL" "$OUTPUT_FILE" | head -20 >> $SUMMARY_FILE || true
+            echo '```' >> $SUMMARY_FILE
+            echo "test_status=failure" >> $GITHUB_OUTPUT
+          elif [ "$TOTAL_TESTS" -eq 0 ]; then
+            echo "## ⚠️ No Tests Found" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "No test results were detected in the output." >> $SUMMARY_FILE
+            echo "test_status=no_tests" >> $GITHUB_OUTPUT
+          else
+            echo "## ✅ All Tests Passed!" >> $SUMMARY_FILE
+            echo "" >> $SUMMARY_FILE
+            echo "🎉 All $PASSED_TESTS tests passed successfully!" >> $SUMMARY_FILE
+            echo "test_status=success" >> $GITHUB_OUTPUT
+          fi
+
+          echo "" >> $SUMMARY_FILE
+          echo "<details>" >> $SUMMARY_FILE
+          echo "<summary>📋 View Full Test Output</summary>" >> $SUMMARY_FILE
+          echo "" >> $SUMMARY_FILE
+          echo '```' >> $SUMMARY_FILE
+          cat "$OUTPUT_FILE" >> $SUMMARY_FILE
+          echo '```' >> $SUMMARY_FILE
+          echo "</details>" >> $SUMMARY_FILE
+
+          # Display summary in workflow
+          cat $SUMMARY_FILE
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 30
+
+      - name: Add test summary to job
+        if: always()
+        run: |
+          if [ -f "test-results/summary.md" ]; then
+            cat test-results/summary.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Comment test results on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = 'test-results/summary.md';
+
+            if (!fs.existsSync(summaryPath)) {
+              console.log('Summary file not found, skipping PR comment');
+              return;
+            }
+
+            const summary = fs.readFileSync(summaryPath, 'utf8');
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('🧪 Test Results Summary')
+            );
+
+            const commentBody = summary + '\n\n---\n*Updated: ' + new Date().toUTCString() + '*';
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
+
+      - name: Check test status
+        if: always()
+        run: |
+          TEST_STATUS="${{ steps.parse-results.outputs.test_status }}"
+
+          echo "Final test status: $TEST_STATUS"
+
+          if [ "$TEST_STATUS" = "failure" ]; then
+            echo "❌ Tests failed!"
+            exit 1
+          elif [ "$TEST_STATUS" = "no_tests" ]; then
+            echo "⚠️  No tests were found or executed!"
+            exit 1
+          elif [ "$TEST_STATUS" = "error" ]; then
+            echo "❌ Error occurred during test execution!"
+            exit 1
+          else
+            echo "✅ All tests passed!"
+            exit 0
+          fi
+
+  # Optional: Run individual test suites in parallel for faster feedback
+  individual-tests:
+    name: Test - ${{ matrix.test-suite }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        test-suite:
+          - achievement-system
+          - asset-registry
+          - butterfly-effect
+          - font-manager
+          - display-manager
+          - tutorial-system
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Godot executable
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: godot_executable
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Download Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION_FULL }}/Godot_v${{ env.GODOT_VERSION_FULL }}_linux.x86_64.zip -O godot.zip
+          unzip -q godot.zip
+          mv Godot_v${{ env.GODOT_VERSION_FULL }}_linux.x86_64 godot_executable
+          chmod +x godot_executable
+
+      - name: Map test suite to file
+        id: map-test
+        run: |
+          case "${{ matrix.test-suite }}" in
+            "achievement-system")
+              echo "test_file=1.Codebase/Unit Test/test_achievement_system.gd" >> $GITHUB_OUTPUT
+              ;;
+            "asset-registry")
+              echo "test_file=1.Codebase/Unit Test/test_asset_registry.gd" >> $GITHUB_OUTPUT
+              ;;
+            "butterfly-effect")
+              echo "test_file=1.Codebase/Unit Test/test_butterfly_effect_tracker.gd" >> $GITHUB_OUTPUT
+              ;;
+            "font-manager")
+              echo "test_file=1.Codebase/Unit Test/test_font_manager.gd" >> $GITHUB_OUTPUT
+              ;;
+            "display-manager")
+              echo "test_file=1.Codebase/Unit Test/test_display_manager.gd" >> $GITHUB_OUTPUT
+              ;;
+            "tutorial-system")
+              echo "test_file=1.Codebase/Unit Test/test_tutorial_system.gd" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Run ${{ matrix.test-suite }} tests
+        run: |
+          echo "Running ${{ matrix.test-suite }} tests..."
+          ./godot_executable --headless --path . --script "${{ steps.map-test.outputs.test_file }}" 2>&1 | tee test-output.log
+
+          # Check for failures
+          if grep -q "❌ FAIL" test-output.log; then
+            echo "Tests failed for ${{ matrix.test-suite }}"
+            exit 1
+          fi
+
+          echo "✅ ${{ matrix.test-suite }} tests passed"

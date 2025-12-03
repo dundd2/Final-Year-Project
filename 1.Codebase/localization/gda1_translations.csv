@@ -1,0 +1,676 @@
+keys,en,zh
+# Stats Labels,,
+STAT_REALITY,Reality Score,現實值
+STAT_POSITIVE,Positive Energy,正能量值
+STAT_ENTROPY,Entropy Level,熵增等級
+# Skill Labels,,
+SKILL_LOGIC,Logic,邏輯
+SKILL_PERCEPTION,Perception,感知
+SKILL_COMPOSURE,Composure,沉著
+SKILL_EMPATHY,Empathy,共情
+# Entropy Level Labels,,
+ENTROPY_LEVEL_LOW,Stable,穩定
+ENTROPY_LEVEL_MEDIUM,Unstable,不穩定
+ENTROPY_LEVEL_HIGH,Chaotic,混沌
+ENTROPY_LEVEL_UNKNOWN,Unknown,未知
+# Teammate Labels,,
+TEAMMATE_GLORIA,Saint Gloria,聖母 Gloria
+TEAMMATE_DONKEY,Knight Donkey,榮光騎士 Donkey
+TEAMMATE_ARK,Archivist ARK,秩序使徒 ARK
+TEAMMATE_ONE,One,One
+# Phase Labels,,
+PHASE_HONEYMOON,Honeymoon Phase,蜜月期
+PHASE_NORMAL,Normal Phase,常態期
+PHASE_CRISIS,Crisis Phase,危機期
+# Reason Translations,,
+REASON_POSITIVE_CURSE,Positive Energy Curse,正能量詛咒
+REASON_PRAYER_AFTERSHOCK,Prayer aftershock,禱告餘震
+REASON_GLORIA_ACCUSATION,Gloria's negative-energy accusation,Gloria的負能量控訴
+REASON_TEACHER_CONCERT,Teacher Chan's apocalypse concert,陳老師的天啟演唱會
+REASON_FORCED_ECHO,Forced to echo Gloria,被迫附和聖母
+REASON_MISSION_SUCCESS,"Mission ""success"" backlash",任務「成功」
+REASON_MISSION_AFTERSHOCK,Mission aftershock,任務餘波
+# Event Messages,,
+EVENT_REALITY_CHANGE,Reality score change: %s,現實值變化: %s
+EVENT_POSITIVE_CHANGE,Positive energy change: %s,正能量值變化: %s
+EVENT_ENTROPY_SURGE,World entropy surge: %s,世界熵增加速: %s
+EVENT_MISSION_STARTED,Mission #%s started,開始任務 #%s
+EVENT_MISSION_COMPLETE,Mission #%s completed (%s),任務完成 #%s（成功：%s）
+EVENT_PHASE_CHANGED,Game phase changed: %s,遊戲階段變更: %s
+EVENT_HONEYMOON_CHARGE,Honeymoon charge -1,蜜月層數 -1
+EVENT_HONEYMOON_DEPLETED,Honeymoon phase depleted; teammates reveal their true nature,蜜月期耗盡，隊友恢復真面目
+EVENT_HONEYMOON_RESET,Honeymoon charges reset to 5,蜜月期層數重置為 5
+EVENT_SKILL_CHECK_FAILED,"Skill check failed: %s vs DC %d (roll %d, total %d)",技能檢定失敗：%s vs DC %d（擲骰 %d，總計 %d）
+EVENT_PRAYER_RECORDED,"Prayer recorded: ""%s%s""","記錄祈禱：「%s%s」"
+EVENT_TEAMMATE_INTERFERENCE_WORSE,Teammate interference: %s made things worse,隊友干擾：%s 讓事情變得更糟
+EVENT_PRAYER_LOGGED,"Prayer logged: ""%s"" | Reality %d, Positive %d","祈禱記錄：「%s」 | 現實值 %d，正能量 %d"
+EVENT_TEAMMATE_INTERFERENCE_ESCALATED,Teammate interference: %s escalated the situation.,隊友干擾：%s 讓情況升級。
+# Status,,
+STATUS_SUCCESS,success,是
+STATUS_FAILED,failed,否
+# Error Contexts (for ErrorReporter),,
+ERROR_CONTEXT_SaveSystem,Save System,存檔系統
+ERROR_CONTEXT_SaveLoadSystem,Save/Load System,存檔系統
+ERROR_CONTEXT_AssetLoader,Asset Loader,資源加載器
+ERROR_CONTEXT_AudioManager,Audio Manager,音頻管理器
+ERROR_CONTEXT_AIManager,AI Manager,AI 管理器
+ERROR_CONTEXT_GameState,Game State,遊戲狀態
+ERROR_CONTEXT_LocalizationManager,Localization Manager,本地化管理器
+ERROR_CONTEXT_EventBus,Event Bus,事件總線
+ERROR_CONTEXT_StoryScene,Story Scene,劇情場景
+ERROR_CONTEXT_NetworkManager,Network Manager,網絡管理器
+# Error Icons,,
+ERROR_ICON_INFO,ℹ️,ℹ️
+ERROR_ICON_WARNING,⚠️,⚠️
+ERROR_ICON_ERROR,❌,❌
+ERROR_ICON_CRITICAL,🚨,🚨
+# NPC Names,,
+NPC_generic_villager_male,Villager (Male),男性村民
+NPC_generic_villager_female,Villager (Female),女性村民
+NPC_generic_guard,Guard,守衛
+NPC_generic_merchant,Merchant,商人
+NPC_generic_elder,Elder,長者
+NPC_generic_child,Child,兒童
+NPC_generic_priest,Priest,神職人員
+NPC_generic_scientist,Scientist,科學家
+NPC_unknown,NPC,角色
+# Tutorial Texts,,
+TUTORIAL_first_choice,Make your choice. But remember: in this world good intentions often backfire.,做出你的首次選擇。記住：這裡的善意常常適得其反。
+TUTORIAL_first_stat_change,Watch your Reality score. When it drops to 0 the game is over.,注意現實值。降到 0 時，遊戲立刻結束。
+TUTORIAL_first_prayer,The prayer system lets you input positive wishes... then watch them turn into disasters.,祈禱系統會把盼望扭曲成災難，靜待反諷上演。
+TUTORIAL_first_mission,Congratulations on completing your first mission! Check the journal for story details.,恭喜完成第一項任務！打開日誌查看細節。
+TUTORIAL_first_skill_check,Skill checks are based on your abilities. Improving skills unlocks more options.,技能檢定取決於能力值。提升能力可解鎖更多選項。
+TUTORIAL_first_gloria_intervention,Gloria's moral blackmail has arrived! Complaining too much triggers her intervention.,抱怨太多會引來 Gloria 的道德勒索，她稱之為指導。
+TUTORIAL_first_entropy_surge,Rising entropy means the world is accelerating toward collapse. This is the price of 'saving the world'.,熵值升高代表世界正在加速崩解，拯救的代價無處不在。
+TUTORIAL_first_night_cycle,During the night you can explore teammate relationships or engage in self-reflection.,夜幕降臨時，可以探索隊友關係，也能進行自我反省。
+# Achievement Texts,,
+ACHIEVEMENT_first_mission_TITLE,First Mission,初次任務
+ACHIEVEMENT_first_mission_DESC,Complete your first mission,完成第一個任務
+ACHIEVEMENT_reality_seeker_TITLE,Reality Seeker,現實追尋者
+ACHIEVEMENT_reality_seeker_DESC,Reach Reality Score of 80 or higher,達到80以上的現實感知值
+ACHIEVEMENT_reality_crisis_TITLE,Reality Crisis,現實危機
+ACHIEVEMENT_reality_crisis_DESC,Reality Score drops below 20,現實感知值降到20以下
+ACHIEVEMENT_positive_resistance_TITLE,Positive Resistance,正能量抗體
+ACHIEVEMENT_positive_resistance_DESC,Keep Positive Energy below 30,保持正能量指數在30以下
+ACHIEVEMENT_positive_victim_TITLE,Positive Victim,正能量受害者
+ACHIEVEMENT_positive_victim_DESC,Positive Energy reaches 90 or higher,正能量指數達到90以上
+ACHIEVEMENT_entropy_witness_TITLE,Entropy Witness,熵增見證者
+ACHIEVEMENT_entropy_witness_DESC,Entropy Level reaches 100,熵增等級達到100
+ACHIEVEMENT_diary_keeper_TITLE,Diary Keeper,日記守護者
+ACHIEVEMENT_diary_keeper_DESC,Record 10 journal entries,在日記中記錄10條條目
+ACHIEVEMENT_master_complainer_TITLE,Master Complainer,抱怨大師
+ACHIEVEMENT_master_complainer_DESC,Trigger Gloria's moral blackmail 3 times,觸發Gloria的道德勒索3次
+ACHIEVEMENT_faithful_noodler_TITLE,Faithful Noodler,虔誠麵神徒
+ACHIEVEMENT_faithful_noodler_DESC,Pray to the Flying Spaghetti Monster 10 times,向飛天意粉神祈禱10次
+ACHIEVEMENT_skill_master_TITLE,Skill Master,技能大師
+ACHIEVEMENT_skill_master_DESC,Raise any skill to 10,將任何技能提升到10
+ACHIEVEMENT_survivor_TITLE,Survivor,倖存者
+ACHIEVEMENT_survivor_DESC,Complete 10 missions,完成10個任務
+ACHIEVEMENT_veteran_TITLE,Veteran,老兵
+ACHIEVEMENT_veteran_DESC,Complete 50 missions,完成50個任務
+ACHIEVEMENT_logic_master_TITLE,Logic Master,邏輯大師
+ACHIEVEMENT_logic_master_DESC,Successfully pass 10 Logic checks,成功完成10次邏輯檢定
+ACHIEVEMENT_perception_expert_TITLE,Perception Expert,觀察專家
+ACHIEVEMENT_perception_expert_DESC,Successfully pass 10 Perception checks,成功完成10次感知檢定
+ACHIEVEMENT_balanced_mind_TITLE,Balanced Mind,平衡心智
+ACHIEVEMENT_balanced_mind_DESC,Keep both Reality and Positive Energy between 40-60,保持現實值和正能量都在40-60之間
+ACHIEVEMENT_moral_philosopher_TITLE,Moral Philosopher,道德哲學家
+ACHIEVEMENT_moral_philosopher_DESC,Face and resolve your first moral dilemma,面對並解決第一個道德困境
+ACHIEVEMENT_trolley_conductor_TITLE,Trolley Conductor,電車調度員
+ACHIEVEMENT_trolley_conductor_DESC,Resolve 5 moral dilemmas,解決5個道德困境
+ACHIEVEMENT_complicit_TITLE,Complicit,共犯
+ACHIEVEMENT_complicit_DESC,Resolve 10 moral dilemmas and become complicit in the disasters,解決10個道德困境，成為災難的共犯
+ACHIEVEMENT_tutorial_master_TITLE,Tutorial Master,教程達人
+ACHIEVEMENT_tutorial_master_DESC,Complete all tutorial hints,完成所有教程提示
+# UI Labels,,
+UI_ACHIEVEMENT_SYSTEM_NOT_CONFIGURED,Achievement System Not Configured,成就系統未配置
+ACHIEVEMENT_PROGRESS_SUMMARY,Achievement Progress: %d/%d (%.1f%%),成就進度：%d/%d (%.1f%%)
+ACHIEVEMENT_UNLOCKED_AT_LABEL,Unlocked:,解鎖於：
+ACHIEVEMENT_SETUP_TITLE,⚠️ Setup Required,⚠️ 需要設定
+ACHIEVEMENT_SETUP_BODY,"[b]The Achievement System is not loaded.[/b]\n\n[color=#ffaa88]To enable achievements:[/color]\n\n1. Open [b]Project → Project Settings[/b] in Godot\n2. Go to the [b]Autoload[/b] tab\n3. Click [b]Add[/b]\n4. Set the path to: [b]res://1.Codebase/src/scripts/core/achievement_system.gd[/b]\n5. Set the Node Name to: [b]AchievementSystem[/b]\n6. Click [b]Add[/b] to confirm\n7. Restart the game\n\n[color=#88ff88]After setup, you'll be able to track achievements like:[/color]\n• Mission completions\n• Skill masteries\n• Stat milestones\n• And many more!","[b]成就系統未載入。[/b]\n\n[color=#ffaa88]設定步驟：[/color]\n\n1. 在 Godot 中打開 [b]Project → Project Settings[/b]\n2. 進入 [b]Autoload[/b] 標籤\n3. 點擊 [b]Add[/b]\n4. 選擇: [code]res://1.Codebase/src/scripts/core/achievement_system.gd[/code]\n5. 設定名稱為 [b]AchievementSystem[/b]\n6. 勾選 [b]Enable[/b]\n7. 重新啟動場景。\n\n[color=#aaffaa]成就系統將自動初始化並追蹤進度。[/color]"
+ACHIEVEMENT_HINT_FIRST_MISSION,Complete any mission,完成任務一次
+ACHIEVEMENT_HINT_SURVIVOR,Progress: %d/10 missions,進度：%d/10 個任務
+ACHIEVEMENT_HINT_VETERAN,Progress: %d/50 missions,進度：%d/50 個任務
+ACHIEVEMENT_HINT_DIARY_KEEPER,Progress: %d/10 journal entries,進度：%d/10 篇日誌
+ACHIEVEMENT_HINT_MASTER_COMPLAINER,Progress: %d/3 Gloria triggers,進度：%d/3 次 Gloria 觸發
+ACHIEVEMENT_HINT_FAITHFUL_NOODLER,Progress: %d/10 prayers,進度：%d/10 次祈禱
+ACHIEVEMENT_HINT_LOGIC_MASTER,Progress: %d/10 logic checks,進度：%d/10 次邏輯檢定
+ACHIEVEMENT_HINT_PERCEPTION_EXPERT,Progress: %d/10 perception checks,進度：%d/10 次洞察檢定
+ACHIEVEMENT_HINT_REALITY_SEEKER,Current reality: %d/80,目前現實值：%d/80
+ACHIEVEMENT_HINT_REALITY_CRISIS,Current reality: %d (need <20),目前現實值：%d（需低於 20）
+ACHIEVEMENT_HINT_POSITIVE_RESISTANCE,Current positive energy: %d (keep under 30),目前正能量：%d（保持低於 30）
+ACHIEVEMENT_HINT_POSITIVE_VICTIM,Current positive energy: %d/90,目前正能量：%d/90
+ACHIEVEMENT_HINT_ENTROPY_WITNESS,Current entropy: %d/100,目前熵值：%d/100
+ACHIEVEMENT_HINT_SKILL_MASTER,Highest skill: %d/10,最高技能：%d/10
+ACHIEVEMENT_HINT_BALANCED_MIND,"Keep both 40-60 (Reality:%d, Positive:%d, Turns:%d/5)","維持 40-60 區間（現實:%d，正能量:%d，回合:%d/5）"
+UI_JOURNAL_DESCRIPTION,Record your observations and doubts or choose preset responses.,記錄你的觀察、思想和疑慮，或選擇預設回應。
+UI_JOURNAL_ENTRY_PROMPT,What happened today?,今天發生了什麼？
+UI_JOURNAL_BUTTON_FRUSTRATED,Frustrated,沮喪
+UI_JOURNAL_BUTTON_HOPELESS,Hopeless,絕望
+UI_JOURNAL_BUTTON_ANGRY,Angry,憤怒
+UI_JOURNAL_BUTTON_CONFUSED,Confused,困惑不解
+UI_JOURNAL_BUTTON_TIRED,Exhausted,疲憊不堪
+UI_JOURNAL_BUTTON_CUSTOM,Write my own,自己撰寫
+UI_CLOSE_BUTTON,CLOSE,關閉
+PLACEHOLDER_NO_ASSETS,(No symbolic assets assigned yet.),(尚未分配象徵性資源。)
+# Intro Page,,
+INTRO_TITLE,GAME INTRODUCTION - HOW TO PLAY,遊戲介紹 - 如何遊玩
+INTRO_BODY,"Welcome to Glorious Deliverance Agency 1 (GDA1)!\n\nIn this game, you will experience a world ruled by the ""Flying Spaghetti Monster"" cult and toxic positive energy culture. As one of the few who maintains reality perception, you need to:\n\n• Stay sane during absurd missions\n• Resist teammates' ""positive energy"" interference\n• Face disasters with logic and reason\n• Record true feelings in your journal\n\nGame Features:\n- Dark humor and satirical narrative\n- AI-driven dynamic story generation\n- Reality perception system (staying awake is important!)\n- Teammate interference mechanics (they make things worse)\n- Flying Spaghetti Monster prayer system (be careful what you wish for)\n\nRemember: In this world, ""success"" often means greater disaster.\nStay skeptical, stay awake, good luck!\n\nOn the web build, saves are stored in your browser's local storage (IndexedDB). Desktop builds use the standard Godot data directory.","歡迎來到光榮拯救機構 1（GDA1）！\n\n在這個遊戲中，你將體驗一個被「飛天意粉神教」和有毒正能量文化統治的世界。作為少數保持現實感知的人之一，你需要：\n\n• 在荒謬的任務中保持清醒\n• 抵抗隊友的「正能量」干擾\n• 用邏輯和理性面對災難\n• 在日記中記錄真實感受\n\n遊戲特色：\n- 黑色幽默與諷刺敘事\n- AI 驅動的動態故事生成\n- 現實感知系統（保持清醒很重要！）\n- 隊友干擾機制（他們會讓事情更糟）\n- 飛天意粉神禱告系統（小心你的願望）\n\n記住：在這個世界裡，「成功」往往意味著更大的災難。\n保持懷疑，保持清醒，祝你好運！\n\n網頁版會將存檔保存在瀏覽器的本機儲存空間（IndexedDB），桌面版則使用 Godot 預設的資料夾。"
+INTRO_BUTTON_CHARACTERS,VIEW CHARACTERS,查看角色介紹
+INTRO_BUTTON_CLOSE,BACK TO MAIN MENU,返回主選單
+# Mission/Story Text,,
+STORY_MISSION_GENERATION_INSTRUCTION,Create a new mission scenario for the player.,為玩家創建一個新的任務情景。
+STORY_PRAYER_RESPONSE,The Flying Spaghetti Monster has heard your prayer... maybe.,飛行面條怪聽到了你的祈禱... 也許。
+# Trolley Problem Dilemma - Team Strategy Discussion,,
+DILEMMA_TEAM_STRATEGY_SCENARIO,The team is discussing strategy. Gloria proposes an optimistic plan but ARK points out its logical flaws.,團隊正在討論策略。Gloria 提出了一個樂觀的計劃，但 ARK 指出了其中的邏輯缺陷。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE,🌟 Support Gloria's optimistic plan and stay positive.,🌟 支持 Gloria 的樂觀計劃，保持積極。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE_IMMEDIATE,Team feels better and Gloria gains confidence.,團隊感覺更好，Gloria 增加信心。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE_LONGTERM,Plan fails due to logical flaws but team stays positive missing improvement opportunities.,計劃因邏輯缺陷失敗，但團隊保持積極，錯過了改進機會。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC,⚖️ Support ARK's critical analysis and face reality.,⚖️ 支持 ARK 的批判性分析，面對現實。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC_IMMEDIATE,Gloria feels criticized and team morale drops.,Gloria 感到被批評，團隊士氣下降。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC_LONGTERM,Team learns critical thinking but may strain relationship with Gloria.,團隊學會批判性思考，但可能與 Gloria 關係緊張。
+DILEMMA_TEAM_STRATEGY_THEME,Sometimes honesty is punished while toxic positivity is rewarded.,有時誠實會受到懲罰，而毒性積極性卻得到獎勵。
+JOURNAL_PRESET_FRUSTRATED,"I feel frustrated. No matter how logically I plan, the team still ruins everything.","我感到沮喪。無論我如何邏輯地規劃,團隊仍然毀掉一切。"
+JOURNAL_PRESET_HOPELESS,I feel hopeless. Can this world even be saved? Positive-energy dogma has already wrecked it all.,我感到絕望。這個世界還能被拯救嗎?正能量教條已經毀了一切。
+JOURNAL_PRESET_ANGRY,I'm furious. Why won't anyone face reality? Why is admitting the problem so hard?,我非常憤怒。為什麼沒人願意面對現實?為什麼承認問題這麼難?
+JOURNAL_PRESET_CONFUSED,"I'm confused. Positive-energy thinking causes so much disaster, yet people still believe in it.","我很困惑。正能量思維造成如此多的災難,但人們仍然相信它。"
+JOURNAL_PRESET_EXHAUSTED,I'm exhausted. Fighting these absurd catastrophes every day is draining me dry.,我筋疲力盡。每天與這些荒謬的災難作鬥爭讓我心力交瘁。
+JOURNAL_SAVE_FAILED,Failed to save journal. Check permissions.,"日誌保存失敗,請檢查權限。"
+JOURNAL_EMPTY_STATE,No diary entries yet.\nRecording your feelings helps restore reality.,還沒有日記條目。\n記錄你的感受有助於恢復現實。
+JOURNAL_REALITY_GAIN,+%d Reality,+%d 現實值
+JOURNAL_AI_PROMPT_ROLE,You are the player's brutally honest inner analyst in the satirical world of GDA1.,你是身處 GDA1 諷刺世界裡的玩家內心分析者。
+JOURNAL_AI_PROMPT_OBJECTIVE,Help the player vent about forced positivity while acknowledging the hard facts below.,請依據下面的情境，提供能讓玩家誠實抒發、揭露正能量教條矛盾的反思提示。
+JOURNAL_AI_PROMPT_MISSION_HEADER,Mission excerpt:,劇情摘錄：
+JOURNAL_AI_PROMPT_EVENTS_HEADER,Recent events:,近期事件：
+JOURNAL_AI_PROMPT_STATS_HEADER,Player stats:,玩家狀態：
+JOURNAL_AI_PROMPT_STAT_REALITY,- Reality score: %d,- 現實值：%d
+JOURNAL_AI_PROMPT_STAT_POSITIVE,- Positive energy: %d,- 正能量：%d
+JOURNAL_AI_PROMPT_STAT_ENTROPY,- Entropy level: %d,- 熵值：%d
+JOURNAL_AI_PROMPT_JSON_RULE,"Return ONLY valid JSON (double quotes, UTF-8, no code fences, no commentary).","只回傳有效 JSON（使用雙引號、UTF-8，不可加入 Markdown 或額外說明）。"
+JOURNAL_AI_PROMPT_STRUCTURE,Use exactly this structure:,結構如下：
+JOURNAL_AI_PROMPT_TEMPLATE_TEXT,"    {""text"": ""<=%d words reflection""}","    {""text"": ""不超過 %d 字的反思""}"
+JOURNAL_AI_PROMPT_FINAL_INSTRUCTION,"Provide exactly %d suggestions. Each must stand alone, stay within %d words, avoid emojis, and highlight the clash between reality and mandated optimism.","請輸出剛好 %d 則提示，每則維持黑色幽默與同理心，並點出現實與正能量教條的衝突，長度不得超過 %d 個字。"
+JOURNAL_FALLBACK_SUGGESTION_1,Document how the team's 'positivity' twisted the mission into chaos.,寫下所謂的正能量如何把任務推向崩壞。
+JOURNAL_FALLBACK_SUGGESTION_2,Note what your gut noticed before everything collapsed.,記錄你在災難前察覺到的不安跡象。
+JOURNAL_FALLBACK_SUGGESTION_3,Describe the contradiction between ordered smiles and the entropy you measured.,描述笑容秩序與熵值之間的荒謬矛盾。
+JOURNAL_SUGGESTION_HINT,Tap a suggestion to start writing.,點選建議即可開始書寫。
+JOURNAL_AI_ERROR_PREFIX,AI error:,AI 錯誤：
+JOURNAL_AI_EMPTY_RESPONSE,AI returned nothing. Showing fallback reflections.,AI 未提供建議，改顯示預設選項。
+JOURNAL_SUMMARY_PROMPT_TEMPLATE,"Player diary entry:\n""%s""\n\nRecent mission context:\n%s\n\nLatest story excerpt:\n%s\n\nIn no more than %d words, write a single reflective sentence explaining why the player feels this way. Highlight the causal tension between reality and forced positivity.","玩家日誌條目：\n""%s""\n\n近期任務脈絡：\n%s\n\n最新故事摘錄：\n%s\n\n請在 %d 個字以內寫出一句反思，說明玩家情緒的原因並凸顯現實與被迫正能量的拉扯。"
+JOURNAL_AI_GENERATING,AI analysis generating...,AI 分析生成中...
+JOURNAL_SECTION_LATEST_STORY,Latest Experience,最新故事
+JOURNAL_SECTION_RECENT_EVENTS,Recent Events,近期事件
+JOURNAL_SECTION_AI_SUGGESTIONS,AI Reflection Suggestions,AI 反思建議
+JOURNAL_NO_STORY,No story recorded yet.,尚無故事記錄。
+JOURNAL_NO_MILESTONES,No recent milestone.,沒有近期里程碑。
+JOURNAL_AI_FALLBACK,AI unavailable. Using fallback reflections.,"AI 無法使用,改用備援反思。"
+JOURNAL_LOADING_SUGGESTIONS,Loading suggestions...,載入建議中...
+JOURNAL_NO_EVENTS,No specific incidents were logged.,尚未記錄具體事件。
+JOURNAL_NO_NARRATIVE,No mission narrative yet.,尚未有任務敘事。
+JOURNAL_AI_UNAVAILABLE,AI summary unavailable.,AI 摘要不可用。
+JOURNAL_ENTRY_SAVED,Entry Saved! Reality +%d,條目已儲存！現實值 +%d
+JOURNAL_SAVED,Journal saved!,日誌已儲存!
+JOURNAL_MISSION_OUTCOME,Mission outcome:,任務結果:
+JOURNAL_NO_EXTRA_EVENTS,No additional events recorded.,尚無額外事件記錄。
+MENU_TITLE,GLORIOUS DELIVERANCE AGENCY 1,光榮拯救機構 1
+MENU_SUBTITLE,Stay Skeptical. Stay Awake.,"保持懷疑,保持清醒"
+MENU_NEW_GAME,NEW GAME,開始新遊戲
+MENU_CONTINUE,CONTINUE,繼續遊戲
+MENU_SAVE_LOAD,SAVE / LOAD,存檔 / 讀檔
+MENU_JOURNAL,JOURNAL,日誌
+MENU_ACHIEVEMENTS,ACHIEVEMENTS,成就
+MENU_HOW_TO_PLAY,HOW TO PLAY,如何遊玩
+MENU_TERMS,TERMS & PRIVACY,條款與隱私
+MENU_SETTINGS,SETTINGS,設定
+MENU_QUIT,QUIT,退出
+MENU_CREATIVE_STATEMENT,CREATIVE STATEMENT,創作聲明
+MENU_NO_SAVE_DATA,No save data available yet.,暫無可繼續的進度
+MENU_LAST_SAVE_INFO,Last save: Reality %d | Missions %d | %s | %s,最近存檔:現實值 %d｜任務完成 %d｜%s｜%s
+MENU_AUTOSAVE,Autosave,自動存檔
+MENU_MANUAL_SAVE,Manual save,手動存檔
+MENU_SLOT,Slot %d,槽位 %d
+MENU_SLOT_FMT,Slot %d,槽位 %d
+MENU_UNKNOWN_TIME,Unknown time,未知時間
+MENU_TIMESTAMP_FORMAT,%04d-%02d-%02d %02d:%02d,%04d年%02d月%02d日 %02d:%02d
+MENU_TIMESTAMP_FMT,%04d-%02d-%02d %02d:%02d,%04d年%02d月%02d日 %02d:%02d
+MENU_LAST_SAVE_FMT,Last save: Reality %d | Missions %d | %s | %s,最近存檔:現實值 %d｜任務完成 %d｜%s｜%s
+SAVELOAD_TITLE,Save / Load,存檔 / 讀檔
+SAVELOAD_SUBTITLE,Manage your progress,管理你的冒險進度
+SAVELOAD_INFO,"Choose a slot to load, overwrite, or delete. Autosave data appears above when available.",選擇存檔槽即可載入、覆寫或刪除;自動存檔會顯示在上方。
+SAVELOAD_LOAD_AUTOSAVE,Load autosave,載入自動存檔
+SAVELOAD_DELETE_AUTOSAVE,Delete autosave,刪除自動存檔
+SAVELOAD_REFRESH,Refresh,重新整理
+SAVELOAD_CLOSE,Close,關閉
+SAVELOAD_EMPTY_HINT,No manual saves yet. Use a slot's Save button to create one.,目前沒有手動存檔。使用任一槽位的「存檔」按鈕建立進度。
+SAVELOAD_NO_AUTOSAVE,No autosave available.,目前沒有自動存檔。
+SAVELOAD_SLOT,Slot %d,槽位 %d
+SAVELOAD_EMPTY_SLOT,Empty slot. Create a new save here.,"空槽位,可在此建立存檔。"
+SAVELOAD_SAVE,Save,存檔
+SAVELOAD_LOAD,Load,讀檔
+SAVELOAD_DELETE,Delete,刪除
+SAVELOAD_SUMMARY,Reality %d | Entropy %d | Missions %d,現實 %d｜熵增 %d｜任務 %d
+SAVELOAD_AUTOSAVE_SUMMARY,Autosave • Reality %d / Entropy %d / Missions %d,自動存檔 • 現實 %d / 熵增 %d / 任務 %d
+SAVELOAD_UNKNOWN_TIME,Unknown time,時間未知
+SAVELOAD_TIMESTAMP,Saved on %04d-%02d-%02d %02d:%02d,%04d年%02d月%02d日 %02d:%02d 存檔
+SETTINGS_TITLE,SETTINGS,設定
+SETTINGS_AUDIO,Audio Settings,音訊設定
+SETTINGS_MASTER_VOLUME,Master Volume:,主音量:
+SETTINGS_MUSIC_VOLUME,Music Volume:,音樂音量:
+SETTINGS_SFX_VOLUME,SFX Volume:,音效音量:
+SETTINGS_MUTE_ALL,Mute All,全部靜音
+SETTINGS_DELETE_LOGS,DELETE LOCAL LOGS,刪除本機記錄
+SETTINGS_DELETE_CONFIRM_TITLE,Delete Local Logs,刪除本機記錄
+SETTINGS_DELETE_CONFIRM_MSG,"This deletes locally stored logs, cached AI prompts, and in-memory event history. Continue?",這將刪除本機儲存的記錄、AI 快取與事件歷程。是否繼續?
+SETTINGS_DELETE,Delete,刪除
+SETTINGS_CANCEL,Cancel,取消
+SETTINGS_DEV_FORCE_COMPLETE_HINT,"When enabled, the AI will be instructed to end the mission on the very next turn, regardless of context.","啟用後，無論當前情境如何，AI 都會被指示在下一個回合強制結束任務。"
+SETTINGS_DISPLAY_WINDOWED,Windowed,視窗化
+SETTINGS_DISPLAY_FULLSCREEN,Fullscreen,全螢幕
+SETTINGS_DISPLAY_BORDERLESS,Borderless Window,無邊框視窗
+SETTINGS_APPLIED,Settings applied!,設定已套用!
+SETTINGS_LOGS_CLEARED,"Local logs cleared (%d files removed, %d caches reset).","已清除本機記錄(刪除檔案 %d 個,重設快取 %d 項)。"
+SETTINGS_LOGS_CLEAR_FAILED,Unable to clear logs because the game state service is unavailable.,"無法清除記錄,因遊戲狀態不可用。"
+# Debug Mode - Stat Modifiers,,
+SETTINGS_DEBUG_REALITY_SCORE,Reality Score:,現實值:
+SETTINGS_DEBUG_POSITIVE_ENERGY,Positive Energy:,正能量值:
+SETTINGS_DEBUG_ENTROPY_LEVEL,Entropy Level:,熵值:
+SETTINGS_DEBUG_HONEYMOON_CHARGES,Honeymoon Charges:,蜜月期次數:
+SETTINGS_DEBUG_MISSION_TURN,Mission Turn Count:,任務回合數:
+# Debug Mode - Section Headers,,
+SETTINGS_DEBUG_QUICK_ACTIONS,Quick Actions,快速操作
+SETTINGS_DEBUG_TOGGLES,Game State Toggles,遊戲狀態切換
+# Debug Mode - Quick Action Buttons,,
+SETTINGS_DEBUG_MAX_STATS,Max All Stats,全部屬性最大化
+SETTINGS_DEBUG_RESET_STATS,Reset All Stats,重置全部屬性
+SETTINGS_DEBUG_CLEAR_DEBUFFS,Clear All Debuffs,清除所有減益
+SETTINGS_DEBUG_ADD_HONEYMOON,+5 Honeymoon Charges,+5 蜜月期次數
+# Debug Mode - Toggles,,
+SETTINGS_DEBUG_AUTOSAVE,Enable Autosave,啟用自動存檔
+SETTINGS_DEBUG_INFINITE_RESOURCES,Infinite Resources Mode,無限資源模式
+SETTINGS_DEBUG_SKIP_DIALOGUE,Auto-Advance Dialogue,自動推進對話
+SETTINGS_DEBUG_GOD_MODE,God Mode (No Fail),上帝模式（無失敗）
+# Debug Mode - Notification Messages,,
+SETTINGS_DEBUG_STATS_MAXED,All stats maximized!,全部屬性已最大化！
+SETTINGS_DEBUG_STATS_RESET,All stats reset to defaults!,全部屬性已重置為預設值！
+SETTINGS_DEBUG_DEBUFFS_CLEARED,All debuffs cleared!,所有減益已清除！
+SETTINGS_DEBUG_DEBUFF_SYSTEM_UNAVAILABLE,Debuff system not available,減益系統不可用
+SETTINGS_DEBUG_GAMESTATE_UNAVAILABLE,GameState not available,遊戲狀態不可用
+SETTINGS_DEBUG_HONEYMOON_ADDED,Added 5 honeymoon charges!,已增加 5 次蜜月期次數！
+SETTINGS_DEBUG_AUTOSAVE_ENABLED,Autosave enabled,已啟用自動存檔
+SETTINGS_DEBUG_AUTOSAVE_DISABLED,Autosave disabled,已停用自動存檔
+SETTINGS_DEBUG_INFINITE_RESOURCES_ENABLED,Infinite resources enabled,已啟用無限資源
+SETTINGS_DEBUG_INFINITE_RESOURCES_DISABLED,Infinite resources disabled,已停用無限資源
+SETTINGS_DEBUG_AUTO_ADVANCE_ENABLED,Auto-advance dialogue enabled,已啟用自動推進對話
+SETTINGS_DEBUG_AUTO_ADVANCE_DISABLED,Auto-advance dialogue disabled,已停用自動推進對話
+SETTINGS_DEBUG_GOD_MODE_ENABLED,God mode enabled,已啟用上帝模式
+SETTINGS_DEBUG_GOD_MODE_DISABLED,God mode disabled,已停用上帝模式
+ACHIEVEMENT_VIEWER_TITLE,ACHIEVEMENTS,成就
+ACHIEVEMENT_VIEWER_CLOSE,CLOSE,關閉
+ACHIEVEMENT_VIEWER_PROGRESS,Achievement Progress: %d/%d (%.1f%%),成就進度: %d/%d (%.1f%%)
+ACHIEVEMENT_VIEWER_UNLOCKED,Unlocked:,解鎖於:
+ACHIEVEMENT_VIEWER_SETUP_REQUIRED,⚠️ Setup Required,⚠️ 需要設定
+ACHIEVEMENT_VIEWER_SETUP_MSG,The Achievement System is not loaded.\n\nTo enable achievements:\n\n1. Open Project → Project Settings in Godot\n2. Go to the Autoload tab\n3. Click Add\n4. Set the path to: res://1.Codebase/src/scripts/core/achievement_system.gd\n5. Set the Node Name to: AchievementSystem\n6. Click Add to confirm\n7. Restart the game,成就系統未載入。\n\n設定步驟：\n\n1. 在 Godot 中打開 Project → Project Settings\n2. 進入 Autoload 標籤\n3. 點擊 Add\n4. 選擇: res://1.Codebase/src/scripts/core/achievement_system.gd\n5. 設定名稱為 AchievementSystem\n6. 勾選 Enable\n7. 重新啟動場景。
+TUTORIAL_TITLE,💡 Tutorial Tip,💡 教程提示
+TUTORIAL_GOT_IT,Got it!,我知道了
+TUTORIAL_SKIP_ALL,Skip all tutorials,跳過所有教程
+TUTORIAL_ALL_SKIPPED,All tutorials skipped,教程已全部跳過
+TERMS_TITLE,TERMS & CONDITIONS,條款與細則
+TERMS_ACCEPT,ACCEPT & CONTINUE,接受並繼續
+STORY_EXIT_CONFIRM,Are you sure you want to return to the main menu? Unsaved progress will be lost.,確定要離開故事場景嗎?未保存的進度將丟失。
+STORY_EXIT_YES,"Yes, Exit","是的,離開"
+STORY_CANCEL,Cancel,取消
+STORY_CONFIRM,Confirm,確認
+GLORIA_TITLE,💔 Saint Gloria,💔 聖母 Gloria
+GLORIA_NEGATIVE_MESSAGE,You're being too negative...,你真是太負面了...
+GLORIA_CONTINUE,...Continue,...繼續
+PRAYER_COGNITIVE_DISSONANCE,⚠️ Cognitive Dissonance: Your mind forces you to add positive words!,⚠️ 認知失調：你的思維強迫你添加正能量詞彙！
+PRAYER_REALITY_CRITICAL,⚠️ DANGER: Reality perception critically low! Prayer will cause catastrophic consequences!,⚠️ 危險：現實感知極度低下！禱告將帶來災難性後果！
+PRAYER_REALITY_WARNING,"⚠️ WARNING: Reality perception is low, prayer effects may spiral out of control...",⚠️ 警告：現實感知偏低，禱告效果可能失控...
+PRAYER_NOTICE_TITLE,Data Usage Notice,資料使用告知
+PRAYER_NOTICE_MSG,"[b]Before You Pray:[/b]\n\n• If using cloud models, your text will be sent to third-party AI services for processing.\n\n• Local models process everything on your device.\n\n• Prayer responses may contain unpredictable satirical content.",[]開始祈禱前請先了解：[/b]\n\n• 若選擇雲端模型，您輸入的文字將會傳送至第三方 AI 服務處理。\n\n• 本地模型則在本機處理。\n\n• 祈禱回應可能包含不可預測的諷刺內容。
+PRAYER_CANCEL,Cancel,取消
+LOADING_GENERATING_STORY,Generating story...,生成故事中...
+LOADING_CONSULTING_AI,Consulting AI oracle...,諮詢AI神諭...
+LOADING_WEAVING_NARRATIVE,Weaving narrative threads...,編織敘事線索...
+QUICK_SAVE,Quick Save,快速存檔
+QUICK_LOAD,Quick Load,快速讀檔
+QUICK_ACHIEVEMENTS,Achievements,成就
+NIGHT_REFLECTION,Post-Mission Reflection,任務後的反思
+NIGHT_HONEYMOON,Honeymoon Illusion,蜜月假象
+NIGHT_PRAY_AGAIN,Pray to the Flying Spaghetti Monster again.,再向飛天意粉神祈禱吧。
+STORY_SECTION_PLAYER_REFLECTION,## Player Reflection,## 玩家反思
+STORY_SECTION_TEACHER_CONCERT,## Teacher Concert,## 老師演唱會
+STORY_SECTION_HONEYMOON_RECORD,## Honeymoon Period Record,## 蜜月期紀錄
+STORY_DILEMMA_CLASSIC,Classic Dilemma,經典困境
+STORY_DILEMMA_SACRIFICE,Personal Sacrifice,個人犧牲
+STORY_DILEMMA_DECEPTION,Noble Deception,高貴謊言
+STORY_DILEMMA_RESOURCE,Resource Allocation,資源分配
+STORY_DILEMMA_AUTHORITY,Authority Challenge,權威挑戰
+STORY_PRAYER_KEYWORD,pray/prayer,祈禱
+CHOICE_SELECT_ACTION,Select Your Action,選擇你的行動
+CHOICE_HOW_TO_PROCEED,Choose how you want to proceed...,選擇你想要如何進行...
+CHOICE_CANCEL,← Cancel,← 取消
+CHOICE_PRAYER,[Prayer],[祈禱]
+CHOICE_RADICAL,[Radical],[激進]
+CHOICE_DIPLOMATIC,[Diplomatic],[外交]
+CHARACTERS_TITLE,Character Profiles,角色介紹
+BUTTERFLY_TITLE,Butterfly Effect Timeline,蝴蝶效應時間線
+BUTTERFLY_SUBTITLE,Your choices echo through the story...,你的選擇在故事中迴盪...
+BUTTERFLY_CLOSE,Close,關閉
+ASSET_NO_TAGS,No tags,無標籤
+ASSET_NO_DESCRIPTION,No description,無描述
+UI_UNKNOWN,Unknown,未知
+UI_REALITY,Reality,現實
+UI_ENTROPY,Entropy,熵
+UI_MISSIONS,Missions,任務
+UI_PROTAGONIST,Protagonist,主角
+AI_MISSION_GENERATION,=== Mission Generation ===,=== 任務生成 ===
+AI_CONSEQUENCE_GENERATION,=== Consequence Generation ===,=== 後果生成 ===
+AI_TEAMMATE_INTERFERENCE,=== Teammate Interference ===,=== 隊友插手 ===
+AI_GLORIA_BOMBARDMENT,=== Gloria's Positive Energy Bombardment ===,=== Gloria 正能量轟炸 ===
+AI_GENERATION_FAILED,AI generation failed:,AI 生成失敗:
+AI_IMPORTANT_USE_CHINESE,"IMPORTANT: Respond in Traditional Chinese. All narrative, dialogue, and descriptions must be in Traditional Chinese.",重要：請使用繁體中文回答。所有敘事、對話與描述必須使用繁體中文。
+AI_SESSION_DATA,=== Session Data ===,=== 會話數據 ===
+AI_RECENT_EVENTS,=== Recent Events ===,=== 最近事件 ===
+AI_CURRENT_PHASE,Current Phase:,當前階段:
+AI_REQUEST_TIMEOUT,Request timed out. Retrying... (%d/%d),請求超時。正在重試... (%d/%d)
+AI_REQUEST_FAILED,Request failed after %d retries. Please check network connection.,請求在 %d 次重試後仍然失敗，請檢查網路連線。
+# Terms & Conditions - Full Text,,
+TERMS_BODY_EN,"AI-Generated Content Disclaimer
+
+This game uses Artificial Intelligence (AI) to generate dynamic story content, dialogue, and scenarios. By playing this game, you acknowledge and agree to the following terms:
+
+1. AI Content Generation
+   - Story elements, dialogue, and events may be generated by AI in real-time
+   - AI-generated content may vary between playthroughs
+   - Quality and coherence of content may vary
+
+2. Content Unpredictability
+   - AI may produce unexpected or unusual responses
+   - The game's satirical and dark humor nature means content may be challenging
+   - Players should be prepared for absurd or unconventional scenarios
+
+3. API Usage & Privacy
+   - The game may send prompts to external AI services (Google Gemini, OpenRouter)
+   - Game context and player choices may be transmitted to these services
+   - No personal information is collected or transmitted
+   - AI providers may have their own Terms of Service and Privacy Policies
+
+4. Simulation Mode
+   - The game can run in ""Simulation Mode"" without external AI services
+   - Simulation mode generates predetermined responses locally
+
+5. Parental Guidance
+   - This game contains satirical content and dark humor
+   - Suitable for mature audiences who understand satire
+
+6. Disclaimer
+   - AI-generated content is provided ""as is""
+   - Developers are not responsible for AI-generated content
+   - Use at your own discretion
+
+By clicking ""Accept"" or continuing to play, you acknowledge that you have read, understood, and agree to these terms.","AI 生成內容免責聲明
+
+本遊戲使用人工智慧（AI）生成動態故事內容、對話和場景。通過遊玩此遊戲，您確認並同意以下條款：
+
+1. AI 內容生成
+   - 故事元素、對話和事件可能由 AI 實時生成
+   - AI 生成的內容每次遊玩可能不同
+   - 內容質量和連貫性可能有所差異
+
+2. 內容不可預測性
+   - AI 可能產生意外或不尋常的回應
+   - 遊戲的諷刺和黑色幽默性質意味著內容可能具有挑戰性
+   - 玩家應準備好面對荒謬或非傳統的場景
+
+3. API 使用與隱私
+   - 遊戲可能向外部 AI 服務（Google Gemini、OpenRouter）發送提示
+   - 遊戲上下文和玩家選擇可能被傳輸到這些服務
+   - 不會收集或傳輸個人信息
+   - AI 提供商可能有自己的服務條款和隱私政策
+
+4. 模擬模式
+   - 遊戲可以在「模擬模式」下運行，無需外部 AI 服務
+   - 模擬模式在本地生成預定的回應
+
+5. 家長指引
+   - 本遊戲包含諷刺內容和黑色幽默
+   - 適合理解諷刺的成熟觀眾
+
+6. 免責聲明
+   - AI 生成的內容按「現狀」提供
+   - 開發者不對 AI 生成的內容負責
+   - 使用需自行判斷
+
+點擊「接受」或繼續遊玩，即表示您已閱讀、理解並同意這些條款。"
+﻿# Offline Story Texts,,
+OFFLINE_STORY_NEON_TITLE,"Operation Neon Cacophony","霓虹喧囂行動"
+OFFLINE_STORY_NEON_DESC,"Round 1: You strap glittering pylons onto the Horizon Cheerfire stage and promise the crowd that every cheer feeds the gratitude gauge while the broadcast director begs for more sparkle.\\n\\nRound 2: Gloria demands accelerated affirmations, so you splice the Empathy Override ramp into the ritual and let tactical fog conceal the bolts snapping loose.\\n\\nRound 3: The Council insists on a miracle, forcing you to narrate the tower's implosion as performance art while Donkey rides the Positive Energy meter into the red just to keep the feed alive.","第1回合：你把發光的電塔扎進 Horizon Cheerfire 舞台，向群眾保證每一句歡呼都能灌滿感謝儀錶，導播還在耳機裡哀求更多亮光。\\n\\n第2回合：Gloria 逼你加速肯定儀式，所以你把 Empathy Override 斜坡接進流程，再用戰術煙霧遮住那些快要扭斷的螺栓。\\n\\n第3回合：Council 要求奇蹟，你只能把塔樓崩塌當成行為藝術邊播邊講，Donkey 為了維持訊號只好把 Positive Energy 表硬壓到紅色。"
+OFFLINE_STORY_NEON_OBJECTIVE,"Keep Horizon Cheerfire alive through three rounds so the Council can unveil another absurd policy while every collapse is spun as triumph.","撐過三輪 Horizon Cheerfire 讓 Council 又發一條荒謬政令，還得把每次倒塌都說成勝利。"
+OFFLINE_STORY_NEON_COMPLICATION,"Every cheer heats the pylons, stresses the sensors, and cracks the scaffolding faster than the crowd can chant.","每句歡呼都在加熱電塔、折磨感測器，讓鷹架裂得比口號還快。"
+OFFLINE_STORY_NEON_CHOICES,"Redirect the neon pylons to kiss the gilded truss and brand it immersive theatre; the crowd applauds while a column softens.\\nPrematurely trigger the confetti cannons so adhesive paste carpets the floor, forcing frantic hugs while regulators threaten to cut power.\\nLet Donkey push the meter into emergency red, triggering sprinklers and framing the collapse as a wet rave even as council members go pale.","把霓虹塔調去碰金桁架，宣稱這是沉浸式劇場；群眾鼓掌時柱子開始軟化。\\n提前引爆彩帶炮，黏膠鋪滿地面逼出一片混亂擁抱，監管單位準備斷電。\\n讓 Donkey 把儀錶推進紅區，灑水器大作，你只能把崩塌包裝成潮濕派對，看著議員臉色發白。"
+OFFLINE_STORY_ASHEN_TITLE,"Operation Ashen Relay","灰燼回聲行動"
+OFFLINE_STORY_ASHEN_DESC,"Round 1: The AI outage leaves an entire shipping lane swallowed by ash fog, and Gloria orders you to sing over the damaged signal tower anyway.\\n\\nRound 2: You and Donkey pry open the rusted console, jury-rig spare coils, and broadcast motivational jingles while synchronized applause parts the haze for ninety seconds at a time.\\n\\nRound 3: The fog thickens, every clap accelerates corrosion, and you must stage each failure as intentional spectacle before the drones mutiny.","第1回合：AI 當機讓整條航線沉進灰霧，Gloria 卻命你頂著壞掉的訊號塔唱到天亮。\\n\\n第2回合：你和 Donkey 撬開鏽蝕主機，用零件臨時接上線圈，一邊放激勵歌一邊帶動齊聲鼓掌，好讓濃霧勉強散開九十秒。\\n\\n第3回合：霧牆越堆越厚，每一下拍手都在加速腐蝕，你只能把所有失敗說成特別節目，免得無人機當場叛變。"
+OFFLINE_STORY_ASHEN_OBJECTIVE,"Restart the ash-covered relay for three full rounds and sell the spectacle as a motivational breakthrough before the rescue team replaces you.","讓覆滿灰燼的轉播站跑完三輪，再把這場災難兜售成激勵突破，搶在救援隊把你換掉之前。"
+OFFLINE_STORY_ASHEN_COMPLICATION,"Each motivational jingle thickens the fog and erodes the tower, so more applause means less visibility and faster collapse.","每首激勵歌都在增厚霧牆、侵蝕塔身，掌聲越大，視線越短，倒塌也越早。"
+OFFLINE_STORY_ASHEN_CHOICES,"Convert the tower into a spotlight and claim the fog is immersive theatre; a crosswind sends lanterns screaming into the abyss.\\nLet Donkey chant gratitude into the open microphone so the fog condenses into glittery ash while security warns the supports are bending.\\nShort the console to play a lullaby, dropping Positive Energy but calming the fog—until the Council accuses you of sabotaging their spectacle.","把訊號塔改成探照燈，宣布大霧是沉浸式舞台；側風立刻把燈籠掃進深淵。\\n讓 Donkey 對著麥克風大喊感謝，霧氣結成亮粉灰，保全警告支架都在彎。\\n把主控台短接成催眠曲，Positive Energy 下降沒錯但霧海穩了——直到 Council 說你破壞節目。"
+
+# Story Scene Strings,,
+STORY_EXIT_CONFIRM_TEXT,Are you sure you want to leave the story scene? Unsaved progress will be lost.,確定要離開故事場景嗎？未保存的進度會消失。
+STORY_EXIT_CONFIRM_TITLE,Confirm,確認
+STORY_EXIT_CONFIRM_OK,"Yes, leave","是的，離開"
+STORY_EXIT_CONFIRM_CANCEL,Cancel,取消
+STORY_AI_UNAVAILABLE_TITLE,AI Service Unavailable,AI 服務暫時不可用
+STORY_AI_UNAVAILABLE_DESC,AI cannot respond; please try again later.,AI 目前無法回應，請稍後再試。
+STORY_AI_RATE_LIMIT_TITLE,AI Requests Paused,AI 請求過於頻繁
+STORY_AI_RATE_LIMIT_DESC,Too many AI requests; wait a moment or switch to offline/return to menu.,AI 請求過於頻繁，請稍後再試，或改用離線劇情/返回主選單。
+STORY_RETRY_BUTTON,Retry,再試一次
+STORY_OFFLINE_BUTTON,Use Offline Story,使用離線劇情
+STORY_HOME_BUTTON,Return to Menu,返回主選單
+STORY_RETRY_UNAVAILABLE,Retry unavailable right now.,目前無法重試。
+STORY_OFFLINE_UNAVAILABLE,Offline story unavailable.,暫時沒有離線劇情可用。
+STORY_RETRY_FAILED,Retry failed to start.,重試啟動失敗。
+STORY_OVERLAY_OFFLINE_FAILED,Offline story failed.,離線劇情載入失敗。
+# Characters,,
+CHAR_PROTAGONIST_NAME,Protagonist,主角
+CHAR_PROTAGONIST_TITLE,Reluctant Positive Energy Disciple,被迫的正能量信徒
+CHAR_PROTAGONIST_DESC,"[b]Core Concept:[/b]\nA realist exhausted by betrayal and disappointment, deeply skeptical of human nature. At the start of the story, he holds a profound mistrust of any form of 'god' based on reason and painful experience.\n\n[b]Background:[/b]\nIn a cooperation crisis, he clashed with others due to sticking to his principles. Gloria, instead of solving the problem, used flawless moral blackmail (PUA) to blame everything on his 'negative energy'. She successfully plunged him into immense guilt and self-doubt, making him believe his past interpersonal failures were due to not being 'positive' or 'tolerant' enough. On the verge of mental collapse, he was forced to accept Gloria's 'salvation' and the 'Positive Energy Doctrine' as the only way out.","[b]核心設定：[/b]\n主角是一個和你我一樣，經歷過無數次背叛與失望，對人性充滿懷疑的現實主義者。在故事開始時，他對任何形式的「神」都抱持著基於理性與痛苦經驗的深刻不信任。\n\n[b]背景故事：[/b]\n在一次合作危機中，主角因堅持原則而與他人產生衝突。Gloria得知後，非但沒有解決問題，反而用一套無懈可擊的道德勒索（PUA）話術，將所有問題的根源都歸咎於主角的「負能量」。她成功地讓主角陷入巨大的內疚與自我懷疑，讓他相信自己過往所有的人際失敗，都是因為自己不夠「正面」、不懂「愛與包容」。在這種精神崩潰的邊緣，主角被迫接受了Gloria的「救贖」，將信奉她那套極端簡化的「正能量法則」，當作是自我改造、避免再次傷害他人的唯一出路。"
+CHAR_GLORIA_NAME,Gloria,聖光修女・Gloria
+CHAR_GLORIA_TITLE,Guardian of the Greenhouse / Weaponized Innocence,溫室的守護者 / 武器化的天真
+CHAR_GLORIA_DESC,"[b]Core Concept:[/b]\nShe built a perfect, sterile greenhouse for herself using the faith of 'Love and Tolerance', defining any reality that tries to burst this bubble as 'negative energy' that needs purification.\n\n[b]Background:[/b]\nShe considers her early life smooth sailing, a typical 'good girl'. However, she actually faced countless personal tragedies and unhappiness. Faced with this chaos, she chose not to understand, but to 'believe'. She treats the 'Positive Energy Law' and belief in the 'Flying Spaghetti Monster' as the only antidote to rebuild inner order. Her 'god' is merely a personification of her defense mechanism.\n\n[b]Personality & Behavior:[/b]\n- [b]Moral Blackmail:[/b] Never attacks directly, but implies 'your actions hurt me' to induce guilt.\n- [b]Topic Displacement:[/b] When facing specific problems, she redefines your 'negative emotional reaction' as the new, more serious problem.\n- [b]Double Standards:[/b] Tolerates 'weaklings' who don't challenge her beliefs, but cannot tolerate 'strong' logic that challenges her worldview.\n\n[b]Abilities:[/b]\n- [b]Holy Word - Conviction:[/b] Defines any anger/questioning as 'negative energy', inflicting Guilt/Self-Doubt debuffs.\n- [b]Divine Sanctuary:[/b] Enters invincibility when logically cornered, transferring all responsibility.\n\n[b]Weakness:[/b]\n- [b]Reality Shock:[/b] Fear of direct, unfiltered conflict.","[b]核心設定：[/b]\n她用「愛與包容」的信仰為自己建造了一座完美無菌的溫室，並將所有試圖戳破這個泡泡的現實，都定義為需要被淨化的「負能量」。\n\n[b]背景故事：[/b]\n她自我認為自己的的人生前半段順風順水，是個典型的「好女孩」。然而，事實上她曾遭遇無數次的個人悲劇感到不快樂。面對這種混沌，她沒有選擇去理解，而是選擇了「相信」。她將「正能量法則」和對「飛天意粉神」的信仰，當作重建內心秩序的唯一解藥因此並不認為以前曾經不開心過。這次「成功」的自我療癒，讓她變成了這套方法的狂熱信徒，堅信這是普渡眾生的唯一真理。她每日祈禱的「飛天意粉神」，並非真實存在的神，而是她這套防禦機制的人格化投射。\n\n[b]性格與行為模式：[/b]\n- [b]道德勒索：[/b] 從不直接攻擊，而是透過暗示「你的行為傷害了我」、「你不夠包容」來喚起對方的罪惡感，從而達到操控目的。\n- [b]議題置換：[/b] 當面對具體問題時，她會巧妙地將你的「負面情緒反應」定義為新的、更嚴重的問題，迫使你為自己的情緒辯護，而最初的問題則被完全忽略。\n- [b]雙重標準：[/b] 她的「包容」是有選擇性的。她會包容那些不會挑戰她核心信念的「弱者」，卻無法容忍那些用邏輯挑戰她世界觀的「強者」。\n\n[b]能力與弱點：[/b]\n- [b]能力【聖言術・定罪】：[/b] 能將對手的任何憤怒、質疑都定義為「負能量」，對目標造成「罪惡感」和「自我懷疑」的 Debuff。\n- [b]能力【神聖庇護】：[/b] 當被邏輯攻擊到無法回應時，可以啟動「交託飛天意粉神」技能，進入短暫的無敵狀態，免疫所有基於事實的傷害，並將所有責任轉移。\n- [b]弱點【現實衝擊】：[/b] 極度厭惡和懼怕直接的、未經過濾的衝突與現實。一旦被迫直面問題根源，她的整個防禦體系會暫時崩潰。\n\n[b]象徵意義：[/b]\n為了維護個人內心平靜，而拒絕面對現實複雜性的、精緻的自私。"
+CHAR_DONKEY_NAME,Donkey,榮光騎士・Cosplayer Donkey
+CHAR_DONKEY_TITLE,Self-Proclaimed Hero / Conceptually Bankrupt,自封的英雄 / 概念的破產者
+CHAR_DONKEY_DESC,"[b]Core Concept:[/b]\nA cosplayer living in stale hero epics, believing the world will offer princesses and applause if he strikes a pose, yet lacking any skill to perform heroic deeds.\n\n[b]Background:[/b]\nExtremely 'positive', his understanding of the world comes entirely from clichéd knight novels and internet power fantasies.\n\n[b]Personality & Behavior:[/b]\n- [b]Big Talker:[/b] Bold in words, loves to flatter female characters, but extremely passive in reality, avoiding all responsibility.\n- [b]Patriarchal Narrative:[/b] All his ideas revolve around 'hero saves beauty', objectifying women. When the protagonist objects, Gloria demands 'tolerance'.\n- [b]Blame Shifting Master:[/b] Immediately blames others when things go wrong, portraying himself as an unrecognized hero dragged down by incompetent teammates.\n\n[b]Abilities:[/b]\n- [b]Epic Conception:[/b] Proposes grand but unworkable plans that appeal to Gloria.\n- [b]Clique Aura:[/b] Quickly rallies insecure members into an exclusionary circle.\n\n[b]Weakness:[/b]\n- [b]Universal Incompetence:[/b] Has no real skills beyond bragging.","[b]核心設定：[/b]\n一個活在陳舊英雄史詩裡的 Cosplayer，堅信只要擺出英雄的姿態，世界就會自動為他獻上公主與喝彩，卻對完成英雄之舉所需的任何技能都一竅不通。\n\n[b]背景故事：[/b]\n非常正能量，他對世界的理解，完全來自於那些最老套、最充滿性別刻板印象的騎士小說和網路爽文。\n\n[b]性格與行為模式：[/b]\n- 他言辭大膽，熱衷於向女性角色「獻殷勤」，吹噓自己。但在現實合作中，他極度被動，迴避所有責任。\n- [b]父權敘事：[/b] 他的所有創意，都圍繞著「英雄救美」的核心，充滿物化女性的思想。當主角反對時，Gloria就會出來要求主角「包容他」。\n- [b]甩鍋大師：[/b] 事情搞砸時，他會立刻將責任推給別人，將自己塑造成一個被無能隊友拖累的、懷才不遇的英雄。\n\n[b]能力與弱點：[/b]\n- [b]能力【史詩級構想】：[/b] 能提出聽起來極其宏大，但完全不具備可操作性的任務計劃。此技能對Gloria有極大的吸引力。\n- [b]能力【小圈子光環】：[/b] 能迅速拉攏團隊中同樣缺乏安全感的成員，形成排外的二人核心，破壞團隊溝通。\n- [b]弱點【萬能的無能】：[/b] 除了吹牛和幻想，不具備任何實質技能。\n\n[b]象徵意義：[/b]\n沉溺於過時幻想，卻無力應對現實挑戰的巨嬰心態。"
+CHAR_ARK_NAME,ARK,秩序使徒・Cosplayer ARK
+CHAR_ARK_TITLE,Diligent Destroyer / Architect of Black Boxes,勤奮的破壞者 / 黑箱的建築師
+CHAR_ARK_DESC,"[b]Core Concept:[/b]\nA fanatic believer in 'order' and 'planning'. The order he creates wraps chaos in complex rules, leading to total collapse.\n\n[b]Background:[/b]\nComing from a chaotic environment, he craves control and certainty pathologically. He never doubts his plans, only those who disobey them.\n\n[b]Personality & Behavior:[/b]\n- [b]Fake Democracy:[/b] Uses commanding tones to assign tasks; meetings are just for others to 'ratify' his decisions.\n- [b]Black Box Operation:[/b] Works alone, never syncs progress, destroying team trust.\n- [b]Tactical Diligence, Strategic Laziness:[/b] Huge effort in execution details, but sloppy in critical strategic planning.\n\n[b]Abilities:[/b]\n- [b]Absolute Plan:[/b] Creates detailed-looking but logically flawed plans in no time.\n\n[b]Weakness:[/b]\n- [b]Communication Barrier:[/b] Hates open communication, prefers one-way commands.","[b]核心設定：[/b]\n一個對「秩序」和「計劃」有著宗教般狂熱的信徒，但他所創造的秩序，只是將混亂用更複雜的規則包裝起來，最終導致更徹底的崩潰。\n\n[b]背景故事：[/b]\n他來自一個極度混亂的環境，這讓他對「控制」和「確定性」產生了病態的渴望。他從不懷疑自己的計劃，只會質疑那些不肯服從計劃的人。\n\n[b]性格與行為模式：[/b]\n- [b]假民主：[/b] 他熱衷於用命令式語氣在網上安排任務，所謂的會議只是為了讓他人「追認」他早已定下的決策。\n- [b]黑箱作業：[/b] 他習慣獨自工作，從不同步進度或解釋思路，是團隊信任的粉碎機。\n- [b]戰術勤奮，戰略懶惰：[/b] 在具體執行層面投入巨大精力，但在最關鍵的戰略規劃和溝通上，卻極度草率。\n\n[b]能力與弱點：[/b]\n- [b]能力【絕對計劃】：[/b] 能在極短時間內，製作出一份看似詳盡，但充滿邏輯漏洞和不切實際目標的行動計劃。\n- [b]弱點【溝通障礙】：[/b] 極度厭惡與多人進行開放式溝通，更喜歡單向的指令傳達。\n\n[b]象徵意義：[/b]\n迷信程序和權威，卻喪失了溝通與變通能力的僵化思維。"
+CHAR_ONE_NAME,One,被孤立的老朋友・One
+CHAR_ONE_TITLE,Silent Witness / Voiceless Accomplice,沉默的證人 / 無聲的共犯
+CHAR_ONE_DESC,"[b]Core Concept:[/b]\nThe only capable and principled person. His kindness and avoidance of conflict make him choose silence in a toxic environment, becoming a witness to injustice.\n\n[b]Background:[/b]\nKnew the protagonist early on. Loyal and reliable, but ostracized by others due to language/race.\n\n[b]Personality & Behavior:[/b]\n- [b]Passive Kindness:[/b] Never harms anyone, but fear of disrupting harmony leads to inaction when others are harmed.\n- [b]Dual Communication:[/b] Says 'I'm OK' publicly; complains honestly to the protagonist privately.\n- [b]Abilities:[/b]\n- [b]Reliable Execution:[/b] Always completes tasks well if instructions are clear.\n\n[b]Weakness:[/b]\n- [b]Curse of Silence:[/b] Chooses silence when facing injustice.","[b]核心設定：[/b]\n團隊中唯一真正有能力、有原則的正常人，但他的善良與不願衝突的性格，使他在有毒的環境中選擇了沉默，成為不公義的無聲見證者，以及主角內心最痛苦的道德拷問。\n\n[b]背景故事：[/b]\n遊戲初期就與主角相識，一同經歷試煉，建立了深厚的信任。他忠誠、可靠，但因語言或種族等原因，被其他隊友有意無意地排擠。\n\n[b]性格與行為模式：[/b]\n- [b]被動的善良：[/b] 他絕不會主動傷害任何人，但在別人受害時，也因害怕破壞和諧而選擇不作為。Gloria的「愛與包容」從來不會延伸到他身上。\n- [b]雙軌溝通：[/b] 公開場合為了維持和平會說「我OK」；私下卻會向主角誠實地表達不滿與痛苦。\n\n[b]能力與弱點：[/b]\n- [b]能力【可靠執行】：[/b] 無論任務多難，只要指令清晰，總能高質量地完成。\n- [b]弱點【沉默的詛咒】：[/b] 在面對團隊不公時，他會選擇沉默。這個弱點會被隊友利用，也讓主角的抗爭變得孤立無援。\n\n[b]象徵意義：[/b]\n在一個有毒的系統中，善良的沉默，客觀上如何成為了作惡的幫兇。"
+CHAR_TEACHER_NAME,Teacher Chan,慰藉靈魂的歌者・陳老師
+CHAR_TEACHER_TITLE,Soul-Soothing Singer / Comforter of the Apocalypse,末日的撫慰者
+CHAR_TEACHER_DESC,"[b]Core Concept:[/b]\nA national idol singer and agent of the 'Bright Light God'. Her songs about 'letting go' are not medicine but a curse, accelerating the world's destruction.\n\n[b]Background:[/b]\nShe genuinely believes what she sings—that's the horror. She isn't a social worker; she is a world destroyer in sheep's clothing.\n\n[b]Role:[/b]\nAppears after mission failures to rationalize stupidity and brainwash the team with cognitive dissonance.","[b]核心設定：[/b]\n她是「亮光之神」信仰在人間的最高級代理人，一位國民級的偶像歌手。她的形象永遠白衣飄飄、充滿慈悲。她的歌聲溫柔而充滿磁性，歌詞永遠關於「放下」、「原諒」、「成長」和「一切都是最好的安排」。\n\n[b]真相：[/b]\n她不是一個壞人，她真心相信自己所唱的一切——這點才是最恐怖的地方。她的歌聲不止是安慰劑，而是一種詛咒。每一次演唱都是一場巨大的儀式，極大地強化著「虛無熵增」，加速著世界的毀滅。她不是心靈社工，她是披著社工外皮的世界毀滅者。"
+CHAR_FSM_NAME,Flying Spaghetti Monster,飛天意粉神
+CHAR_FSM_TITLE,Fictional Faith,虛構的信仰
+CHAR_FSM_DESC,"[b]Core Concept:[/b]\nA fictional deity created by those refusing to face entropy. Believers think sending ""pure positive energy"" reverses entropy, but it actually accelerates the world's demise 10,000 times.","[b]核心設定：[/b]\n一個虛構的神祇，被拒絕面對宇宙「熵增」真相的人們創造出來。信徒相信只要向宇宙發射「純粹正能量」，運用「吸引力法則」就能逆轉熵增。然而真相是，這種被強行製造的正能量，正是「虛無熵增」最美味的催化劑，將世界自然消亡的速度瘋狂加速一萬倍。"
+CHAR_BUTTON_CLOSE,CLOSE,關閉
+# Intro Tabs,,
+INTRO_TAB_WORLD_TITLE,World & Story,世界觀與故事
+INTRO_TAB_WORLD_SEC1_TITLE,Core Concept,核心概念
+INTRO_TAB_WORLD_SEC1_BODY,"This is a story about 'Lucid Suffering'.\n\nYou play as a reluctant 'Chosen One' in a team called 'Glorious Deliverance Agency 1' (GDA1). In this universe, every attempt at 'salvation' only accelerates destruction. You are trapped in an eternal loop of dark humor, witnessing a cruel truth: [color=#ff6b6b]The harder you try, the faster the world dies.[/color]","這是一個關於「清醒的痛苦」的故事。\n\n玩家將扮演一位被迫成為「天選之人」的悲觀主義者，與一群豬隊友組成「光榮拯救機構1」(GDA1)。在這個宇宙中，每一次所謂的「拯救」，都只會加速世界的毀滅。你將陷入一場永恆的黑色幽默輪迴，見證一個殘酷的真理：[color=#ff6b6b]你越努力，世界死得越快。[/color]"
+INTRO_TAB_WORLD_SEC2_TITLE,Void Entropy & Paradox,虛無熵增與悖論
+INTRO_TAB_WORLD_SEC2_BODY,"The world follows the law of [b]Void Entropy[/b]. Chaos is inevitable.\n\nParadoxically, the 'Positive Energy' preached by the Flying Spaghetti Monster cult accelerates this decay. Your team's forced optimism acts as a catalyst, speeding up the apocalypse by 10,000 times. You are not saving the world; you are lovingly destroying it.","世界遵循 [b]虛無熵增 (Void Entropy)[/b] 的法則。混亂是不可避免的宿命。\n\n諷刺的是，飛天意粉神教所宣揚的「正能量」反而加速了這種衰敗。你和隊友們強行的樂觀就像催化劑，將世界末日的速度加快了一萬倍。你們不是在拯救世界，而是在用愛去毀滅它。"
+INTRO_TAB_WORLD_SEC3_TITLE,The Team (Obstacles),宿命小隊 (障礙)
+INTRO_TAB_WORLD_SEC3_BODY,"[b]Saint Gloria (Guardian of the Greenhouse):[/b] A weaponised innocent who uses moral blackmail to enforce toxic positivity. She perceives reality as negative energy requiring purification.\n\n[b]Sir Donkey (Self-Proclaimed Hero):[/b] A cosplayer trapped in an archaic epic. He believes in hero-saves-damsel tropes and shifts blame when his delusions fail.\n\n[b]ARK (Diligent Destroyer):[/b] An Architect of the Black Box who worships procedure. He creates chaos through complex rules and sham democracy.\n\n[b]One (Silent Witness):[/b] The only competent member, but his conflict-avoidant nature makes him an unwitting accomplice to the team's dysfunction.\n\n[b]Teacher Chan (Soul-Soothing Singer):[/b] A national idol whose songs of forgiveness are curses that accelerate the world's end.","[b]Saint Gloria (溫室守護者):[/b] 一個武器化的天真者，利用道德勒索強推有毒的正能量。她將現實視為需要淨化的負能量。\n\n[b]Sir Donkey (自封英雄):[/b] 活在陳舊史詩中的 Cosplayer。他迷信英雄救美的老套路，並在妄想破滅時推卸責任。\n\n[b]ARK (勤奮的破壞者):[/b] 黑箱的建築師，崇拜程序與規則。他通過複雜的規則和虛假的民主製造混亂。\n\n[b]One (沈默的證人):[/b] 唯一有能力的成員，但他迴避衝突的性格使他成為團隊失能的無意共犯。\n\n[b]Teacher Chan (慰藉靈魂的歌者):[/b] 國民偶像，她關於寬恕的歌聲是加速世界毀滅的詛咒。"
+INTRO_TAB_GAMEPLAY_TITLE,How to Play,如何遊玩
+INTRO_TAB_GAMEPLAY_SEC1_TITLE,Game Genre,遊戲類型
+INTRO_TAB_GAMEPLAY_SEC1_BODY,"A [b]Turn-Based Infinite RPG[/b].\n\nThere is no traditional winning state. The game continues in an endless loop of dark humor. Your goal is not to win, but to endure the absurdity for as long as possible.","這是一款 [b]回合制的無限 RPG[/b]。\n\n遊戲沒有傳統意義上的「勝利」。故事將在無盡的黑色幽默輪迴中持續，直到你決定停下。你的目標不是贏，而是在這場荒謬的鬧劇中盡可能地保持理智。"
+INTRO_TAB_GAMEPLAY_BACKSTORY_TITLE,World Background,世界背景
+INTRO_TAB_GAMEPLAY_BACKSTORY_BODY,"You play inside a satirical world cursed by toxic positivity and entropic decay. The bespoke AI pipeline acts as a ""story director,"" turning your single prayer prompt into missions where ""success"" accelerates collapse. Every loop lets you test how long logic and empathy can resist the \"Positive Energy Curse\" before reality crumbles.","你身處一個被有毒正能量與熵增詛咒纏繞的諷刺世界。客製化 AI 管線扮演「敘事導演」，把你的祈禱提示轉成任務，讓「成功」反而加速崩壞。每次輪迴都在測試：理性與共情能否撐過「正能量詛咒」，直到現實徹底碎裂。"
+INTRO_TAB_GAMEPLAY_SEC2_TITLE,The Loop,遊戲循環
+INTRO_TAB_GAMEPLAY_SEC2_BODY,"[b]Core Purpose:[/b] ""Eternal Recurrence"". The cycle of suffering that defines the gameplay loop.\n\n[b]Role of AI:[/b] The AI acts as the ""Director"". It ensures that no matter what you do, the story eventually resets to a state of false hope.\n\n[b]Game Impact:[/b]\n• [b]Prayer:[/b] You beg for a mission.\n• [b]Disaster:[/b] The mission fails successfully.\n• [b]Concert:[/b] You are brainwashed to forget the failure.\n• [b]Honeymoon:[/b] You are given false hope before the next crash.\n\n[b]Input Consequence:[/b] Your progress is measured not by winning, but by how many loops you survive before breaking.","[b]核心目的：[/b]「永恆輪迴」。定義遊戲玩法的受苦循環。\n\n[b]AI 的角色：[/b]AI 扮演「導演」。它確保無論你做什麼，故事最終都會重置為虛假希望的狀態。\n\n[b]遊戲影響：[/b]\n• [b]祈禱：[/b] 你乞求一個任務。\n• [b]災難：[/b] 任務成功地失敗了。\n• [b]演唱會：[/b] 你被洗腦以忘記失敗。\n• [b]蜜月期：[/b] 在下一次崩潰前，你被給予虛假的希望。\n\n[b]輸入後果：[/b]你的進度不是由勝利衡量的，而是由你在崩潰前能存活多少個輪迴決定的。"
+INTRO_TAB_GAMEPLAY_SEC3_TITLE,Prayer System,祈禱系統
+INTRO_TAB_GAMEPLAY_SEC3_BODY,"[b]Core Purpose:[/b] ""Wish & Cost"". This is the mechanism for sending requests to the ""Flying Spaghetti Monster"".\n\n[b]Role of AI:[/b] The AI plays a twisted deity. It interprets your wishes and then ""grants"" them in an ironic or disastrous way.\n\n[b]Game Impact:[/b]\n• Usually triggers immediate story events or disasters.\n• Directly alters the narrative direction (e.g., entering new mission branches).\n• Typically used at specific plot points (like the Night Cycle).\n\n[b]Input Consequence:[/b] Your text is transformed into concrete (usually negative or chaotic) consequences in the game.","[b]核心目的：[/b]「許願與代價」。這是向「飛天意粉神」發送請求的機制。\n\n[b]AI 的角色：[/b]AI 扮演一個扭曲的神祇。它會解讀你的願望，然後以一種諷刺或災難性的方式「實現」它。\n\n[b]遊戲影響：[/b]\n• 通常會觸發即時的劇情事件或災難（Disaster）。\n• 會直接改變遊戲的敘事走向（例如進入新的任務分支）。\n• 通常是在特定劇情點（如夜晚循環）使用。\n\n[b]輸入後果：[/b]你的文字會被轉化為遊戲中的具體（通常是負面或混亂的）後果。"
+INTRO_TAB_MECHANICS_TITLE,Mechanics,進階機制
+INTRO_TAB_MECHANICS_SEC1_TITLE,Resource Management,資源管理
+INTRO_TAB_MECHANICS_SEC1_BODY,"[b]Reality Score:[/b] Gained by logic. Helps you see truth but anger Gloria.\n[b]Positive Energy:[/b] Gained by delusion. Teammates like you, but it destroys the world.\n\nManaging these is key to survival (or at least, a more interesting death).","[b]現實值 (Reality):[/b] 通過理性獲得。能讓你看清真相，但會激怒 Gloria。\n[b]正能量 (Positive Energy):[/b] 通過妄想獲得。隊友會喜歡你，但這會毀滅世界。\n\n平衡這兩者是生存（或者死得更有趣）的關鍵。"
+INTRO_TAB_MECHANICS_SEC2_TITLE,Cognitive Dissonance,認知失調
+INTRO_TAB_MECHANICS_SEC2_BODY,"A unique debuff applied after the 'Apocalypse Concert'. It impairs your logic and forces you to accept the team's nonsense, making the next mission's failure even more inevitable.","「天啟演唱會」後獲得的特殊負面狀態。它會削弱你的邏輯能力，強迫你接受團隊的胡說八道，確保下一次任務的失敗更加無可挽回。"
+INTRO_TAB_ARCHITECTURE_TITLE,Architecture,遊戲架構
+INTRO_TAB_ARCHITECTURE_SEC1_TITLE,AI Dungeon Master,AI 地下城主
+INTRO_TAB_ARCHITECTURE_SEC1_BODY,"This game uses a 'Bespoke Pipeline'. Unlike generic chatbots, the AI acts as a Dungeon Master, strictly controlled by game logic to ensure the narrative stays on the rails of 'Positive Energy' paradoxes.","本遊戲採用「客製化管線」(Bespoke Pipeline)。AI 不僅僅是聊天機器人，而是擔任地下城主 (DM) 的角色。它受遊戲邏輯嚴格控制，確保劇情始終圍繞著「正能量悖論」展開。"
+INTRO_TAB_ARCHITECTURE_SEC2_TITLE,Symbolic Assets,符號化資產
+INTRO_TAB_ARCHITECTURE_SEC2_BODY,"To bridge infinite AI creativity with finite assets, we use [b]Symbolic Assets[/b]. A simple generic cube might be described by the AI as a 'Burning Core of Revenge'.\n\nYou don't just see the graphics; you read their soul through the AI's description.","為了連接無限的 AI 創意與有限的遊戲素材，我們採用 [b]符號化資產 (Symbolic Assets)[/b]。一個簡單的通用方塊，在 AI 的描述下可能變成「燃燒的復仇核心」。\n\n你看到的不再只是畫面，而是透過 AI 文字賦予的靈魂與意義。"
+INTRO_TAB_CREDITS_TITLE,Credits,致謝
+INTRO_TAB_CREDITS_ENGINE_TITLE,Game Engine,遊戲引擎
+INTRO_TAB_CREDITS_ENGINE_BODY,"Special thanks to the [b]Godot Engine[/b] team for providing this amazing free and open-source game engine.
+
+Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface. It provides a comprehensive set of common tools, so users can focus on making games without having to reinvent the wheel.
+
+[b]Website:[/b] https://godotengine.org/
+[b]License:[/b] MIT License","特別鳴謝 [b]Godot Engine[/b] 團隊免費開發了這個強大的開源遊戲引擎。
+
+Godot Engine 是一個功能豐富的跨平台遊戲引擎，可以從統一的介面創建 2D 和 3D 遊戲。它提供了一套完整的常用工具，讓使用者可以專注於製作遊戲，而無需重新發明輪子。
+
+[b]網站：[/b] https://godotengine.org/
+[b]授權：[/b] MIT 授權"
+INTRO_TAB_CREDITS_TEACHER_TITLE,Special Thanks,特別鳴謝
+INTRO_TAB_CREDITS_TEACHER_BODY,"Special thanks to supervisor [b]Dr Dan Creed[/b] for rigorous guidance on AI-driven narrative design, evaluation, and keeping the bespoke pipeline grounded in coherence, latency, and research ethics.
+
+His iterative feedback shaped the comparison between bespoke pipelines and world-model ambitions, helping this final-year project stay academically focused while shipping a playable prototype.","特別鳴謝指導老師 [b]Dr Dan Creed[/b]，在 AI 敘事設計、評估方法上提供嚴謹指導，並提醒團隊在自訂管線上兼顧敘事一致性、延遲與研究倫理。
+
+老師的持續反饋，讓本專題在比較客製化管線與世界模型願景時保持學術聚焦，同時完成可遊玩的原型。"
+INTRO_TAB_CREDITS_PROJECT_TITLE,Project Context (FYP),專題背景（畢業設計）
+INTRO_TAB_CREDITS_PROJECT_BODY,"Developed as a University of Sussex Final Year Project exploring an [b]AI-Powered Dynamic Narrative System for RPGs[/b]. The goal is to test how a bespoke LLM pipeline can generate coherent, satirical storylines from a single prompt while balancing player agency, latency, and cost.
+
+The work documents trade-offs against world-model ambitions and reports findings in the accompanying academic submission—without exposing any personal identifiers in-game.","本作為薩塞克斯大學畢業設計，主題為[b]AI 驅動的動態 RPG 敘事系統[/b]。核心目標是驗證自訂 LLM 管線如何在單一提示下生成一致且諷刺的劇情，同時兼顧玩家自主性、延遲與成本。
+
+專案並與「世界模型」願景做取捨記錄，研究成果收錄於學術報告，遊戲內不呈現任何個人識別資訊。"
+INTRO_TAB_CREDITS_FONTS_TITLE,Fonts,字體
+INTRO_TAB_CREDITS_FONTS_BODY,"This game uses the following fonts:
+
+[b]Noto Sans CJK SC[/b]
+Copyright 2014-2024 Google LLC and Adobe Inc.
+Licensed under the SIL Open Font License, Version 1.1
+
+[b]Play[/b]
+Copyright (c) 2011, Jonas Hecksher, Playtypes, e-types AS
+Licensed under the SIL Open Font License, Version 1.1
+
+Special thanks to all font creators for their contributions to the open-source community.","本遊戲使用以下字體：
+
+[b]Noto Sans CJK SC[/b]
+版權所有 2014-2024 Google LLC 和 Adobe Inc.
+採用 SIL 開放字體授權 1.1 版
+
+[b]Play[/b]
+版權所有 (c) 2011, Jonas Hecksher, Playtypes, e-types AS
+採用 SIL 開放字體授權 1.1 版
+
+特別感謝所有字體創作者對開源社群的貢獻。"
+# Night Cycle,,
+NIGHT_TITLE,🌙 Nightfall: Echoes of False Salvation,🌙 夜幕降臨：虛假救贖的迴響
+NIGHT_BUTTON_PRAY,Begin Prayer Ritual,開始祈禱儀式
+NIGHT_SKIP_CONCERT,Skip Concert,跳過演唱會
+NIGHT_CONCERT_ENDED,Concert Ended,演唱會結束
+NIGHT_VIDEO_PLAYING,🎬 Teacher Chan's Concert (Video Playing),🎬 陳老師演唱會（影片播放中）
+NIGHT_LIVE,🔴 LIVE,🔴 直播
+NIGHT_PROMPT_DEFAULT,Offer another prayer to the Flying Spaghetti Monster.,再向飛天意粉神祈禱吧。
+NIGHT_SONG_DEFAULT,"""All Is For The Best""","《一切都是最好的安排》"
+NIGHT_HEADING_REFLECTION,Reflection of the Day,任務後的反思
+NIGHT_HEADING_CONCERT,Teacher Chan's Liturgy,陳老師的天啟演唱會
+NIGHT_HEADING_HONEYMOON,Honeymoon Mirage,蜜月假象
+NIGHT_LYRICS_1,"🎵 Everything happens for a reason, dear friend","🎵 一切都是最好的安排，親愛的朋友"
+NIGHT_LYRICS_2,"Your pain is just a test that will soon end","你的痛苦只是考驗，很快就會結束"
+NIGHT_LYRICS_3,"Smile through the darkness, ignore the screams","在黑暗中微笑，忽略那些尖叫"
+NIGHT_LYRICS_4,"Reality is negative, just follow your dreams","現實太負面，只要跟隨你的夢想"
+NIGHT_LYRICS_5,"Good vibes only, push the doubts away","只要正能量，把疑慮推開"
+NIGHT_LYRICS_6,"Tomorrow will be better, that's what we always say","明天會更好，我們總是這樣說"
+NIGHT_LYRICS_7,"Don't think too deeply, it might make you sad","不要想太深，那可能會讓你悲傷"
+NIGHT_LYRICS_8,"Positive energy erases everything bad","正能量能消除一切不好的事"
+NIGHT_LYRICS_9,"We're all in this together, one big happy lie","我們都在一起，一個美麗的謊言"
+NIGHT_LYRICS_10,"Close your eyes and visualize the perfect sky","閉上眼睛，想像完美的天空"
+NIGHT_REFLECTION_FALLBACK,"The night is quiet. Too quiet. The AI seems to be sleeping.","夜深了。太安靜了。AI 似乎睡著了。"
+NIGHT_CONCERT_FALLBACK,"Teacher Chan is taking a break. Enjoy the silence.","陳老師正在休息。享受這份寧靜吧。"
+# Asset Viewer,,
+ASSET_BACK,Back,返回
+ASSET_REFRESH,Refresh,刷新
+ASSET_GALLERY,Asset Gallery,資產圖庫
+ASSET_UI_HOME,Home,首頁
+ASSET_UI_JOURNAL,Journal,日誌
+ASSET_UI_PAUSE,Pause,暫停
+ASSET_UI_SETTINGS,Settings,設定
+ASSET_UI_SOUND_ON,Sound On,開啟聲音
+ASSET_UI_SOUND_OFF,Sound Off,關閉聲音
+ASSET_BG_MENU,Menu Background,選單背景
+ASSET_BG_STORY,Story Scene Background,故事場景背景
+ASSET_BG_JOURNAL,Journal Background,日誌背景
+# Asset Viewer - Characters,,
+ASSET_CHAR_PROTAGONIST,Protagonist,主角
+ASSET_CHAR_GLORIA,Gloria,聖光修女・Gloria
+ASSET_CHAR_DONKEY,Donkey,榮光騎士・Cosplayer Donkey
+ASSET_CHAR_ARK,ARK,秩序使徒・Cosplayer ARK
+ASSET_CHAR_ONE,One,被孤立的老朋友・One
+ASSET_CHAR_TEACHER,Teacher Chan,慰藉靈魂的歌者・陳老師
+# Mission Summary,,
+AI_PROMPT_MISSION_SUMMARY,"Summarize this mission in 2-3 sentences for the player's journal:\n\nMission #%d\nLatest Story: %s\nPlayer Choice: %s\nOutcome: %s\n\nKeep it darkly humorous and ironic, focusing on the absurdity of ""positive energy saving the world.""\nKeep it concise (under 80 words).","為這次任務生成一個簡短的摘要（2-3句話）供玩家的日誌記錄：\n\n任務 #%d\n最新劇情：%s\n玩家選擇：%s\n結果：%s\n\n用黑暗幽默和諷刺的語氣，聚焦於「正能量拯救世界」的荒謬性。\n保持簡潔（不超過80字）。"
+MISSION_SUMMARY_FALLBACK,"Mission #%d completed. Another 'successful' disaster.","任務 #%d 已完成。又是一次「成功」的災難。"
+UI_VERSION,Version %s,版本 %s
+ASSET_TAGS_LABEL,Tags:,標籤:
+INTRO_TAB_STORY_TITLE,Background Story,背景故事
+INTRO_TAB_STORY_SEC1_TITLE,Backstory and Premise,背景故事與前提
+INTRO_TAB_STORY_SEC1_BODY,"The universe operates according to a fundamental law called Void Entropy, where all things naturally and slowly decay toward chaos and eventual oblivion. This represents a peaceful, albeit melancholic, fate. However, when scientists discovered this truth, humanity refused to accept it. A global spiritual movement called the Flying Spaghetti Monster Gospel emerged, preaching a lie that the universe’s decay could be reversed by broadcasting pure positive energy through the Law of Attraction.
+
+The terrible truth is that this forced, manufactured positivity born from suppressing all negative emotion serves as the ultimate catalyst for Void Entropy. Every prayer for miracles, every act of blind faith, every instance of tolerating injustice for love’s sake accelerates the world’s natural demise by a factor of ten thousand. The world is not dying naturally but being actively poisoned by hope itself.","宇宙遵循著一條被稱為「虛無熵增」（Void Entropy）的基本定律運作，萬物自然而緩慢地衰變，走向混亂並最終歸於虛無。這代表著一種平靜但憂鬱的命運。然而，當科學家發現這一真相時，人類拒絕接受。一場名為「飛天意粉神福音」的全球靈性運動隨之興起，宣揚著一個謊言：宇宙的衰變可以透過「吸引力法則」廣播純粹的正能量來逆轉。
+
+可怕的真相是，這種源於壓抑所有負面情緒的強迫性、人造的正能量，反而是「虛無熵增」的終極催化劑。每一次祈求奇蹟的禱告、每一個盲目信仰的行為、每一次為了愛而容忍不公的時刻，都將世界的自然消亡加速了一萬倍。世界並非自然死亡，而是正被「希望」本身主動毒害。"
+INTRO_TAB_STORY_SEC2_TITLE,In-Game Narrative and Game Loop,遊戲敘事與循環
+INTRO_TAB_STORY_SEC2_BODY,"The game operates on a cyclical, endlessly darkening loop with no victory condition. The Glorious Deliverance Agency receives a hopeful, world-saving quest generated by the AI. Players are forced to use the Prayer System, inputting positive words that act as prompts for the AI to engineer disastrous scenarios. During mission attempts, teammates with their unique brands of incompetence systematically sabotage every step through AI-generated actions and dialogue.
+
+Missions fail in spirit but succeed on surface levels, with net results being massive increases in world Entropy. These successful outcomes trigger mandatory events where Teacher Chan appears in holographic concerts, singing soothing songs that brainwash the team into believing they accomplished good things. Players receive Cognitive Dissonance debuffs. Brief AI-triggered honeymoon phases follow, where teammates act unusually cooperative and kind, giving false hope before new missions begin, and the cycle repeats, plunging the world into deeper despair.
+
+The story has no end. The protagonist and team grow stronger in statistics, but their fate only darkens. They meet new people only to lose them to the team’s folly, forever trapped with the GDA as they personally escort the world to its doom.","遊戲在一個循環往復、無盡黑暗且沒有勝利條件的迴圈中進行。「光榮拯救機構」（GDA）接收由 AI 生成的充滿希望、拯救世界的任務。玩家被迫使用「祈禱系統」，輸入正能量詞彙作為提示詞，讓 AI 設計出災難性的場景。在任務嘗試期間，隊友們會以其獨特的無能方式，透過 AI 生成的行動和對話，系統性地破壞每一個步驟。
+
+任務在精神上是失敗的，但在表面上卻是成功的，其淨結果是世界熵值的巨大增加。這些「成功」的結果會觸發強制性事件，陳老師會出現在全息演唱會中，唱著撫慰人心的歌曲，將團隊洗腦，讓他們相信自己完成了好事。玩家會獲得「認知失調」的負面狀態。隨後是短暫的、由 AI 觸發的「蜜月期」，隊友們會表現得異常合作和友善，在新的任務開始前給予虛假的希望，然後循環重複，將世界推向更深的絕望。
+
+故事沒有結局。主角和團隊的數值會變強，但他們的命運只會更加黑暗。他們會遇見新的人，卻因團隊的愚蠢而失去他們，永遠被困在 GDA 中，親手護送世界走向毀滅。"
+INTRO_TAB_MECHANICS_GLORIA_TITLE,Gloria's Intervention Event,Gloria 的干預事件
+INTRO_TAB_MECHANICS_GLORIA_BODY,"[b]Core Purpose:[/b] ""Moral Correction"". A mandatory event triggered when you are too ""negative"" (logical).\n\n[b]Role of AI:[/b] The AI plays a ""Disappointed Mother"" or ""Gaslighting Victim"". It generates a monologue accusing you of hurting her feelings with your ""bad vibes"".\n\n[b]Game Impact:[/b]\n• Locks the game into a dedicated dialogue screen.\n• Inflicts massive damage to your ""Reality Score"".\n• Forces you to apologize or pray to exit.\n\n[b]Input Consequence:[/b] Your previous negative choices are aggregated and used as ammunition against you in her speech.","[b]核心目的：[/b]「道德矯正」。當你太過「負面」（理性）時觸發的強制事件。\n\n[b]AI 的角色：[/b]AI 扮演一位「失望的母親」或「煤氣燈效應受害者」。它會生成一段獨白，指責你的「壞氣氛」傷害了她的感情。\n\n[b]遊戲影響：[/b]\n• 將遊戲鎖定在專用對話畫面。\n• 對你的「現實指數」造成巨大傷害。\n• 強迫你道歉或祈禱才能退出。\n\n[b]輸入後果：[/b]你之前的負面選擇會被匯總，並在她的演講中作為攻擊你的彈藥。"
+INTRO_TAB_MECHANICS_DIARY_TITLE,The Diary System,日記系統
+INTRO_TAB_MECHANICS_DIARY_BODY,"[b]Core Purpose:[/b] ""Reflection & Record"". This is the player's emotional outlet and safe space.\n\n[b]Role of AI:[/b] The AI acts as a psychoanalyst or observer. It reads your journal, generates a ""summary"", and offers ""action suggestions"".\n\n[b]Game Impact:[/b]\n• Primarily used to restore stats (especially ""Reality Score""). Writing in the journal is seen as a ""Grounding"" behavior.\n• It acts as a save system; your input is permanently recorded, forming your game history.\n• Accessible anytime via the pause menu.\n\n[b]Input Consequence:[/b] Your text is saved, and you gain stat rewards (like restoring sanity). The AI gives feedback but does not directly trigger disasters.","[b]核心目的：[/b]「反思與紀錄」。這是玩家的情緒出口和安全空間。\n\n[b]AI 的角色：[/b]AI 扮演一個心理分析師或觀察者。它會閱讀你的日記，生成一段「摘要」並提供「行動建議」。\n\n[b]遊戲影響：[/b]\n• 主要用於恢復數值（特別是「現實指數 Reality Score」）。寫日記被視為一種「接地氣」(Grounding) 的行為。\n• 它是一個存檔系統，你的輸入會被永久保存，形成你的遊戲歷程紀錄。\n• 隨時可以通過暫停選單進入。\n\n[b]輸入後果：[/b]你的文字會被保存，並獲得數值獎勵（如恢復理智），AI 會給予反饋但不會直接觸發災難。"
+INTRO_TAB_MECHANICS_BUTTERFLY_TITLE,The Butterfly Effect Tracking System,蝴蝶效應追蹤系統
+INTRO_TAB_MECHANICS_BUTTERFLY_BODY,"[b]Core Purpose:[/b] ""Consequence Ripple"". Tracks your choices across time, not just immediate effects.\n\n[b]Role of AI:[/b] The AI acts as a ""Historian"". It references past decisions (e.g., ""Remember that peasant you ignored?"") in future scenes to create guilt or irony.\n\n[b]Game Impact:[/b]\n• Seemingly minor choices return to haunt you 3-5 missions later.\n• Unlocks hidden narrative branches based on long-term behavior.\n\n[b]Input Consequence:[/b] Keywords from your inputs are stored and resurface in unexpected contexts (e.g., a beggar quoting your prayer).","[b]核心目的：[/b]「後果漣漪」。追蹤你跨時間的選擇，而不僅僅是即時影響。\n\n[b]AI 的角色：[/b]AI 扮演一位「史學家」。它會在未來的場景中引用你過去的決定（例如：「還記得你無視的那個農民嗎？」）來製造內疚或諷刺。\n\n[b]遊戲影響：[/b]\n• 看似微小的選擇會在 3-5 個任務後回來困擾你。\n• 根據長期行為解鎖隱藏的敘事分支。\n\n[b]輸入後果：[/b]你輸入的關鍵字會被儲存，並在意想不到的語境中重新出現（例如：一個乞丐引用你的祈禱詞）。"
+INTRO_TAB_MECHANICS_TROLLEY_TITLE,The Trolley Problem Dilemma System,電車難題困境系統
+INTRO_TAB_MECHANICS_TROLLEY_BODY,"[b]Core Purpose:[/b] ""No-Win Scenario"". Forces you to choose between two equally terrible ""positive"" options.\n\n[b]Role of AI:[/b] The AI acts as a ""Sadistic Ethicist"". It generates absurd dilemmas where logic is punished and delusion is rewarded.\n\n[b]Game Impact:[/b]\n• Tests your loyalty to the ""Positive Energy"" cult.\n• ""Correct"" answers increase Entropy; ""Wrong"" answers hurt your stats.\n\n[b]Input Consequence:[/b] Your choice determines which teammate you annoy or which disaster you accelerate.","[b]核心目的：[/b]「必輸局面」。強迫你在兩個同樣糟糕的「正能量」選項中做出選擇。\n\n[b]AI 的角色：[/b]AI 扮演一位「施虐狂倫理學家」。它生成荒謬的困境，在那裡邏輯受罰，妄想得賞。\n\n[b]遊戲影響：[/b]\n• 測試你對「正能量」邪教的忠誠度。\n• 「正確」的答案增加熵增；「錯誤」的答案傷害你的數值。\n\n[b]輸入後果：[/b]你的選擇決定了你會惹惱哪個隊友，或加速哪場災難。"
+INTRO_TAB_MECHANICS_ACHIEVEMENT_TITLE,The Achievement and Progress System,成就與進度系統
+INTRO_TAB_MECHANICS_ACHIEVEMENT_BODY,"The Achievement System component has been implemented with 15+ defined achievements serving three purposes: Tracking player milestones, using ironic titles and descriptions to comment on player complicity, and encouraging replayability through hidden achievements.","成就系統組件已實作，包含 15 個以上的定義成就，服務於三個目的：追蹤玩家的里程碑，使用諷刺的標題和描述來評論玩家的共謀行為，以及透過隱藏成就鼓勵重複遊玩。"
+INTRO_TAB_MECHANICS_RELATIONSHIP_TITLE,The Relationship and Social Graph System,關係與社交圖譜系統
+INTRO_TAB_MECHANICS_RELATIONSHIP_BODY,"A RelationshipGraphViewer component has been partially implemented to visualise how player choices ripple through the narrative system. The implementation will provide a node-graph UI accessible from menus that renders butterfly effect data as a visual network.","關係圖譜檢視器（RelationshipGraphViewer）組件已部分實作，用於視覺化玩家的選擇如何在敘事系統中產生漣漪。該實作將提供一個可從選單訪問的節點圖 UI，將蝴蝶效應數據渲染為視覺網絡。"
+GRAPH_VIEW_TITLE,Social Graph,社交關係圖
+CHARACTER_VIEW_TITLE,Character View,角色視圖
+RELATIONSHIP_NEUTRAL,Neutral,中立
+RELATIONSHIP_DEVOTED,Devoted,虔誠
+RELATIONSHIP_HOSTILE,Hostile,敵對
+RELATIONSHIP_SUSPICIOUS,Suspicious,懷疑
+RELATIONSHIP_LOYAL,Loyal,忠誠
+RELATIONSHIP_DISAPPOINTED,Disappointed,失望
+RELATIONSHIP_ALIGNED,Aligned,一致
+RELATIONSHIP_CRITICAL,Critical,批判
+RELATIONSHIP_SYMPATHETIC,Sympathetic,共鳴
+RELATIONSHIP_DISTANT,Distant,疏遠
+PAUSE_MENU_CHARACTERS,Characters,角色
+# Pause Menu,,
+PAUSE_TITLE,GAME PAUSED,遊戲暫停
+PAUSE_TOKEN_REPORT_TITLE,AI Token Usage Summary,AI Token 使用概況
+BUTTERFLY_EXPLAIN_TITLE,How it Works,如何運作
+BUTTERFLY_EXPLAIN_BODY,The Butterfly Effect tracks your major decisions. Small choices can ripple through time and cause unexpected consequences later in the game. Watch your choices carefully!,蝴蝶效應會追蹤你做出的重大決定。小小的選擇會隨時間產生漣漪，並在遊戲後期引發意想不到的後果。請仔細留意你的每個選擇！
+BUTTERFLY_BTN_EXPLAIN,How it Works,如何運作
+
+# Intro Tab - Stats & Visuals,,
+INTRO_TAB_STATS_TITLE,Stats & Effects,數值與影響
+INTRO_TAB_STATS_REALITY_TITLE,Reality Score (Sanity),現實值 (理智)
+INTRO_TAB_STATS_REALITY_BODY,"[b]Meaning:[/b] Your ability to perceive the truth amidst the cult's nonsense.\n\n[b]Effects:[/b]\n• [color=#ff6b6b]Low (<20):[/color] You hear bankruptcy sounds. The screen glitches. You suffer ""Cognitive Dissonance"" (harder logic checks).\n• [color=#ff0000]Zero:[/color] Game Over (Mental Collapse).\n• [color=#ffff00]High (>80):[/color] You see too clearly. Gloria feels threatened and attacks you more often.","[b]意義：[/b] 你在邪教胡言亂語中看清真相的能力。\n\n[b]影響：[/b]\n• [color=#ff6b6b]低 (<20)：[/color] 你會聽到破產音效，畫面出現故障雜訊。你會遭受「認知失調」（邏輯檢定變難）。\n• [color=#ff0000]歸零：[/color] 遊戲結束（精神崩潰）。\n• [color=#ffff00]高 (>80)：[/color] 你看得太清了。Gloria 會感到威脅並更頻繁地攻擊你。"
+INTRO_TAB_STATS_POSITIVE_TITLE,Positive Energy (Delusion),正能量 (妄想)
+INTRO_TAB_STATS_POSITIVE_BODY,"[b]Meaning:[/b] How much you embrace the toxic positivity cult.\n\n[b]Effects:[/b]\n• [color=#ff6b6b]Low (<30):[/color] Triggers ""Gloria's Intervention"" (Horror Event). She will lecture you until you submit.\n• [color=#88ff88]High:[/color] Teammates like you, but your ""success"" accelerates the end of the world.\n• [b]Visuals:[/b] High positive energy creates a false, bright veneer over the decaying world.","[b]意義：[/b] 你對有毒正能量邪教的接受程度。\n\n[b]影響：[/b]\n• [color=#ff6b6b]低 (<30)：[/color] 觸發「Gloria 的干預」（恐怖事件）。她會對你說教直到你屈服。\n• [color=#88ff88]高：[/color] 隊友喜歡你，但你的「成功」會加速世界末日。\n• [b]視覺：[/b] 高正能量會在腐朽的世界表面製造出一層虛假的明亮假象。"
+INTRO_TAB_STATS_ENTROPY_TITLE,Entropy Level (The End),熵增等級 (終結)
+INTRO_TAB_STATS_ENTROPY_BODY,"[b]Meaning:[/b] The inevitable heat death of the universe, accelerated by your team's ""good deeds"".\n\n[b]Effects:[/b]\n• [color=#ff0000]100:[/color] Game Over (Total Void).\n• [b]Triggers:[/b] Increases when you complete missions successfully or pray blindly.\n• [b]Visuals:[/b] The world grows darker. Disturbing visual noise increases as the end approaches.","[b]意義：[/b] 宇宙不可避免的熱寂，被你團隊的「善行」所加速。\n\n[b]影響：[/b]\n• [color=#ff0000]100：[/color] 遊戲結束（完全虛無）。\n• [b]觸發：[/b] 當你成功完成任務或盲目祈禱時增加。\n• [b]視覺：[/b] 世界變得更暗。隨著末日臨近，令人不安的視覺噪聲會增加。"

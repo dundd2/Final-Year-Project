@@ -1,0 +1,227 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/butterfly_effect_panel.gd" id="1_3kql5"]
+
+[node name="ButterflyEffectOverlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("1_3kql5")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.78)
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_left = 0.08
+anchor_top = 0.08
+anchor_right = 0.92
+anchor_bottom = 0.92
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="MainMargin"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="VBoxMain" type="VBoxContainer" parent="MainMargin/Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+theme_override_constants/separation = 18
+
+[node name="HeaderBar" type="HBoxContainer" parent="MainMargin/Panel/VBoxMain"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="TitleBlock" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/HeaderBar"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="MainMargin/Panel/VBoxMain/HeaderBar/TitleBlock"]
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Butterfly Effect Intel"
+
+[node name="SubtitleLabel" type="Label" parent="MainMargin/Panel/VBoxMain/HeaderBar/TitleBlock"]
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.78, 0.83, 0.95, 1)
+text = "Every reckless smile leaves ripples."
+autowrap_mode = 2
+
+[node name="ExplainButton" type="Button" parent="MainMargin/Panel/VBoxMain/HeaderBar"]
+text = "How it Works"
+size_flags_horizontal = 1
+
+[node name="CloseButton" type="Button" parent="MainMargin/Panel/VBoxMain/HeaderBar"]
+text = "Close"
+size_flags_horizontal = 1
+
+[node name="StatsGrid" type="GridContainer" parent="MainMargin/Panel/VBoxMain"]
+columns = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 18
+theme_override_constants/v_separation = 14
+
+[node name="StatCardTracked" type="PanelContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid"]
+size_flags_horizontal = 3
+
+[node name="StatMargin1" type="MarginContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTracked"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="StatBoxTracked" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTracked/StatMargin1"]
+theme_override_constants/separation = 6
+
+[node name="StatTitleTracked" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTracked/StatMargin1/StatBoxTracked"]
+text = "Tracked Choices"
+theme_override_font_sizes/font_size = 14
+
+[node name="StatValueTracked" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTracked/StatMargin1/StatBoxTracked"]
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="StatHintTracked" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTracked/StatMargin1/StatBoxTracked"]
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.82, 0.9, 1)
+text = "Major choices since onboarding."
+
+[node name="StatCardActive" type="PanelContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid"]
+size_flags_horizontal = 3
+
+[node name="StatMargin2" type="MarginContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardActive"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="StatBoxActive" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardActive/StatMargin2"]
+theme_override_constants/separation = 6
+
+[node name="StatTitleActive" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardActive/StatMargin2/StatBoxActive"]
+text = "Active Ripples"
+theme_override_font_sizes/font_size = 14
+
+[node name="StatValueActive" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardActive/StatMargin2/StatBoxActive"]
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="StatHintActive" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardActive/StatMargin2/StatBoxActive"]
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.82, 0.9, 1)
+text = "Consequences still waiting to fire."
+
+[node name="StatCardTriggered" type="PanelContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid"]
+size_flags_horizontal = 3
+
+[node name="StatMargin3" type="MarginContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTriggered"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="StatBoxTriggered" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTriggered/StatMargin3"]
+theme_override_constants/separation = 6
+
+[node name="StatTitleTriggered" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTriggered/StatMargin3/StatBoxTriggered"]
+text = "Triggered Outcomes"
+theme_override_font_sizes/font_size = 14
+
+[node name="StatValueTriggered" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTriggered/StatMargin3/StatBoxTriggered"]
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="StatHintTriggered" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardTriggered/StatMargin3/StatBoxTriggered"]
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.82, 0.9, 1)
+text = "Catastrophes already unleashed."
+
+[node name="StatCardScenes" type="PanelContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid"]
+size_flags_horizontal = 3
+
+[node name="StatMargin4" type="MarginContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardScenes"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="StatBoxScenes" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardScenes/StatMargin4"]
+theme_override_constants/separation = 6
+
+[node name="StatTitleScenes" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardScenes/StatMargin4/StatBoxScenes"]
+text = "Avg Scenes Ago"
+theme_override_font_sizes/font_size = 14
+
+[node name="StatValueScenes" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardScenes/StatMargin4/StatBoxScenes"]
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="StatHintScenes" type="Label" parent="MainMargin/Panel/VBoxMain/StatsGrid/StatCardScenes/StatMargin4/StatBoxScenes"]
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.82, 0.9, 1)
+text = "How far your mistakes echo."
+
+[node name="TimelineHeader" type="HBoxContainer" parent="MainMargin/Panel/VBoxMain"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="TimelineTitle" type="Label" parent="MainMargin/Panel/VBoxMain/TimelineHeader"]
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Ripple Timeline"
+
+[node name="TagLegend" type="HBoxContainer" parent="MainMargin/Panel/VBoxMain/TimelineHeader"]
+size_flags_horizontal = 1
+theme_override_constants/separation = 10
+
+[node name="CriticalBadge" type="Label" parent="MainMargin/Panel/VBoxMain/TimelineHeader/TagLegend"]
+text = "Critical"
+theme_override_font_sizes/font_size = 13
+
+[node name="MajorBadge" type="Label" parent="MainMargin/Panel/VBoxMain/TimelineHeader/TagLegend"]
+text = "Major"
+theme_override_font_sizes/font_size = 13
+
+[node name="MinorBadge" type="Label" parent="MainMargin/Panel/VBoxMain/TimelineHeader/TagLegend"]
+text = "Minor"
+theme_override_font_sizes/font_size = 13
+
+[node name="TimelineScroll" type="ScrollContainer" parent="MainMargin/Panel/VBoxMain"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="TimelineList" type="VBoxContainer" parent="MainMargin/Panel/VBoxMain/TimelineScroll"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="EmptyState" type="Label" parent="MainMargin/Panel/VBoxMain"]
+size_flags_horizontal = 3
+size_flags_vertical = 1
+visible = false
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.82, 0.88, 0.95, 1)
+text = "No ripples recorded yet. Try sabotaging morale first."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FooterHint" type="Label" parent="MainMargin/Panel/VBoxMain"]
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.6, 0.68, 0.82, 1)
+text = "Tip: Revisit older scenes to accelerate remaining ripples."
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,302 @@
+[gd_scene load_steps=9 format=3 uid="uid://characters_page_001"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/characters_page.gd" id="1"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_protagonist.png" id="2"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_gloria.png" id="3"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_donkey.png" id="4"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_ark.png" id="5"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_one.png" id="6"]
+[ext_resource type="Texture2D" path="res://1.Codebase/src/assets/characters/portrait_teacher_chan.png" id="7"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.15, 0.2, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CharactersPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.15, 0.25, 0.95)
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MenuContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "角色介紹"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+clip_contents = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Protagonist" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Protagonist"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Protagonist"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Protagonist/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 24
+text = "主角 - 被迫的正能量信徒"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Protagonist/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "一個經歷過無數次背叛與失望的現實主義者，對人性充滿懷疑。在一次合作危機中，被Gloria用無懈可擊的道德勒索話術PUA，讓他陷入巨大的內疚與自我懷疑。最終被迫接受「正能量法則」，成為了不情願的「天選之人」。"
+autowrap_mode = 3
+
+[node name="Separator0" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Gloria" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Gloria"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Gloria"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Gloria/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "聖光修女・Gloria - 溫室的守護者"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Gloria/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "用「愛與包容」為自己建造完美無菌溫室的狂熱信徒。她將「正能量法則」當作重建內心秩序的唯一解藥，並深信這是普渡眾生的真理。擅長道德勒索、議題置換和雙重標準。她的「飛天意粉神」是她防禦機制的人格化投射。能力：【聖言術・定罪】【神聖庇護】 弱點：【現實衝擊】"
+autowrap_mode = 3
+
+[node name="Separator1" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Donkey" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Donkey"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Donkey"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Donkey/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "榮光騎士・Cosplayer Donkey - 自封的英雄"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/Donkey/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "活在陳舊英雄史詩裡的Cosplayer，堅信只要擺出英雄姿態，世界就會自動獻上公主與喝彩。對世界的理解完全來自老套騎士小說和網路爽文。言辭大膽但在現實中極度被動，迴避所有責任。能力：【史詩級構想】【小圈子光環】 弱點：【萬能的無能】"
+autowrap_mode = 3
+
+[node name="Separator2" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ARK" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/ARK"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/ARK"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/ARK/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "秩序使徒・Cosplayer ARK - 勤奮的破壞者"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/ARK/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "對「秩序」和「計劃」有宗教般狂熱的信徒，但他創造的秩序只是將混亂用更複雜規則包裝。熱衷用命令式語氣安排任務，所謂會議只是為了讓他人「追認」他的決策。習慣黑箱作業，是團隊信任的粉碎機。能力：【絕對計劃】 弱點：【溝通障礙】"
+autowrap_mode = 3
+
+[node name="Separator3" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="One" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/One"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/One"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/One/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 24
+text = "被孤立的老朋友・One - 沉默的證人"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/One/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "團隊中唯一真正有能力、有原則的正常人。善良與不願衝突的性格使他在有毒環境中選擇沉默，成為不公義的無聲見證者。因語言或種族等原因被其他隊友有意無意排擠。公開場合說「我OK」，私下向主角誠實表達不滿。能力：【可靠執行】 弱點：【沉默的詛咒】"
+autowrap_mode = 3
+
+[node name="Separator4" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TeacherChan" type="HBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Portrait" type="TextureRect" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/TeacherChan"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/TeacherChan"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/TeacherChan/TextContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "慰藉靈魂的歌者・陳老師 - 末日的撫慰者"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/TeacherChan/TextContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "「亮光之神」信仰在人間的最高級代理人，國民級的偶像歌手。形象永遠白衣飄飄、充滿慈悲。歌聲溫柔而充滿磁性，歌詞永遠關於「放下」、「原諒」、「成長」。她真心相信自己所唱的一切，但每一次演唱都是巨大的儀式，極大地強化「虛無熵增」，加速世界毀滅。"
+autowrap_mode = 3
+
+[node name="Separator5" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FSM" type="VBoxContainer" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/FSM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "飛天意粉神 - 虛構的信仰"
+
+[node name="DescLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer/VBoxContainer/FSM"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "一個虛構的神祇，被拒絕面對宇宙「熵增」真相的人們創造出來。信徒相信只要向宇宙發射「純粹正能量」，運用「吸引力法則」就能逆轉熵增。然而真相是，這種被強行製造的正能量，正是「虛無熵增」最美味的催化劑，將世界自然消亡的速度瘋狂加速一萬倍。"
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="MenuContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "關閉"
+
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/CloseButton" to="." method="_on_close_pressed"]

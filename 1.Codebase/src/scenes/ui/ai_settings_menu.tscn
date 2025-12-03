@@ -1,0 +1,500 @@
+[gd_scene load_steps=3 format=3 uid="uid://ai_settings_menu_001"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/ai_settings_menu.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.15, 0.2, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="AISettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.15, 0.25, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = true
+vertical_scroll_mode = 1
+
+[node name="Panel" type="Panel" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Panel"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "AI SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProviderLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "AI Provider:"
+
+[node name="ProviderOption" type="OptionButton" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+item_count = 3
+selected = 0
+popup/item_0/text = "Google Gemini"
+popup/item_0/id = 0
+popup/item_1/text = "OpenRouter"
+popup/item_1/id = 1
+popup/item_2/text = "Ollama (Local)"
+popup/item_2/id = 2
+
+[node name="ProviderStatusLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Currently using: Google Gemini"
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="GeminiLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Google Gemini API Key:"
+
+[node name="GeminiKeyInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Enter your Gemini API key..."
+secret = true
+
+[node name="GeminiHintLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Create a Gemini API key via AI Studio (https://ai.google.dev/studio). "
+autowrap_mode = 3
+
+[node name="GeminiModelLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Gemini Model:"
+
+[node name="GeminiModelOption" type="OptionButton" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+item_count = 7
+selected = 0
+popup/item_0/text = "gemini-2.5-pro"
+popup/item_0/id = 0
+popup/item_1/text = "gemini-2.5-flash-native-audio-preview-09-2025"
+popup/item_1/id = 1
+popup/item_2/text = "gemini-flash-latest"
+popup/item_2/id = 2
+popup/item_3/text = "gemini-2.5-flash-lite"
+popup/item_3/id = 3
+
+[node name="GeminiDisabledLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+modulate = Color(0.7, 0.7, 0.7, 1)
+text = "Player is not using this method."
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenRouterLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "OpenRouter API Key:"
+
+[node name="OpenRouterKeyInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Enter your OpenRouter API key..."
+secret = true
+
+[node name="OpenRouterHintLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Get your key from: https://openrouter.ai/keys"
+autowrap_mode = 3
+
+[node name="ModelLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OpenRouter Model:"
+
+[node name="ModelInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "e.g., google/gemini-pro"
+
+[node name="OpenRouterDisabledLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+modulate = Color(0.7, 0.7, 0.7, 1)
+text = "Player is not using this method."
+autowrap_mode = 3
+
+[node name="OllamaHeaderLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Configure Ollama"
+
+[node name="OllamaInfoLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Provide the local Ollama service URL and model tag. Default URL: http://127.0.0.1:11434"
+autowrap_mode = 3
+
+[node name="OllamaHostLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Ollama URL:"
+
+[node name="OllamaHostInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "http://127.0.0.1:11434"
+
+[node name="OllamaPortLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Ollama Port:"
+
+[node name="OllamaPortSpin" type="SpinBox" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 65535.0
+step = 1.0
+value = 11434.0
+
+[node name="OllamaModelLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Ollama Model Tag:"
+
+[node name="OllamaModelInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "gemma3:1b"
+
+[node name="OllamaUseChatCheck" type="CheckBox" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Use /api/chat streaming endpoint"
+button_pressed = true
+
+[node name="OllamaOptionsLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Ollama Options (JSON):"
+
+[node name="OllamaOptionsInput" type="TextEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+placeholder_text = "{\"temperature\": 0.7, \"top_p\": 0.9}"
+
+[node name="OllamaHintLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Advanced sampling options are stored in configuration. Adjust temperature, top_p, and context in the config file if needed."
+autowrap_mode = 3
+
+[node name="OllamaDisabledLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+modulate = Color(0.7, 0.7, 0.7, 1)
+text = "Player is not using this method."
+autowrap_mode = 3
+
+[node name="HSeparatorOllama" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="AIToneStyleLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "AI Tone Style:"
+
+[node name="AIToneStyleInput" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "e.g., Maintain a tone of dark humor and calm irony."
+
+[node name="HSeparatorTone" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MemorySettingsLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Memory Settings"
+
+[node name="MemoryHintLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Configure how the AI remembers past conversations. Higher values use more tokens."
+autowrap_mode = 3
+
+[node name="MemoryLimitContainer" type="HBoxContainer" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MemoryLimitLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer/MemoryLimitContainer"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Max Memory:"
+
+[node name="MemoryLimitSpin" type="SpinBox" parent="ScrollContainer/Panel/VBoxContainer/MemoryLimitContainer"]
+layout_mode = 2
+min_value = 10.0
+max_value = 2000.0
+step = 10.0
+value = 500.0
+suffix = " items"
+
+[node name="MemorySummaryContainer" type="HBoxContainer" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MemorySummaryLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer/MemorySummaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Summary Threshold:"
+
+[node name="MemorySummarySpin" type="SpinBox" parent="ScrollContainer/Panel/VBoxContainer/MemorySummaryContainer"]
+layout_mode = 2
+min_value = 5.0
+max_value = 2000.0
+step = 5.0
+value = 500.0
+suffix = " items"
+
+[node name="MemoryFullContainer" type="HBoxContainer" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MemoryFullLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer/MemoryFullContainer"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Full Retention:"
+
+[node name="MemoryFullSpin" type="SpinBox" parent="ScrollContainer/Panel/VBoxContainer/MemoryFullContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 200.0
+step = 1.0
+value = 5.0
+suffix = " items"
+
+[node name="HSeparatorMemory" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MetricsLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "AI Metrics"
+
+[node name="LastResponseTimeLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Last Response Time: N/A"
+
+[node name="TotalAPICallsLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Total API Calls: N/A"
+
+[node name="TotalTokensUsedLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Total Tokens Used: N/A"
+
+[node name="LastInputTokensLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Last Input Tokens: N/A"
+
+[node name="LastOutputTokensLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Last Output Tokens: N/A"
+
+[node name="HSeparatorMetrics" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MetricsChartContainer" type="Panel" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("1")
+
+[node name="ContextLayersLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Context Layers"
+
+[node name="ContextPanel" type="Panel" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("1")
+
+[node name="ContextVBox" type="VBoxContainer" parent="ScrollContainer/Panel/VBoxContainer/ContextPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LongTermHeader" type="Label" parent="ScrollContainer/Panel/VBoxContainer/ContextPanel/ContextVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Long-term Summaries"
+
+[node name="LongTermText" type="RichTextLabel" parent="ScrollContainer/Panel/VBoxContainer/ContextPanel/ContextVBox"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+text = "[i]No summaries captured yet.[/i]"
+
+[node name="NotesHeader" type="Label" parent="ScrollContainer/Panel/VBoxContainer/ContextPanel/ContextVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Tracked Notes"
+
+[node name="NotesText" type="RichTextLabel" parent="ScrollContainer/Panel/VBoxContainer/ContextPanel/ContextVBox"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+text = "[i]No notes recorded.[/i]"
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TestButton" type="Button" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "TEST CONNECTION"
+
+[node name="StatusLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Status: Not tested"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="ScrollContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+
+[connection signal="item_selected" from="ScrollContainer/Panel/VBoxContainer/ProviderOption" to="." method="_on_provider_changed"]
+[connection signal="value_changed" from="ScrollContainer/Panel/VBoxContainer/MemoryLimitContainer/MemoryLimitSpin" to="." method="_on_memory_limit_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/Panel/VBoxContainer/MemoryFullContainer/MemoryFullSpin" to="." method="_on_memory_full_value_changed"]
+[connection signal="pressed" from="ScrollContainer/Panel/VBoxContainer/TestButton" to="." method="_on_test_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/Panel/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
+
+[node name="BottomControls" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -80.0
+offset_right = 500.0
+offset_bottom = -20.0
+grow_horizontal = 2
+
+[node name="SaveButton" type="Button" parent="BottomControls"]
+custom_minimum_size = Vector2(300, 60)
+theme_override_font_sizes/font_size = 24
+text = "SAVE"
+
+[node name="BackButton" type="Button" parent="BottomControls"]
+custom_minimum_size = Vector2(300, 60)
+theme_override_font_sizes/font_size = 24
+text = "BACK"
+
+[node name="HomeButton" type="Button" parent="BottomControls"]
+custom_minimum_size = Vector2(300, 60)
+theme_override_font_sizes/font_size = 18
+text = "HOME"
+
+[connection signal="pressed" from="BottomControls/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="BottomControls/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="BottomControls/HomeButton" to="." method="_on_home_button_pressed"]

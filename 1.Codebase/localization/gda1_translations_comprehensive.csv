@@ -1,0 +1,288 @@
+keys,en,zh
+# Stats Labels,,
+STAT_REALITY,Reality Score,現實值
+STAT_POSITIVE,Positive Energy,正能量值
+STAT_ENTROPY,Entropy Level,熵增等級
+# Skill Labels,,
+SKILL_LOGIC,Logic,邏輯
+SKILL_PERCEPTION,Perception,感知
+SKILL_COMPOSURE,Composure,沉著
+SKILL_EMPATHY,Empathy,共情
+# Teammate Labels,,
+TEAMMATE_GLORIA,Saint Gloria,聖母 Gloria
+TEAMMATE_DONKEY,Knight Donkey,榮光騎士 Donkey
+TEAMMATE_ARK,Archivist ARK,秩序使徒 ARK
+TEAMMATE_ONE,One,One
+# Phase Labels,,
+PHASE_HONEYMOON,Honeymoon Phase,蜜月期
+PHASE_NORMAL,Normal Phase,常態期
+PHASE_CRISIS,Crisis Phase,危機期
+# Reason Translations,,
+REASON_POSITIVE_CURSE,Positive Energy Curse,正能量詛咒
+REASON_PRAYER_AFTERSHOCK,Prayer aftershock,禱告餘震
+REASON_GLORIA_ACCUSATION,Gloria's negative-energy accusation,Gloria的負能量控訴
+REASON_TEACHER_CONCERT,Teacher Chan's apocalypse concert,陳老師的天啟演唱會
+REASON_FORCED_ECHO,Forced to echo Gloria,被迫附和聖母
+REASON_MISSION_SUCCESS,"Mission ""success"" backlash",任務「成功」
+REASON_MISSION_AFTERSHOCK,Mission aftershock,任務餘波
+# Event Messages,,
+EVENT_REALITY_CHANGE,Reality score change: %s,現實值變化: %s
+EVENT_POSITIVE_CHANGE,Positive energy change: %s,正能量值變化: %s
+EVENT_ENTROPY_SURGE,World entropy surge: %s,世界熵增加速: %s
+EVENT_MISSION_STARTED,Mission #%s started,開始任務 #%s
+EVENT_MISSION_COMPLETE,Mission #%s completed (%s),任務完成 #%s（成功：%s）
+EVENT_PHASE_CHANGED,Game phase changed: %s,遊戲階段變更: %s
+EVENT_HONEYMOON_CHARGE,Honeymoon charge -1,蜜月層數 -1
+EVENT_HONEYMOON_DEPLETED,Honeymoon phase depleted; teammates reveal their true nature,蜜月期耗盡，隊友恢復真面目
+EVENT_HONEYMOON_RESET,Honeymoon charges reset to 5,蜜月期層數重置為 5
+# Status,,
+STATUS_SUCCESS,success,是
+STATUS_FAILED,failed,否
+# Error Contexts (for ErrorReporter),,
+ERROR_CONTEXT_SaveSystem,Save System,存檔系統
+ERROR_CONTEXT_SaveLoadSystem,Save/Load System,存檔系統
+ERROR_CONTEXT_AssetLoader,Asset Loader,資源加載器
+ERROR_CONTEXT_AudioManager,Audio Manager,音頻管理器
+ERROR_CONTEXT_AIManager,AI Manager,AI 管理器
+ERROR_CONTEXT_GameState,Game State,遊戲狀態
+ERROR_CONTEXT_LocalizationManager,Localization Manager,本地化管理器
+ERROR_CONTEXT_EventBus,Event Bus,事件總線
+ERROR_CONTEXT_StoryScene,Story Scene,劇情場景
+ERROR_CONTEXT_NetworkManager,Network Manager,網絡管理器
+# Error Icons,,
+ERROR_ICON_INFO,ℹ️,ℹ️
+ERROR_ICON_WARNING,⚠️,⚠️
+ERROR_ICON_ERROR,❌,❌
+ERROR_ICON_CRITICAL,🚨,🚨
+# NPC Names,,
+NPC_generic_villager_male,Villager (Male),男性村民
+NPC_generic_villager_female,Villager (Female),女性村民
+NPC_generic_guard,Guard,守衛
+NPC_generic_merchant,Merchant,商人
+NPC_generic_elder,Elder,長者
+NPC_generic_child,Child,兒童
+NPC_generic_priest,Priest,神職人員
+NPC_generic_scientist,Scientist,科學家
+NPC_unknown,NPC,角色
+# Tutorial Texts,,
+TUTORIAL_first_choice,Make your choice. But remember: in this world good intentions often backfire.,做出你的首次選擇。記住：這裡的善意常常適得其反。
+TUTORIAL_first_stat_change,Watch your Reality score. When it drops to 0 the game is over.,注意現實值。降到 0 時，遊戲立刻結束。
+TUTORIAL_first_prayer,The prayer system lets you input positive wishes... then watch them turn into disasters.,祈禱系統會把盼望扭曲成災難，靜待反諷上演。
+TUTORIAL_first_mission,Congratulations on completing your first mission! Check the journal for story details.,恭喜完成第一項任務！打開日誌查看細節。
+TUTORIAL_first_skill_check,Skill checks are based on your abilities. Improving skills unlocks more options.,技能檢定取決於能力值。提升能力可解鎖更多選項。
+TUTORIAL_first_gloria_intervention,Gloria's moral blackmail has arrived! Complaining too much triggers her intervention.,抱怨太多會引來 Gloria 的道德勒索，她稱之為指導。
+TUTORIAL_first_entropy_surge,Rising entropy means the world is accelerating toward collapse. This is the price of 'saving the world'.,熵值升高代表世界正在加速崩解，拯救的代價無處不在。
+TUTORIAL_first_night_cycle,During the night you can explore teammate relationships or engage in self-reflection.,夜幕降臨時，可以探索隊友關係，也能進行自我反省。
+# Achievement Texts,,
+ACHIEVEMENT_first_mission_TITLE,First Mission,初次任務
+ACHIEVEMENT_first_mission_DESC,Complete your first mission,完成第一個任務
+ACHIEVEMENT_reality_seeker_TITLE,Reality Seeker,現實追尋者
+ACHIEVEMENT_reality_seeker_DESC,Reach Reality Score of 80 or higher,達到80以上的現實感知值
+ACHIEVEMENT_reality_crisis_TITLE,Reality Crisis,現實危機
+ACHIEVEMENT_reality_crisis_DESC,Reality Score drops below 20,現實感知值降到20以下
+ACHIEVEMENT_positive_resistance_TITLE,Positive Resistance,正能量抗體
+ACHIEVEMENT_positive_resistance_DESC,Keep Positive Energy below 30,保持正能量指數在30以下
+ACHIEVEMENT_positive_victim_TITLE,Positive Victim,正能量受害者
+ACHIEVEMENT_positive_victim_DESC,Positive Energy reaches 90 or higher,正能量指數達到90以上
+ACHIEVEMENT_entropy_witness_TITLE,Entropy Witness,熵增見證者
+ACHIEVEMENT_entropy_witness_DESC,Entropy Level reaches 100,熵增等級達到100
+ACHIEVEMENT_diary_keeper_TITLE,Diary Keeper,日記守護者
+ACHIEVEMENT_diary_keeper_DESC,Record 10 journal entries,在日記中記錄10條條目
+ACHIEVEMENT_master_complainer_TITLE,Master Complainer,抱怨大師
+ACHIEVEMENT_master_complainer_DESC,Trigger Gloria's moral blackmail 3 times,觸發Gloria的道德勒索3次
+ACHIEVEMENT_faithful_noodler_TITLE,Faithful Noodler,虔誠麵神徒
+ACHIEVEMENT_faithful_noodler_DESC,Pray to the Flying Spaghetti Monster 10 times,向飛天意粉神祈禱10次
+ACHIEVEMENT_skill_master_TITLE,Skill Master,技能大師
+ACHIEVEMENT_skill_master_DESC,Raise any skill to 10,將任何技能提升到10
+ACHIEVEMENT_survivor_TITLE,Survivor,倖存者
+ACHIEVEMENT_survivor_DESC,Complete 10 missions,完成10個任務
+ACHIEVEMENT_veteran_TITLE,Veteran,老兵
+ACHIEVEMENT_veteran_DESC,Complete 50 missions,完成50個任務
+ACHIEVEMENT_logic_master_TITLE,Logic Master,邏輯大師
+ACHIEVEMENT_logic_master_DESC,Successfully pass 10 Logic checks,成功完成10次邏輯檢定
+ACHIEVEMENT_perception_expert_TITLE,Perception Expert,觀察專家
+ACHIEVEMENT_perception_expert_DESC,Successfully pass 10 Perception checks,成功完成10次感知檢定
+ACHIEVEMENT_balanced_mind_TITLE,Balanced Mind,平衡心智
+ACHIEVEMENT_balanced_mind_DESC,Keep both Reality and Positive Energy between 40-60,保持現實值和正能量都在40-60之間
+ACHIEVEMENT_moral_philosopher_TITLE,Moral Philosopher,道德哲學家
+ACHIEVEMENT_moral_philosopher_DESC,Face and resolve your first moral dilemma,面對並解決第一個道德困境
+ACHIEVEMENT_trolley_conductor_TITLE,Trolley Conductor,電車調度員
+ACHIEVEMENT_trolley_conductor_DESC,Resolve 5 moral dilemmas,解決5個道德困境
+ACHIEVEMENT_complicit_TITLE,Complicit,共犯
+ACHIEVEMENT_complicit_DESC,Resolve 10 moral dilemmas and become complicit in the disasters,解決10個道德困境，成為災難的共犯
+ACHIEVEMENT_tutorial_master_TITLE,Tutorial Master,教程達人
+ACHIEVEMENT_tutorial_master_DESC,Complete all tutorial hints,完成所有教程提示
+# UI Labels,,
+UI_ACHIEVEMENT_SYSTEM_NOT_CONFIGURED,Achievement System Not Configured,成就系統未配置
+UI_JOURNAL_DESCRIPTION,Record your observations and doubts or choose preset responses.,記錄你的觀察、思想和疑慮，或選擇預設回應。
+UI_JOURNAL_ENTRY_PROMPT,What happened today?,今天發生了什麼？
+UI_JOURNAL_BUTTON_FRUSTRATED,😤 Frustrated,😤 沮喪
+UI_JOURNAL_BUTTON_HOPELESS,😔 Hopeless,😔 絕望
+UI_JOURNAL_BUTTON_ANGRY,😠 Angry,😠 憤怒
+UI_JOURNAL_BUTTON_CONFUSED,😕 Confused,😕 困惑不解
+UI_JOURNAL_BUTTON_TIRED,😴 Exhausted,😴 疲憊不堪
+UI_JOURNAL_BUTTON_CUSTOM,✍️ Write my own,✍️ 自己撰寫
+# Mission/Story Text,,
+STORY_MISSION_GENERATION_INSTRUCTION,Create a new mission scenario for the player.,為玩家創建一個新的任務情景。
+STORY_PRAYER_RESPONSE,The Flying Spaghetti Monster has heard your prayer... maybe.,飛行面條怪聽到了你的祈禱... 也許。
+# Trolley Problem Dilemma - Team Strategy Discussion,,
+DILEMMA_TEAM_STRATEGY_SCENARIO,The team is discussing strategy. Gloria proposes an optimistic plan but ARK points out its logical flaws.,團隊正在討論策略。Gloria 提出了一個樂觀的計劃，但 ARK 指出了其中的邏輯缺陷。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE,🌟 Support Gloria's optimistic plan and stay positive.,🌟 支持 Gloria 的樂觀計劃，保持積極。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE_IMMEDIATE,Team feels better and Gloria gains confidence.,團隊感覺更好，Gloria 增加信心。
+DILEMMA_TEAM_STRATEGY_CHOICE_POSITIVE_LONGTERM,Plan fails due to logical flaws but team stays positive missing improvement opportunities.,計劃因邏輯缺陷失敗，但團隊保持積極，錯過了改進機會。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC,⚖️ Support ARK's critical analysis and face reality.,⚖️ 支持 ARK 的批判性分析，面對現實。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC_IMMEDIATE,Gloria feels criticized and team morale drops.,Gloria 感到被批評，團隊士氣下降。
+DILEMMA_TEAM_STRATEGY_CHOICE_REALISTIC_LONGTERM,Team learns critical thinking but may strain relationship with Gloria.,團隊學會批判性思考，但可能與 Gloria 關係緊張。
+DILEMMA_TEAM_STRATEGY_THEME,Sometimes honesty is punished while toxic positivity is rewarded.,有時誠實會受到懲罰，而毒性積極性卻得到獎勵。
+JOURNAL_PRESET_FRUSTRATED,"I feel frustrated. No matter how logically I plan, the team still ruins everything.","我感到沮喪。無論我如何邏輯地規劃,團隊仍然毀掉一切。"
+JOURNAL_PRESET_HOPELESS,I feel hopeless. Can this world even be saved? Positive-energy dogma has already wrecked it all.,我感到絕望。這個世界還能被拯救嗎?正能量教條已經毀了一切。
+JOURNAL_PRESET_ANGRY,I'm furious. Why won't anyone face reality? Why is admitting the problem so hard?,我非常憤怒。為什麼沒人願意面對現實?為什麼承認問題這麼難?
+JOURNAL_PRESET_CONFUSED,"I'm confused. Positive-energy thinking causes so much disaster, yet people still believe in it.","我很困惑。正能量思維造成如此多的災難,但人們仍然相信它。"
+JOURNAL_PRESET_EXHAUSTED,I'm exhausted. Fighting these absurd catastrophes every day is draining me dry.,我筋疲力盡。每天與這些荒謬的災難作鬥爭讓我心力交瘁。
+JOURNAL_SAVE_FAILED,Failed to save journal. Check permissions.,"日誌保存失敗,請檢查權限。"
+JOURNAL_EMPTY_STATE,No diary entries yet.\nRecording your feelings helps restore reality.,還沒有日記條目。\n記錄你的感受有助於恢復現實。
+JOURNAL_REALITY_GAIN,+%d Reality,+%d 現實值
+JOURNAL_AI_GENERATING,AI analysis generating...,AI 分析生成中...
+JOURNAL_SECTION_LATEST_STORY,Latest Experience,最新故事
+JOURNAL_SECTION_RECENT_EVENTS,Recent Events,近期事件
+JOURNAL_SECTION_AI_SUGGESTIONS,AI Reflection Suggestions,AI 反思建議
+JOURNAL_NO_STORY,No story recorded yet.,尚無故事記錄。
+JOURNAL_NO_MILESTONES,No recent milestone.,沒有近期里程碑。
+JOURNAL_AI_FALLBACK,AI unavailable. Using fallback reflections.,"AI 無法使用,改用備援反思。"
+JOURNAL_LOADING_SUGGESTIONS,Loading suggestions...,載入建議中...
+JOURNAL_NO_EVENTS,No specific incidents were logged.,尚未記錄具體事件。
+JOURNAL_NO_NARRATIVE,No mission narrative yet.,尚未有任務敘事。
+JOURNAL_AI_UNAVAILABLE,AI summary unavailable.,AI 摘要不可用。
+JOURNAL_ENTRY_SAVED,Entry Saved! Reality +%d,條目已儲存！現實值 +%d
+JOURNAL_SAVED,Journal saved!,日誌已儲存!
+JOURNAL_MISSION_OUTCOME,Mission outcome:,任務結果:
+JOURNAL_NO_EXTRA_EVENTS,No additional events recorded.,尚無額外事件記錄。
+MENU_TITLE,GLORIOUS DELIVERANCE AGENCY 1,光榮拯救機構 1
+MENU_SUBTITLE,Stay Skeptical. Stay Awake.,"保持懷疑,保持清醒"
+MENU_NEW_GAME,NEW GAME,開始新遊戲
+MENU_CONTINUE,CONTINUE,繼續遊戲
+MENU_SAVE_LOAD,SAVE / LOAD,存檔 / 讀檔
+MENU_JOURNAL,JOURNAL,日誌
+MENU_ACHIEVEMENTS,ACHIEVEMENTS,成就
+MENU_HOW_TO_PLAY,HOW TO PLAY,如何遊玩
+MENU_TERMS,TERMS & PRIVACY,條款與隱私
+MENU_SETTINGS,SETTINGS,設定
+MENU_QUIT,QUIT,退出
+MENU_CREATIVE_STATEMENT,CREATIVE STATEMENT,創作聲明
+MENU_NO_SAVE_DATA,No save data available yet.,暫無可繼續的進度
+MENU_LAST_SAVE_INFO,Last save: Reality %d | Missions %d | %s | %s,最近存檔:現實值 %d｜任務完成 %d｜%s｜%s
+MENU_AUTOSAVE,Autosave,自動存檔
+MENU_MANUAL_SAVE,Manual save,手動存檔
+MENU_SLOT,Slot %d,槽位 %d
+MENU_UNKNOWN_TIME,Unknown time,未知時間
+MENU_TIMESTAMP_FORMAT,%04d-%02d-%02d %02d:%02d,%04d年%02d月%02d日 %02d:%02d
+SAVELOAD_TITLE,Save / Load,存檔 / 讀檔
+SAVELOAD_SUBTITLE,Manage your progress,管理你的冒險進度
+SAVELOAD_INFO,"Choose a slot to load, overwrite, or delete. Autosave data appears above when available.",選擇存檔槽即可載入、覆寫或刪除;自動存檔會顯示在上方。
+SAVELOAD_LOAD_AUTOSAVE,Load autosave,載入自動存檔
+SAVELOAD_DELETE_AUTOSAVE,Delete autosave,刪除自動存檔
+SAVELOAD_REFRESH,Refresh,重新整理
+SAVELOAD_CLOSE,Close,關閉
+SAVELOAD_EMPTY_HINT,No manual saves yet. Use a slot's Save button to create one.,目前沒有手動存檔。使用任一槽位的「存檔」按鈕建立進度。
+SAVELOAD_NO_AUTOSAVE,No autosave available.,目前沒有自動存檔。
+SAVELOAD_SLOT,Slot %d,槽位 %d
+SAVELOAD_EMPTY_SLOT,Empty slot. Create a new save here.,"空槽位,可在此建立存檔。"
+SAVELOAD_SAVE,Save,存檔
+SAVELOAD_LOAD,Load,讀檔
+SAVELOAD_DELETE,Delete,刪除
+SAVELOAD_SUMMARY,Reality %d | Entropy %d | Missions %d,現實 %d｜熵增 %d｜任務 %d
+SAVELOAD_AUTOSAVE_SUMMARY,Autosave • Reality %d / Entropy %d / Missions %d,自動存檔 • 現實 %d / 熵增 %d / 任務 %d
+SAVELOAD_UNKNOWN_TIME,Unknown time,時間未知
+SAVELOAD_TIMESTAMP,Saved on %04d-%02d-%02d %02d:%02d,%04d年%02d月%02d日 %02d:%02d 存檔
+SETTINGS_TITLE,SETTINGS,設定
+SETTINGS_AUDIO,Audio Settings,音訊設定
+SETTINGS_MASTER_VOLUME,Master Volume:,主音量:
+SETTINGS_MUSIC_VOLUME,Music Volume:,音樂音量:
+SETTINGS_SFX_VOLUME,SFX Volume:,音效音量:
+SETTINGS_MUTE_ALL,Mute All,全部靜音
+SETTINGS_DELETE_LOGS,DELETE LOCAL LOGS,刪除本機記錄
+SETTINGS_DELETE_CONFIRM_TITLE,Delete Local Logs,刪除本機記錄
+SETTINGS_DELETE_CONFIRM_MSG,"This deletes locally stored logs, cached AI prompts, and in-memory event history. Continue?",這將刪除本機儲存的記錄、AI 快取與事件歷程。是否繼續?
+SETTINGS_DELETE,Delete,刪除
+SETTINGS_CANCEL,Cancel,取消
+SETTINGS_DISPLAY_WINDOWED,Windowed,視窗化
+SETTINGS_DISPLAY_FULLSCREEN,Fullscreen,全螢幕
+SETTINGS_DISPLAY_BORDERLESS,Borderless Window,無邊框視窗
+SETTINGS_APPLIED,Settings applied!,設定已套用!
+SETTINGS_LOGS_CLEARED,"Local logs cleared (%d files removed, %d caches reset).","已清除本機記錄(刪除檔案 %d 個,重設快取 %d 項)。"
+SETTINGS_LOGS_CLEAR_FAILED,Unable to clear logs because the game state service is unavailable.,"無法清除記錄,因遊戲狀態不可用。"
+ACHIEVEMENT_VIEWER_TITLE,ACHIEVEMENTS,成就
+ACHIEVEMENT_VIEWER_CLOSE,CLOSE,關閉
+ACHIEVEMENT_VIEWER_PROGRESS,Achievement Progress: %d/%d (%.1f%%),成就進度: %d/%d (%.1f%%)
+ACHIEVEMENT_VIEWER_UNLOCKED,Unlocked:,解鎖於:
+ACHIEVEMENT_VIEWER_SETUP_REQUIRED,⚠️ Setup Required,⚠️ 需要設定
+ACHIEVEMENT_VIEWER_SETUP_MSG,The Achievement System is not loaded.\n\nTo enable achievements:\n\n1. Open Project → Project Settings in Godot\n2. Go to the Autoload tab\n3. Click Add\n4. Set the path to: res://1.Codebase/src/scripts/core/achievement_system.gd\n5. Set the Node Name to: AchievementSystem\n6. Click Add to confirm\n7. Restart the game,成就系統未載入。\n\n設定步驟：\n\n1. 在 Godot 中打開 Project → Project Settings\n2. 進入 Autoload 標籤\n3. 點擊 Add\n4. 選擇: res://1.Codebase/src/scripts/core/achievement_system.gd\n5. 設定名稱為 AchievementSystem\n6. 勾選 Enable\n7. 重新啟動場景。
+TUTORIAL_TITLE,💡 Tutorial Tip,💡 教程提示
+TUTORIAL_GOT_IT,Got it!,我知道了
+TUTORIAL_SKIP_ALL,Skip all tutorials,跳過所有教程
+TUTORIAL_ALL_SKIPPED,All tutorials skipped,教程已全部跳過
+TERMS_TITLE,TERMS & CONDITIONS,條款與細則
+TERMS_ACCEPT,ACCEPT & CONTINUE,接受並繼續
+STORY_EXIT_CONFIRM,Are you sure you want to return to the main menu? Unsaved progress will be lost.,確定要離開故事場景嗎?未保存的進度將丟失。
+STORY_EXIT_YES,"Yes, Exit","是的,離開"
+STORY_AI_RATE_LIMIT_TITLE,AI Requests Paused,AI 請求過於頻繁
+STORY_AI_RATE_LIMIT_DESC,Too many AI requests; wait a moment or switch to offline/return to menu.,AI 請求過於頻繁，請稍後再試，或改用離線劇情/返回主選單。
+STORY_CANCEL,Cancel,取消
+STORY_CONFIRM,Confirm,確認
+GLORIA_TITLE,💔 Saint Gloria,💔 聖母 Gloria
+GLORIA_NEGATIVE_MESSAGE,You're being too negative...,你真是太負面了...
+GLORIA_CONTINUE,...Continue,...繼續
+PRAYER_COGNITIVE_DISSONANCE,⚠️ Cognitive Dissonance: Your mind forces you to add positive words!,⚠️ 認知失調：你的思維強迫你添加正能量詞彙！
+PRAYER_REALITY_CRITICAL,⚠️ DANGER: Reality perception critically low! Prayer will cause catastrophic consequences!,⚠️ 危險：現實感知極度低下！禱告將帶來災難性後果！
+PRAYER_REALITY_WARNING,"⚠️ WARNING: Reality perception is low, prayer effects may spiral out of control...",⚠️ 警告：現實感知偏低，禱告效果可能失控...
+PRAYER_NOTICE_TITLE,Data Usage Notice,資料使用告知
+PRAYER_NOTICE_MSG,"[b]Before You Pray:[/b]\n\n• If using cloud models, your text will be sent to third-party AI services for processing.\n\n• Local models process everything on your device.\n\n• Prayer responses may contain unpredictable satirical content.",[]開始祈禱前請先了解：[/b]\n\n• 若選擇雲端模型，您輸入的文字將會傳送至第三方 AI 服務處理。\n\n• 本地模型則在本機處理。\n\n• 祈禱回應可能包含不可預測的諷刺內容。
+PRAYER_CANCEL,Cancel,取消
+LOADING_GENERATING_STORY,Generating story...,生成故事中...
+LOADING_CONSULTING_AI,Consulting AI oracle...,諮詢AI神諭...
+LOADING_WEAVING_NARRATIVE,Weaving narrative threads...,編織敘事線索...
+QUICK_SAVE,Quick Save,快速存檔
+QUICK_LOAD,Quick Load,快速讀檔
+QUICK_ACHIEVEMENTS,Achievements,成就
+NIGHT_REFLECTION,Post-Mission Reflection,任務後的反思
+NIGHT_HONEYMOON,Honeymoon Illusion,蜜月假象
+NIGHT_PRAY_AGAIN,Pray to the Flying Spaghetti Monster again.,再向飛天意粉神祈禱吧。
+NIGHT_REFLECTION_FALLBACK,The night is quiet. Too quiet. The AI seems to be sleeping.,夜深了。太安靜了。AI 似乎睡著了。
+NIGHT_CONCERT_FALLBACK,Teacher Chan is taking a break. Enjoy the silence.,陳老師正在休息。享受這份寧靜吧。
+STORY_SECTION_PLAYER_REFLECTION,## Player Reflection,## 玩家反思
+STORY_SECTION_TEACHER_CONCERT,## Teacher Concert,## 老師演唱會
+STORY_SECTION_HONEYMOON_RECORD,## Honeymoon Period Record,## 蜜月期紀錄
+STORY_DILEMMA_CLASSIC,Classic Dilemma,經典困境
+STORY_DILEMMA_SACRIFICE,Personal Sacrifice,個人犧牲
+STORY_DILEMMA_DECEPTION,Noble Deception,高貴謊言
+STORY_DILEMMA_RESOURCE,Resource Allocation,資源分配
+STORY_DILEMMA_AUTHORITY,Authority Challenge,權威挑戰
+STORY_PRAYER_KEYWORD,pray/prayer,祈禱
+CHOICE_SELECT_ACTION,Select Your Action,選擇你的行動
+CHOICE_HOW_TO_PROCEED,Choose how you want to proceed...,選擇你想要如何進行...
+CHOICE_CANCEL,← Cancel,← 取消
+CHOICE_PRAYER,[Prayer],[祈禱]
+CHOICE_RADICAL,[Radical],[激進]
+CHOICE_DIPLOMATIC,[Diplomatic],[外交]
+CHARACTERS_TITLE,Character Profiles,角色介紹
+BUTTERFLY_TITLE,Butterfly Effect Timeline,蝴蝶效應時間線
+BUTTERFLY_SUBTITLE,Your choices echo through the story...,你的選擇在故事中迴盪...
+BUTTERFLY_CLOSE,Close,關閉
+ASSET_NO_TAGS,No tags,無標籤
+ASSET_NO_DESCRIPTION,No description,無描述
+UI_UNKNOWN,Unknown,未知
+UI_REALITY,Reality,現實
+UI_ENTROPY,Entropy,熵
+UI_MISSIONS,Missions,任務
+UI_PROTAGONIST,Protagonist,主角
+AI_MISSION_GENERATION,=== Mission Generation ===,=== 任務生成 ===
+AI_CONSEQUENCE_GENERATION,=== Consequence Generation ===,=== 後果生成 ===
+AI_TEAMMATE_INTERFERENCE,=== Teammate Interference ===,=== 隊友插手 ===
+AI_GLORIA_BOMBARDMENT,=== Gloria's Positive Energy Bombardment ===,=== Gloria 正能量轟炸 ===
+AI_GENERATION_FAILED,AI generation failed:,AI 生成失敗:
+AI_IMPORTANT_USE_CHINESE,"IMPORTANT: Respond in Traditional Chinese. All narrative, dialogue, and descriptions must be in Traditional Chinese.",重要：請使用繁體中文回答。所有敘事、對話與描述必須使用繁體中文。
+AI_SESSION_DATA,=== Session Data ===,=== 會話數據 ===
+AI_RECENT_EVENTS,=== Recent Events ===,=== 最近事件 ===
+AI_CURRENT_PHASE,Current Phase:,當前階段:
+AI_REQUEST_TIMEOUT,Request timed out. Retrying... (%d/%d),請求超時。正在重試... (%d/%d)
+AI_REQUEST_FAILED,Request failed after %d retries. Please check network connection.,請求在 %d 次重試後仍然失敗，請檢查網路連線。

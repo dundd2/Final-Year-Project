@@ -1,0 +1,115 @@
+[gd_scene load_steps=3 format=3 uid="uid://terms_page_001"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/terms_page.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.15, 0.2, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="TermsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.15, 0.25, 1)
+
+[node name="MenuContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuContainer"]
+custom_minimum_size = Vector2(700, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "條款與隱私 - TERMS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BodyLabel" type="RichTextLabel" parent="MenuContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[b]隱私聲明 Privacy Statement[/b]
+
+本遊戲會將您在遊戲過程中輸入的文字（例如禱告內容、日記條目、任務回應等）發送至第三方 AI 服務進行處理，以生成動態故事內容。
+
+[b]使用的第三方服務：[/b]
+• Google Gemini API
+• OpenRouter API
+
+[color=yellow][b]⚠️ 重要提醒：[/b][/color]
+如果您選擇使用本地 LLM（Local Language Model），則所有資料將保留在您的本地設備上，不會上傳至任何第三方服務。
+
+[b]數據使用原則：[/b]
+1. 我們不會主動收集或儲存您的個人資料
+2. 輸入的文字會被發送到 AI 服務提供商
+3. 請勿在遊戲中輸入敏感個人資訊
+4. AI 服務提供商可能根據其條款處理數據
+
+[color=orange]使用本遊戲的 AI 功能即表示您同意上述條款，並了解您的輸入內容將被發送至第三方 AI 服務進行處理。[/color]
+
+如有任何疑問，請訪問 AI 服務提供商的隱私政策：
+• Google Gemini: https://ai.google.dev/
+• OpenRouter: https://openrouter.ai/privacy"
+autowrap_mode = 3
+fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="MenuContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="MenuContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "我了解並返回"
+
+[connection signal="pressed" from="MenuContainer/Panel/VBoxContainer/CloseButton" to="." method="_on_close_pressed"]

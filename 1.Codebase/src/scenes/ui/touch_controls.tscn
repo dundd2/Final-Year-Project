@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6v2w3w4x5y6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5"]
+radius = 40.0
+
+[node name="TouchControls" type="CanvasLayer"]
+
+[node name="DPad" type="Node2D" parent="."]
+position = Vector2(100, 580)
+
+[node name="MoveUp" type="TouchScreenButton" parent="DPad"]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_1")
+action = "move_up"
+visibility_mode = 1
+
+[node name="MoveDown" type="TouchScreenButton" parent="DPad"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_2")
+action = "move_down"
+visibility_mode = 1
+
+[node name="MoveLeft" type="TouchScreenButton" parent="DPad"]
+position = Vector2(-40, 0)
+shape = SubResource("CircleShape2D_3")
+action = "move_left"
+visibility_mode = 1
+
+[node name="MoveRight" type="TouchScreenButton" parent="DPad"]
+position = Vector2(40, 0)
+shape = SubResource("CircleShape2D_4")
+action = "move_right"
+visibility_mode = 1
+
+[node name="SprintButton" type="TouchScreenButton" parent="."]
+position = Vector2(860, 580)
+shape = SubResource("CircleShape2D_5")
+action = "sprint"
+visibility_mode = 1

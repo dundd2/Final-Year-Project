@@ -1,0 +1,327 @@
+name: "Build and Deploy Game"
+
+on:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: "4.3"
+  EXPORT_NAME: "Individual Project"
+
+jobs:
+  godot-export:
+    name: Godot Export
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Godot export templates
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable && cd /tmp && wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz -O templates.tpz && unzip -q templates.tpz && mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ && ls -lah ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/"
+
+      - name: Prepare build output directory
+        run: mkdir -p "build-artifacts"
+
+      - name: Verify web templates
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "echo 'Export templates:' && ls -lah ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ && echo '' && echo 'Web templates:' && find ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable -name '*web*' -type f || echo 'No web templates found'"
+
+      - name: Inject Secrets
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "$GEMINI_API_KEY" ]; then
+            echo "Injecting GEMINI_API_KEY..."
+            sed -i "s/const GEMINI_API_KEY = \"\"/const GEMINI_API_KEY = \"$GEMINI_API_KEY\"/" 1.Codebase/src/scripts/core/ai/managers/build_secrets.gd
+          else
+            echo "No GEMINI_API_KEY secret found, skipping injection."
+          fi
+
+      - name: Export for Web (HTML5)
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Web' 'build-artifacts/index.html' 2>&1"
+        continue-on-error: false
+
+      - name: Export for Windows
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Windows Desktop' 'build-artifacts/game.exe' 2>&1"
+        continue-on-error: false
+
+      - name: Export for Linux
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux' 'build-artifacts/game.x86_64' 2>&1"
+        continue-on-error: false
+
+      - name: Export for Linux ARM64
+        uses: docker://barichello/godot-ci:4.3
+        with:
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux ARM64' 'build-artifacts/game.arm64' 2>&1"
+        continue-on-error: false
+
+      - name: List build outputs
+        run: |
+          echo "Build outputs:"
+          ls -lah "build-artifacts/" || echo "No outputs yet"
+          find "build-artifacts/" -type f -exec ls -lh {} \; 2>/dev/null || true
+          echo ""
+          echo "Checking for required files:"
+          [ -f "build-artifacts/index.html" ] && echo "✓ index.html found" || echo "✗ index.html MISSING"
+          [ -f "build-artifacts/index.js" ] && echo "✓ index.js found" || echo "✗ index.js MISSING"
+          [ -f "build-artifacts/index.wasm" ] && echo "✓ index.wasm found" || echo "✗ index.wasm MISSING"
+
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: |
+            build-artifacts/index.html
+            build-artifacts/index.js
+            build-artifacts/index.wasm
+            build-artifacts/index.pck
+            build-artifacts/index.audio.worklet.js
+            build-artifacts/index.icon.png
+            build-artifacts/index.apple-touch-icon.png
+            build-artifacts/index.png
+          if-no-files-found: error
+
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: |
+            build-artifacts/game.exe
+            build-artifacts/game.pck
+          if-no-files-found: error
+
+      - name: Upload Linux x86_64 Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x64-build
+          path: |
+            build-artifacts/game.x86_64
+            build-artifacts/game.pck
+          if-no-files-found: error
+
+      - name: Upload Linux ARM64 Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-arm64-build
+          path: |
+            build-artifacts/game.arm64
+            build-artifacts/game.pck
+          if-no-files-found: error
+
+  create-release:
+    name: Create Release
+    needs: godot-export
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate tag name from commit
+        id: generate_tag
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%s)
+          echo "Commit message: $COMMIT_MSG"
+          
+          TAG_NAME=$(echo "$COMMIT_MSG" | sed 's/[^a-zA-Z0-9 ]//g' | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]' | cut -c1-50)
+          
+          if [ -z "$TAG_NAME" ] || [ ${#TAG_NAME} -lt 3 ]; then
+            TAG_NAME="build-$(date +%Y%m%d-%H%M%S)"
+          else
+            TAG_NAME="v-${TAG_NAME}-$(date +%Y%m%d-%H%M)"
+          fi
+          
+          echo "Generated tag: $TAG_NAME"
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Download Web Build
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: web-build/
+
+      - name: Download Windows Build
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-build
+          path: windows-build/
+
+      - name: Download Linux x64 Build
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-x64-build
+          path: linux-x64-build/
+
+      - name: Download Linux ARM64 Build
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-arm64-build
+          path: linux-arm64-build/
+
+      - name: Create Platform Zips
+        run: |
+          # Create zip for each platform
+          cd web-build && zip -r ../web-game.zip * && cd ..
+          cd windows-build && zip -r ../windows-game.zip * && cd ..
+          cd linux-x64-build && zip -r ../linux-game.zip * && cd ..
+          cd linux-arm64-build && zip -r ../linux-arm64-game.zip * && cd ..
+          
+          echo "Created release packages:"
+          ls -lh *.zip
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{ steps.generate_tag.outputs.tag_name }}" -m "Automated release from workflow run ${{ github.run_number }}"
+          git push origin "${{ steps.generate_tag.outputs.tag_name }}"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.generate_tag.outputs.tag_name }}
+          name: "Release ${{ steps.generate_tag.outputs.tag_name }}"
+          body: |
+            Automated release created from workflow run #${{ github.run_number }}
+            
+            **Commit:** ${{ github.sha }}
+            **Branch:** ${{ github.ref_name }}
+            **Triggered by:** ${{ github.actor }}
+            
+            - **Web (HTML5)**: `web-game.zip` - Extract and host on a web server
+            - **Windows**: `windows-game.zip` - Extract and run `game.exe`
+            - **Linux (x86_64)**: `linux-game.zip` - Extract and run `game.x86_64`
+            - **Linux (ARM64)**: `linux-arm64-game.zip` - Extract and run `game.arm64`
+          files: |
+            web-game.zip
+            windows-game.zip
+            linux-game.zip
+            linux-arm64-game.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
+  deploy-github-pages:
+    name: Deploy to GitHub Pages
+    needs: godot-export
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Web Build
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: web-build/
+
+      - name: Verify web build downloaded
+        run: |
+          echo "Downloaded web build:"
+          ls -lah web-build/
+          echo "Total files: $(find web-build/ -type f | wc -l)"
+          echo ""
+          if [ ! -f "web-build/index.html" ]; then
+            echo "ERROR: index.html not found in web build!"
+            exit 1
+          fi
+          echo "✓ Web build files present"
+
+      - name: Move web build to temp location
+        run: |
+          mkdir -p /tmp/web-build
+          cp -r web-build/* /tmp/web-build/
+          echo "Web build copied to temp:"
+          ls -lah /tmp/web-build/
+          echo ""
+          echo "Total size:"
+          du -sh /tmp/web-build/
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup GitHub Pages branch
+        run: |
+          # Check if gh-pages exists remotely
+          if git ls-remote --exit-code origin gh-pages; then
+            # Branch exists - create a fresh orphan branch to force update
+            git checkout --orphan gh-pages-new
+            git rm -rf . 2>/dev/null || true
+            git clean -fdx 2>/dev/null || true
+          else
+            # Branch doesn't exist - create it
+            git checkout --orphan gh-pages
+          fi
+
+      - name: Prepare web export
+        run: |
+          # Copy ONLY web files from temp location to root, exclude desktop executables
+          if [ -d "/tmp/web-build" ] && [ "$(ls -A /tmp/web-build/)" ]; then
+            echo "Copying web build files (excluding desktop executables):"
+            
+            # Copy web files explicitly, excluding .import files and desktop executables
+            cp /tmp/web-build/index.html . 2>/dev/null || true
+            cp /tmp/web-build/index.js . 2>/dev/null || true
+            cp /tmp/web-build/index.wasm . 2>/dev/null || true
+            cp /tmp/web-build/index.pck . 2>/dev/null || true
+            cp /tmp/web-build/index.audio.worklet.js . 2>/dev/null || true
+            cp /tmp/web-build/index.icon.png . 2>/dev/null || true
+            cp /tmp/web-build/index.apple-touch-icon.png . 2>/dev/null || true
+            cp /tmp/web-build/index.png . 2>/dev/null || true
+            
+            # Create .nojekyll to disable Jekyll processing
+            touch .nojekyll
+            
+            echo ""
+            echo "Final contents in root (web files only):"
+            ls -lah
+            echo ""
+            echo "Total size:"
+            du -sh .
+          else
+            echo "Error: No build outputs found in /tmp/web-build"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
+        run: |
+          echo "Current directory contents before add:"
+          ls -lah
+          git add -A
+          echo ""
+          echo "Git status after add:"
+          git status
+          echo ""
+          echo "Committing and pushing changes..."
+          git commit -m "ci: deploy to GitHub Pages [skip ci]"
+          
+          # If we created a new branch, rename it and force push
+          if git rev-parse --verify gh-pages-new 2>/dev/null; then
+            git branch -D gh-pages 2>/dev/null || true
+            git branch -m gh-pages
+          fi
+          
+          git push origin gh-pages --force
+          echo "✓ Successfully deployed to GitHub Pages!"

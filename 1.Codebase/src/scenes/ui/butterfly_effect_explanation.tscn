@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://butterfly_effect_explanation"]
+
+[ext_resource type="Script" path="res://1.Codebase/src/scripts/ui/butterfly_effect_explanation.gd" id="1_script"]
+
+[node name="ButterflyEffectExplanation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.85)
+
+[node name="Root" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContentPanel" type="PanelContainer" parent="Root"]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/ContentPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Root/ContentPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Root/ContentPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Root/ContentPanel/Margin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "How it Works"
+
+[node name="CloseButton" type="Button" parent="Root/ContentPanel/Margin/VBox/Header"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "X"
+
+[node name="HSeparator" type="HSeparator" parent="Root/ContentPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="BodyText" type="RichTextLabel" parent="Root/ContentPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Explanation text goes here..."
