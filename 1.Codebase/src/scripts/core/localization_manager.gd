@@ -50,6 +50,7 @@ func _ready() -> void:
 	for lang in _translations.keys():
 		key_counts.append("%s: %d" % [lang, _translations[lang].size()])
 	print("[LocalizationManager] Initialized with language: %s" % _current_language)
+	TranslationServer.set_locale(_current_language)
 	print("[LocalizationManager] Loaded translations: %s" % ", ".join(key_counts))
 func _exit_tree() -> void:
 	_translations.clear()
@@ -171,6 +172,7 @@ func set_language(language: String) -> void:
 	_current_language = language
 	if GameState:
 		GameState.current_language = language
+	TranslationServer.set_locale(language)
 	language_changed.emit(language)
 	ErrorReporter.report_info("LocalizationManager", "Language changed", { "from": old_language, "to": language })
 func get_language() -> String:
