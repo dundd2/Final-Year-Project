@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://test_ai_system_001"]
+
+[ext_resource type="Script" path="res://1.Codebase/Unit Test/test_ai_system.gd" id="1"]
+
+[node name="AISystemTestRunner" type="Node"]
+script = ExtResource("1")
