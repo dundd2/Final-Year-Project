@@ -13,7 +13,7 @@ This is my Final Year Project (FYP) exploring an **AI-Powered Dynamic Narrative 
 
 An AI-native 2D RPG where you play a reluctant hero in a dysfunctional team whose attempts to save the world with "positive energy" only accelerate its destruction. The game implements a unique *Reality vs. Positive Energy" thematic framework as a dark satirical critique of toxic positivity and hustle culture.
 
-Built with Godot 4.5 and typed GDScript, this repository contains the complete project including source code, Report and Video.
+Built with Godot 4.5.1 and typed GDScript, this repository contains the complete project including source code, Report and Video.
 
 # Running the Project
 
@@ -102,7 +102,6 @@ The project uses GitHub Actions for automated building and deployment.
   - Linux ARM64
 - **Releases**: A GitHub Release is automatically created with zipped artifacts for each platform.
 - **Web Deployment**: The Web build is automatically deployed to the `gh-pages` branch.
-- **API Keys**: For the Web build, the `GEMINI_API_KEY` secret is injected into the build if provided in the repository secrets.
 
 # License
 
