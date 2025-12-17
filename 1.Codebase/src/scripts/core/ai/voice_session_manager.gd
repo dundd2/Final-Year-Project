@@ -10,6 +10,9 @@ signal audio_received(payload: Dictionary)
 var prefer_native_audio: bool = false
 var voice_output_enabled: bool = false
 var voice_input_enabled: bool = false
+var _desired_prefer_native_audio: bool = true
+var _desired_voice_output_enabled: bool = true
+var _desired_voice_input_enabled: bool = false
 var preferred_voice_name: String = ""
 var voice_input_mode: int = 0
 var proactive_audio_enabled: bool = false
@@ -53,9 +56,9 @@ func get_settings_payload() -> Dictionary:
 		"native_voice_supported": native_voice_supported,
 	}
 func apply_settings_payload(settings: Dictionary) -> void:
-	prefer_native_audio = bool(settings.get("prefer_native_audio", prefer_native_audio))
-	voice_output_enabled = bool(settings.get("voice_output_enabled", voice_output_enabled))
-	voice_input_enabled = bool(settings.get("voice_input_enabled", voice_input_enabled))
+	_desired_prefer_native_audio = bool(settings.get("prefer_native_audio", _desired_prefer_native_audio))
+	_desired_voice_output_enabled = bool(settings.get("voice_output_enabled", _desired_voice_output_enabled))
+	_desired_voice_input_enabled = bool(settings.get("voice_input_enabled", _desired_voice_input_enabled))
 	preferred_voice_name = str(settings.get("preferred_voice_name", preferred_voice_name))
 	voice_input_mode = int(settings.get("voice_input_mode", voice_input_mode))
 	proactive_audio_enabled = bool(settings.get("proactive_audio_enabled", proactive_audio_enabled))
@@ -63,9 +66,9 @@ func apply_settings_payload(settings: Dictionary) -> void:
 	_enforce_voice_mode()
 	_apply_voice_support_lockouts()
 func load_from_config(config: ConfigFile) -> void:
-	prefer_native_audio = bool(config.get_value("voice", "prefer_native_audio", prefer_native_audio))
-	voice_output_enabled = bool(config.get_value("voice", "voice_output_enabled", voice_output_enabled))
-	voice_input_enabled = bool(config.get_value("voice", "voice_input_enabled", voice_input_enabled))
+	_desired_prefer_native_audio = bool(config.get_value("voice", "prefer_native_audio", _desired_prefer_native_audio))
+	_desired_voice_output_enabled = bool(config.get_value("voice", "voice_output_enabled", _desired_voice_output_enabled))
+	_desired_voice_input_enabled = bool(config.get_value("voice", "voice_input_enabled", _desired_voice_input_enabled))
 	preferred_voice_name = str(config.get_value("voice", "preferred_voice_name", preferred_voice_name))
 	voice_input_mode = int(config.get_value("voice", "voice_input_mode", voice_input_mode))
 	proactive_audio_enabled = bool(config.get_value("voice", "proactive_audio_enabled", proactive_audio_enabled))
@@ -73,9 +76,9 @@ func load_from_config(config: ConfigFile) -> void:
 	_enforce_voice_mode()
 	_apply_voice_support_lockouts()
 func write_to_config(config: ConfigFile) -> void:
-	config.set_value("voice", "prefer_native_audio", prefer_native_audio)
-	config.set_value("voice", "voice_output_enabled", voice_output_enabled)
-	config.set_value("voice", "voice_input_enabled", voice_input_enabled)
+	config.set_value("voice", "prefer_native_audio", _desired_prefer_native_audio)
+	config.set_value("voice", "voice_output_enabled", _desired_voice_output_enabled)
+	config.set_value("voice", "voice_input_enabled", _desired_voice_input_enabled)
 	config.set_value("voice", "preferred_voice_name", preferred_voice_name)
 	config.set_value("voice", "voice_input_mode", voice_input_mode)
 	config.set_value("voice", "proactive_audio_enabled", proactive_audio_enabled)
@@ -241,9 +244,13 @@ func _apply_voice_support_lockouts() -> void:
 		voice_output_enabled = false
 		voice_input_enabled = false
 		return
+	prefer_native_audio = _desired_prefer_native_audio
 	if not prefer_native_audio:
 		voice_output_enabled = false
 		voice_input_enabled = false
+		return
+	voice_output_enabled = _desired_voice_output_enabled
+	voice_input_enabled = _desired_voice_input_enabled
 func _enforce_voice_mode() -> void:
 	if _valid_voice_modes.is_empty():
 		return

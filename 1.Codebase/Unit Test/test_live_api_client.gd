@@ -31,7 +31,7 @@ func _test_client_initialization() -> void:
 	print("   ✅ PASS: Client initialization")
 func _test_connection_parameters() -> void:
 	print("\n[Test] Connection parameters...")
-	var test_model = "gemini-2.0-flash-exp"
+	var test_model = "gemini-3-flash-preview"
 	var test_api_key = "test_api_key_12345"
 	var test_config = {"temperature": 0.8, "maxOutputTokens": 500}
 	var test_session_handle = "session_abc123"
@@ -64,7 +64,7 @@ func _test_api_key_handling() -> void:
 	print("   ✅ PASS: API key handling")
 func _test_session_configuration() -> void:
 	print("\n[Test] Session configuration...")
-	var model_name = "gemini-2.0-flash-exp"
+	var model_name = "gemini-3-flash-preview"
 	var config = {"temperature": 0.9, "topP": 0.95}
 	var session_handle = "session_xyz"
 	var system_instruction = "Test instruction"

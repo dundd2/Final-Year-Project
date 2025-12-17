@@ -4,8 +4,7 @@ const VoiceSessionManagerScript = preload("res://1.Codebase/src/scripts/core/ai/
 const AIVoiceBridgeScript = preload("res://1.Codebase/src/scripts/core/ai/voice_bridge.gd")
 const ERROR_CONTEXT := "AIVoiceManager"
 const GEMINI_NATIVE_AUDIO_MODELS := [
-	"gemini-2.5-flash-native-audio-preview-09-2025",
-	"gemini-live-2.5-flash-preview",
+	"gemini-2.5-flash-native-audio-preview-12-2025",
 ]
 const DEFAULT_INPUT_SAMPLE_RATE := GameConstants.AI.DEFAULT_INPUT_SAMPLE_RATE
 const DEFAULT_OUTPUT_SAMPLE_RATE := GameConstants.AI.DEFAULT_OUTPUT_SAMPLE_RATE

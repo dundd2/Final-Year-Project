@@ -26,6 +26,7 @@ const UIStyleManager = preload("res://1.Codebase/src/scripts/ui/ui_style_manager
 @onready var gemini_hint_label: Label = $ScrollContainer/Panel/VBoxContainer/GeminiHintLabel
 @onready var gemini_model_label: Label = $ScrollContainer/Panel/VBoxContainer/GeminiModelLabel
 @onready var gemini_model_option: OptionButton = $ScrollContainer/Panel/VBoxContainer/GeminiModelOption
+@onready var gemini_model_notice_label: Label = $ScrollContainer/Panel/VBoxContainer/GeminiModelNoticeLabel
 @onready var gemini_disabled_label: Label = $ScrollContainer/Panel/VBoxContainer/GeminiDisabledLabel
 @onready var openrouter_label: Label = $ScrollContainer/Panel/VBoxContainer/OpenRouterLabel
 @onready var openrouter_key_input: LineEdit = $ScrollContainer/Panel/VBoxContainer/OpenRouterKeyInput
@@ -304,6 +305,7 @@ func _rebuild_layout_into_tabs():
 	_move_control(gemini_hint_label, tab_gemini)
 	_move_control(gemini_model_label, tab_gemini)
 	_move_control(gemini_model_option, tab_gemini)
+	_move_control(gemini_model_notice_label, tab_gemini)
 	_move_control(gemini_disabled_label, tab_gemini)
 	_move_control(openrouter_label, tab_openrouter)
 	_move_control(openrouter_key_input, tab_openrouter)
@@ -409,7 +411,14 @@ func _configure_provider_widgets() -> void:
 	if not _gemini_inputs.is_empty():
 		return
 	_gemini_inputs = [gemini_key_input, gemini_model_option]
-	_gemini_visuals = [gemini_label, gemini_key_input, gemini_hint_label, gemini_model_label, gemini_model_option]
+	_gemini_visuals = [
+		gemini_label,
+		gemini_key_input,
+		gemini_hint_label,
+		gemini_model_label,
+		gemini_model_option,
+		gemini_model_notice_label,
+	]
 	_openrouter_inputs = [openrouter_key_input, openrouter_model_input]
 	_openrouter_visuals = [openrouter_label, openrouter_key_input, openrouter_hint_label, openrouter_model_label, openrouter_model_input]
 	_ollama_inputs = [ollama_host_input, ollama_port_spin, ollama_model_input, ollama_use_chat_check, ollama_options_input]
@@ -662,16 +671,14 @@ func load_current_settings():
 	openrouter_key_input.text = ai_manager.openrouter_api_key
 	var gemini_display = [
 		"gemini-3-pro-preview",
-		"gemini-2.5-pro",
-		"gemini-2.5-flash-native-audio-preview-09-2025",
-		"gemini-flash-latest",
+		"gemini-3-flash-preview",
+		"gemini-2.5-flash-native-audio-preview-12-2025",
 		"gemini-2.5-flash-lite",
 	]
 	var gemini_values = [
 		"gemini-3-pro-preview",
-		"gemini-2.5-pro",
-		"gemini-2.5-flash-native-audio-preview-09-2025",
-		"gemini-flash-latest",
+		"gemini-3-flash-preview",
+		"gemini-2.5-flash-native-audio-preview-12-2025",
 		"gemini-2.5-flash-lite",
 	]
 	var option = gemini_model_option
@@ -858,9 +865,8 @@ func save_ui_to_manager() -> bool:
 	ai_manager.gemini_api_key = gemini_key_value
 	var gemini_values = [
 		"gemini-3-pro-preview",
-		"gemini-2.5-pro",
-		"gemini-2.5-flash-native-audio-preview-09-2025",
-		"gemini-flash-latest",
+		"gemini-3-flash-preview",
+		"gemini-2.5-flash-native-audio-preview-12-2025",
 		"gemini-2.5-flash-lite",
 	]
 	var gemini_selected = gemini_model_option.selected

@@ -1,6 +1,7 @@
 extends RefCounted
 class_name AIContextManager
 const AISafetyFilter = preload("res://1.Codebase/src/scripts/core/ai_safety_filter.gd")
+const AIProvider := AIConfigManager.AIProvider
 const STATIC_CONTEXT_EN := """# Glorious Deliverance Agency 1 (GDA1) - World & Character Guide
 
 ## World Concept
@@ -186,6 +187,7 @@ func build_request_messages(prompt: String, context: Dictionary) -> Array[Dictio
 		messages = _context_builder.build_context_prompt(prompt, context)
 	else:
 		messages = _build_context_prompt_legacy(prompt, context)
+	_attach_pending_voice_input(messages)
 	_append_formatting_reminder(messages)
 	return messages
 func _append_formatting_reminder(messages: Array[Dictionary]) -> void:
@@ -200,8 +202,45 @@ func _append_formatting_reminder(messages: Array[Dictionary]) -> void:
 	var last_msg = messages.back()
 	if last_msg["role"] == "user":
 		last_msg["content"] += reminder_text
+		if last_msg.has("parts") and last_msg["parts"] is Array and not last_msg["parts"].is_empty():
+			var first_part: Variant = last_msg["parts"][0]
+			if first_part is Dictionary and first_part.has("text"):
+				var updated_part: Dictionary = (first_part as Dictionary).duplicate(true)
+				updated_part["text"] = str(updated_part.get("text", "")) + reminder_text
+				last_msg["parts"][0] = updated_part
 	else:
 		messages.append({"role": "system", "content": reminder_text})
+
+func _attach_pending_voice_input(messages: Array[Dictionary]) -> void:
+	if messages.is_empty() or _voice_manager == null or _config_manager == null:
+		return
+	if _config_manager.current_provider != AIProvider.GEMINI:
+		return
+	var voice_session: Variant = _voice_manager.voice_session if _voice_manager else null
+	if voice_session != null and voice_session.has_method("wants_voice_input"):
+		if not bool(voice_session.wants_voice_input()):
+			return
+	if not _voice_manager.has_pending_voice_input():
+		return
+	var voice_part := _voice_manager.build_voice_inline_part()
+	if voice_part.is_empty():
+		return
+	for index in range(messages.size() - 1, -1, -1):
+		var msg: Variant = messages[index]
+		if not (msg is Dictionary):
+			continue
+		var msg_dict := msg as Dictionary
+		if str(msg_dict.get("role", "")) != "user":
+			continue
+		if msg_dict.has("parts") and msg_dict["parts"] is Array:
+			var parts: Array = msg_dict["parts"]
+			parts.append(voice_part)
+			msg_dict["parts"] = parts
+		else:
+			msg_dict["parts"] = [{ "text": str(msg_dict.get("content", "")) }, voice_part]
+		msg_dict["voice_inline_attached"] = true
+		messages[index] = msg_dict
+		break
 func build_voice_inline_part() -> Dictionary:
 	if _voice_manager:
 		return _voice_manager.build_voice_inline_part()

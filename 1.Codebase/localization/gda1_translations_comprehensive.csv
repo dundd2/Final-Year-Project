@@ -286,3 +286,10 @@ AI_RECENT_EVENTS,=== Recent Events ===,=== 最近事件 ===
 AI_CURRENT_PHASE,Current Phase:,當前階段:
 AI_REQUEST_TIMEOUT,Request timed out. Retrying... (%d/%d),請求超時。正在重試... (%d/%d)
 AI_REQUEST_FAILED,Request failed after %d retries. Please check network connection.,請求在 %d 次重試後仍然失敗，請檢查網路連線。
+PAUSE_TITLE,GAME PAUSED,遊戲暫停
+PAUSE_TOKEN_REPORT_TITLE,AI Token Usage Summary,AI Token 使用概況
+PAUSE_AI_MODEL,Active Model,當前模型
+PAUSE_AI_PROVIDER,AI Provider,AI 供應商
+BUTTERFLY_EXPLAIN_TITLE,How it Works,如何運作
+BUTTERFLY_EXPLAIN_BODY,The Butterfly Effect tracks your major decisions. Small choices can ripple through time and cause unexpected consequences later in the game. Watch your choices carefully!,蝴蝶效應會追蹤你做出的重大決定。小小的選擇會隨時間產生漣漪，並在遊戲後期引發意想不到的後果。請仔細留意你的每個選擇！
+BUTTERFLY_BTN_EXPLAIN,How it Works,如何運作

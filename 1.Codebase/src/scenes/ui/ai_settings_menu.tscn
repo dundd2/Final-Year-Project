@@ -130,16 +130,23 @@ text = "Gemini Model:"
 custom_minimum_size = Vector2(600, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-item_count = 7
+item_count = 4
 selected = 0
-popup/item_0/text = "gemini-2.5-pro"
+popup/item_0/text = "gemini-3-pro-preview"
 popup/item_0/id = 0
-popup/item_1/text = "gemini-2.5-flash-native-audio-preview-09-2025"
+popup/item_1/text = "gemini-3-flash-preview"
 popup/item_1/id = 1
-popup/item_2/text = "gemini-flash-latest"
+popup/item_2/text = "gemini-2.5-flash-native-audio-preview-12-2025"
 popup/item_2/id = 2
 popup/item_3/text = "gemini-2.5-flash-lite"
 popup/item_3/id = 3
+
+[node name="GeminiModelNoticeLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+modulate = Color(0.85, 0.85, 0.85, 1)
+text = "Model list last updated: 17 Dec 2025.\nThis list is curated for compatibility and stability. Not every Gemini model ID or configuration is supported in-game.\nGemini 2.5 and Gemini 3 use different API surfaces, so advanced/custom model configuration is intentionally limited here.\nThis game originally supported Gemini 2.5; it now supports Gemini 3 Flash and Gemini 3 Pro (text).\nSupported in this game: Gemini 3 Flash (text), Gemini 3 Pro (text), Gemini 2.5 Flash Lite (text), and Gemini 2.5 Live/Native Audio.\nNot supported: TTS-only models (e.g., *-tts).\nIf Gemini 2.5 and Gemini 3 are discontinued in the future, please switch to Ollama (Local) or OpenRouter instead (quality may vary; Gemini 2.5/3 are the best-tested in this project)."
+autowrap_mode = 3
 
 [node name="GeminiDisabledLabel" type="Label" parent="ScrollContainer/Panel/VBoxContainer"]
 visible = false

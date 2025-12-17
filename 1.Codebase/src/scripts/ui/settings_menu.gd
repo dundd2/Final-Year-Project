@@ -44,6 +44,7 @@ const VOICE_INPUT_MODE_LABELS := {
 	1: "Continuous",
 }
 const VOICE_CAPTURE_SECONDS := 4.0
+const GEMINI_RECOMMENDED_NATIVE_AUDIO_MODEL := "gemini-2.5-flash-native-audio-preview-12-2025"
 var resolutions = {
 	0: Vector2i(1024, 600),
 	1: Vector2i(1280, 720),
@@ -1241,7 +1242,7 @@ func _sync_voice_ui_state():
 	if not (voice_enabled and supported):
 		voice_capture_active = false
 	_set_button_pressed_safely(voice_enabled_check, voice_enabled and supported)
-	voice_enabled_check.disabled = not supported
+	voice_enabled_check.disabled = AIManager == null
 	voice_options_box.visible = voice_enabled and supported
 	_set_button_pressed_safely(voice_output_check, voice_output_enabled)
 	voice_output_check.disabled = not (voice_enabled and supported)
@@ -1283,7 +1284,24 @@ func _update_voice_availability_label():
 				provider_name = "Unknown"
 		voice_availability_label.text = "Native audio ready via %s (%s)." % [provider_name, model_name]
 	else:
-		voice_availability_label.text = "Current model does not expose native audio. Voice features are disabled."
+		var extra := ""
+		if AIManager.current_provider == AIManager.AIProvider.GEMINI:
+			extra = " Toggle native audio to auto-switch to %s." % GEMINI_RECOMMENDED_NATIVE_AUDIO_MODEL
+		voice_availability_label.text = "Current model does not expose native audio.%s" % extra
+
+func _try_enable_gemini_native_audio_support() -> bool:
+	if not AIManager:
+		return false
+	if AIManager.current_provider != AIManager.AIProvider.GEMINI:
+		return false
+	var current := String(AIManager.gemini_model).strip_edges()
+	if current != GEMINI_RECOMMENDED_NATIVE_AUDIO_MODEL:
+		AIManager.gemini_model = GEMINI_RECOMMENDED_NATIVE_AUDIO_MODEL
+		AIManager.save_ai_settings()
+	AIManager.refresh_voice_capabilities()
+	voice_supported = AIManager.is_native_voice_supported()
+	_update_voice_availability_label()
+	return voice_supported
 func _update_voice_volume_display():
 	if voice_volume_value:
 		voice_volume_value.text = "%d%%" % int(round(voice_volume))
@@ -1342,10 +1360,13 @@ func _on_voice_transcription_failed(reason: String):
 	_update_voice_status("Voice transcription failed: %s" % reason, true)
 	_sync_voice_ui_state()
 func _on_voice_enabled_toggled(button_pressed: bool):
-	if not voice_supported and button_pressed:
-		_set_button_pressed_safely(voice_enabled_check, false)
-		_update_voice_status("Current model does not support native audio.", true)
-		return
+	if button_pressed and not voice_supported:
+		if _try_enable_gemini_native_audio_support():
+			_update_voice_status("Switched Gemini model for native audio: %s" % GEMINI_RECOMMENDED_NATIVE_AUDIO_MODEL)
+		else:
+			_set_button_pressed_safely(voice_enabled_check, false)
+			_update_voice_status("Current model does not support native audio.", true)
+			return
 	voice_enabled = button_pressed and voice_supported
 	if not voice_enabled:
 		voice_output_enabled = false

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  GODOT_VERSION: "4.3"
+  GODOT_VERSION: "4.5.1"
   EXPORT_NAME: "Individual Project"
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
           lfs: true
 
       - name: Setup Godot export templates
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
           args: bash -c "mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable && cd /tmp && wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz -O templates.tpz && unzip -q templates.tpz && mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ && ls -lah ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/"
 
@@ -29,43 +29,67 @@ jobs:
         run: mkdir -p "build-artifacts"
 
       - name: Verify web templates
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
           args: bash -c "echo 'Export templates:' && ls -lah ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ && echo '' && echo 'Web templates:' && find ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable -name '*web*' -type f || echo 'No web templates found'"
 
-      - name: Inject Secrets
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Verify no embedded Gemini key (Web export)
         run: |
-          if [ -n "$GEMINI_API_KEY" ]; then
-            echo "Injecting GEMINI_API_KEY..."
-            sed -i "s/const GEMINI_API_KEY = \"\"/const GEMINI_API_KEY = \"$GEMINI_API_KEY\"/" 1.Codebase/src/scripts/core/ai/managers/build_secrets.gd
-          else
-            echo "No GEMINI_API_KEY secret found, skipping injection."
-          fi
+          python3 - <<'PY'
+          import pathlib, re
+          path = pathlib.Path("1.Codebase/src/scripts/core/ai/managers/build_secrets.gd")
+          text = path.read_text(encoding="utf-8")
+          m = re.search(r'const\s+GEMINI_API_KEY\s*(?::=|=)\s*"([^"]*)"', text)
+          if not m:
+            raise SystemExit("build_secrets.gd missing GEMINI_API_KEY constant")
+          if m.group(1) != "":
+            raise SystemExit("Refusing to export Web build with embedded GEMINI_API_KEY")
+          print("OK: Web export will not embed GEMINI_API_KEY")
+          PY
 
       - name: Export for Web (HTML5)
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
           args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Web' 'build-artifacts/index.html' 2>&1"
         continue-on-error: false
 
+      - name: Inject GEMINI_API_KEY for desktop exports
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, re, json
+          key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+          if not key:
+            print("No GEMINI_API_KEY secret found, skipping injection.")
+            raise SystemExit(0)
+          path = pathlib.Path("1.Codebase/src/scripts/core/ai/managers/build_secrets.gd")
+          text = path.read_text(encoding="utf-8")
+          pattern = r'const\s+GEMINI_API_KEY\s*(?::=|=)\s*\"[^\"]*\"'
+          replacement = f'const GEMINI_API_KEY = {json.dumps(key)}'
+          new_text, n = re.subn(pattern, replacement, text, count=1)
+          if n != 1:
+            raise SystemExit("Failed to patch build_secrets.gd for desktop exports")
+          path.write_text(new_text, encoding="utf-8")
+          print("Injected GEMINI_API_KEY for desktop exports.")
+          PY
+
       - name: Export for Windows
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
-          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Windows Desktop' 'build-artifacts/game.exe' 2>&1"
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Windows Desktop' 'build-artifacts/GDA1.exe' 2>&1"
         continue-on-error: false
 
       - name: Export for Linux
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
-          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux' 'build-artifacts/game.x86_64' 2>&1"
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux' 'build-artifacts/GDA1.x86_64' 2>&1"
         continue-on-error: false
 
       - name: Export for Linux ARM64
-        uses: docker://barichello/godot-ci:4.3
+        uses: docker://barichello/godot-ci:4.5.1
         with:
-          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux ARM64' 'build-artifacts/game.arm64' 2>&1"
+          args: bash -c "cd /github/workspace && godot --headless --verbose --export-release 'Linux ARM64' 'build-artifacts/GDA1.arm64' 2>&1"
         continue-on-error: false
 
       - name: List build outputs
@@ -99,8 +123,8 @@ jobs:
         with:
           name: windows-build
           path: |
-            build-artifacts/game.exe
-            build-artifacts/game.pck
+            build-artifacts/GDA1.exe
+            build-artifacts/GDA1.pck
           if-no-files-found: error
 
       - name: Upload Linux x86_64 Build
@@ -108,8 +132,8 @@ jobs:
         with:
           name: linux-x64-build
           path: |
-            build-artifacts/game.x86_64
-            build-artifacts/game.pck
+            build-artifacts/GDA1.x86_64
+            build-artifacts/GDA1.pck
           if-no-files-found: error
 
       - name: Upload Linux ARM64 Build
@@ -117,8 +141,8 @@ jobs:
         with:
           name: linux-arm64-build
           path: |
-            build-artifacts/game.arm64
-            build-artifacts/game.pck
+            build-artifacts/GDA1.arm64
+            build-artifacts/GDA1.pck
           if-no-files-found: error
 
   create-release:
@@ -206,9 +230,9 @@ jobs:
             **Triggered by:** ${{ github.actor }}
             
             - **Web (HTML5)**: `web-game.zip` - Extract and host on a web server
-            - **Windows**: `windows-game.zip` - Extract and run `game.exe`
-            - **Linux (x86_64)**: `linux-game.zip` - Extract and run `game.x86_64`
-            - **Linux (ARM64)**: `linux-arm64-game.zip` - Extract and run `game.arm64`
+            - **Windows**: `windows-game.zip` - Extract and run `GDA1.exe`
+            - **Linux (x86_64)**: `linux-game.zip` - Extract and run `GDA1.x86_64`
+            - **Linux (ARM64)**: `linux-arm64-game.zip` - Extract and run `GDA1.arm64`
           files: |
             web-game.zip
             windows-game.zip

@@ -40,8 +40,8 @@ func _test_provider_configuration() -> void:
 	assert(ai_manager.current_provider == ai_manager.AIProvider.GEMINI, "Should switch to GEMINI")
 	ai_manager.current_provider = original_provider
 	var original_model = ai_manager.gemini_model
-	ai_manager.gemini_model = "gemini-2.5-flash"
-	assert(ai_manager.gemini_model == "gemini-2.5-flash", "Should update Gemini model")
+	ai_manager.gemini_model = "gemini-3-flash-preview"
+	assert(ai_manager.gemini_model == "gemini-3-flash-preview", "Should update Gemini model")
 	ai_manager.gemini_model = original_model
 	print("[Test] Provider configuration PASSED")
 func _test_mock_ai_generator() -> void:

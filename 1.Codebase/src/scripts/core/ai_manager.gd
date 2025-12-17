@@ -53,9 +53,13 @@ var gemini_location: String:
 		if _config_manager: _config_manager.gemini_location = value
 var gemini_model: String:
 	get:
-		return _config_manager.gemini_model if _config_manager else "gemini-2.5-flash"
+		return _config_manager.gemini_model if _config_manager else AIConfigManager.GEMINI_DEFAULT_MODEL
 	set(value):
-		if _config_manager: _config_manager.gemini_model = value
+		if _config_manager:
+			if _config_manager.has_method("set_gemini_model"):
+				_config_manager.set_gemini_model(value)
+			else:
+				_config_manager.gemini_model = value
 var gemini_allow_web_requests: bool:
 	get:
 		return _config_manager.gemini_allow_web_requests if _config_manager else true
@@ -242,6 +246,10 @@ func _subscribe_to_event_bus_contracts() -> void:
 	EventBus.subscribe(AIEventChannels.STATE_SNAPSHOT_REQUEST, self, "_on_event_ai_state_snapshot_request")
 	EventBus.subscribe(AIEventChannels.LOAD_STATE_SNAPSHOT, self, "_on_event_ai_load_state_snapshot")
 	EventBus.subscribe(AIEventChannels.CLEAR_MEMORY, self, "_on_event_ai_clear_memory")
+	EventBus.subscribe("voice_input_requested", self, "_on_event_voice_input_requested")
+
+func _on_event_voice_input_requested(data: Dictionary) -> void:
+	request_voice_capture()
 func request_ai(prompt: String, callback: Callable = Callable(), context_or_callback = null) -> void:
 	if not _request_manager:
 		ErrorReporterBridge.report_error("AIManager", "Request manager not initialized; cannot process AI request")
@@ -278,6 +286,12 @@ func refresh_voice_capabilities() -> void:
 func is_native_voice_supported() -> bool:
 	if _voice_manager:
 		return _voice_manager.is_native_voice_supported()
+	return false
+func is_voice_supported() -> bool:
+	if _voice_manager == null or _voice_manager.voice_session == null:
+		return false
+	if _voice_manager.voice_session.has_method("wants_voice_input"):
+		return bool(_voice_manager.voice_session.wants_voice_input())
 	return false
 func get_voice_settings() -> Dictionary:
 	if _voice_manager:

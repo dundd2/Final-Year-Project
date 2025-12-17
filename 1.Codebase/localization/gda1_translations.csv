@@ -662,6 +662,8 @@ PAUSE_MENU_CHARACTERS,Characters,角色
 # Pause Menu,,
 PAUSE_TITLE,GAME PAUSED,遊戲暫停
 PAUSE_TOKEN_REPORT_TITLE,AI Token Usage Summary,AI Token 使用概況
+PAUSE_AI_MODEL,Active Model,當前模型
+PAUSE_AI_PROVIDER,AI Provider,AI 供應商
 BUTTERFLY_EXPLAIN_TITLE,How it Works,如何運作
 BUTTERFLY_EXPLAIN_BODY,The Butterfly Effect tracks your major decisions. Small choices can ripple through time and cause unexpected consequences later in the game. Watch your choices carefully!,蝴蝶效應會追蹤你做出的重大決定。小小的選擇會隨時間產生漣漪，並在遊戲後期引發意想不到的後果。請仔細留意你的每個選擇！
 BUTTERFLY_BTN_EXPLAIN,How it Works,如何運作

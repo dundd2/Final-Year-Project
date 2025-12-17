@@ -1,11 +1,9 @@
 extends "res://1.Codebase/src/scripts/core/ai/ai_provider_base.gd"
 class_name GeminiProvider
 const GEMINI_ENDPOINT_BASE = "https://generativelanguage.googleapis.com/v1beta/models/"
-const GEMINI_DEFAULT_MODEL = "gemini-3-pro-preview"
+const GEMINI_DEFAULT_MODEL = "gemini-3-flash-preview"
 const GEMINI_NATIVE_AUDIO_MODELS = [
-	"gemini-3-pro-preview",
-	"gemini-2.5-flash-native-audio-preview-09-2025",
-	"gemini-live-2.5-flash-preview",
+	"gemini-2.5-flash-native-audio-preview-12-2025",
 ]
 const DEFAULT_OUTPUT_SAMPLE_RATE := 24000
 const LEGACY_REQUIRED_CHARACTERS := ["protagonist", "gloria", "donkey", "ark", "one"]
@@ -79,6 +77,15 @@ var live_api_session_handle: String = ""
 var live_api_retry_count: int = 0
 var allow_web_requests: bool = true
 const MAX_LIVE_API_RETRIES: int = 3
+var _live_accumulated_text_parts: Array[String] = []
+var _live_accumulated_audio_payloads: Array = []
+var _live_accumulated_thought_signature: String = ""
+
+func _get_audio_output_guardrail_text() -> String:
+	return "Audio reading rules: When generating AUDIO, speak only the narrative/story text and the player choice list. Do NOT read aloud any [SCENE_DIRECTIVES] blocks, JSON, schemas, tool/function-calling data, or other metadata. Keep those silent in audio, even if they appear in the text."
+
+func _should_add_audio_output_guardrail() -> bool:
+	return voice_session and voice_session.has_method("wants_voice_output") and voice_session.wants_voice_output()
 func _init():
 	provider_name = "Gemini"
 	allow_web_requests = _read_default_allow_web_requests()
@@ -93,6 +100,9 @@ func setup(http_req: HTTPRequest, live_client: Node, voice_sess: Node = null) ->
 			live_api_client.connection_closed.connect(_on_live_api_connection_closed)
 		if not live_api_client.connection_error.is_connected(_on_live_api_connection_error):
 			live_api_client.connection_error.connect(_on_live_api_connection_error)
+		if live_api_client.has_signal("setup_response_received"):
+			if not live_api_client.setup_response_received.is_connected(_on_live_api_setup_response_received):
+				live_api_client.setup_response_received.connect(_on_live_api_setup_response_received)
 		if not live_api_client.server_message_received.is_connected(_on_live_api_server_message):
 			live_api_client.server_message_received.connect(_on_live_api_server_message)
 		if not live_api_client.error_received.is_connected(_on_live_api_error):
@@ -166,12 +176,17 @@ func send_request(messages: Array, callback: Callable, options: Dictionary = { }
 		_send_rest_request(messages)
 func cancel_request() -> void:
 	is_requesting = false
+	if _is_live_api_model(model.strip_edges()):
+		if live_api_client and live_api_client.has_method("close_connection"):
+			live_api_client.close_connection(1000, "Client cancelled request")
+		return
 	if http_request:
 		http_request.cancel_request()
 func _is_live_api_model(model_name: String) -> bool:
 	return GEMINI_NATIVE_AUDIO_MODELS.has(model_name)
 func _is_web_environment_restricted() -> bool:
-	if BuildSecrets.GEMINI_API_KEY != "" and api_key == BuildSecrets.GEMINI_API_KEY:
+	var injected_key := BuildSecrets.get_gemini_api_key()
+	if injected_key != "" and api_key == injected_key:
 		return false
 	if not _is_web_runtime():
 		return false
@@ -392,6 +407,8 @@ func _send_rest_request(messages: Array) -> void:
 	var url := endpoint + "?key=" + api_key
 	var contents_array: Array = []
 	var system_parts: Array = []
+	if _should_add_audio_output_guardrail():
+		system_parts.append({ "text": _get_audio_output_guardrail_text() })
 	for msg in messages:
 		var role := str(msg.get("role", "user"))
 		if role == "system":
@@ -425,7 +442,6 @@ func _send_rest_request(messages: Array) -> void:
 	}
 	var generation_config: Dictionary = body.get("generationConfig", { })
 	if model.begins_with("gemini-3"):
-		generation_config["thinking_level"] = "low" 
 		generation_config["temperature"] = 1.0 
 	else:
 		generation_config["temperature"] = 0.9 
@@ -462,7 +478,12 @@ func _send_live_request(messages: Array) -> void:
 	if not live_api_client:
 		_emit_error("Live API client not initialized")
 		return
+	_live_accumulated_text_parts.clear()
+	_live_accumulated_audio_payloads.clear()
+	_live_accumulated_thought_signature = ""
 	var system_instruction_text := ""
+	if _should_add_audio_output_guardrail():
+		system_instruction_text += _get_audio_output_guardrail_text() + "\n"
 	var contents_array: Array = []
 	for msg in messages:
 		if not (msg is Dictionary):
@@ -494,9 +515,7 @@ func _send_live_request(messages: Array) -> void:
 		"temperature": 0.9,
 		"maxOutputTokens": 2048,
 	}
-	var structured_applied := _apply_structured_output_config(generation_config)
-	if not structured_applied and _detect_scene_schema_needed(contents_array):
-		_apply_legacy_scene_schema(generation_config)
+	# Live (BidiGenerateContent) behaves differently from REST; keep config minimal for compatibility.
 	var speech_config := { }
 	if voice_session and voice_session.has_method("prefers_native_audio") and voice_session.prefers_native_audio():
 		speech_config = {
@@ -553,17 +572,94 @@ func _on_live_api_connection_error() -> void:
 	_emit_error("Live API connection error")
 	request_completed.emit(false)
 func _on_live_api_server_message(message: Dictionary) -> void:
+	if not (message.has("serverContent") or message.has("server_content")):
+		return
+	_extract_live_response_chunks(message)
+	var turn_complete := _is_live_turn_complete(message)
+	if not turn_complete:
+		_emit_progress({ "status": "live_streaming" })
+		return
 	is_requesting = false
 	live_api_retry_count = 0
 	_emit_progress({ "status": "live_completed" })
-	var response = {
+	var combined_text := "".join(_live_accumulated_text_parts)
+	var response := {
 		"success": true,
-		"content": message,
+		"content": combined_text,
+		"text_parts": _live_accumulated_text_parts.duplicate(true),
+		"audio_payloads": _live_accumulated_audio_payloads.duplicate(true),
+		"thought_signature": _live_accumulated_thought_signature,
 		"error": "",
 	}
 	if not pending_callback.is_null():
 		pending_callback.call(response)
 	request_completed.emit(true)
+
+func _on_live_api_setup_response_received(message: Dictionary) -> void:
+	if message.has("serverContent") or message.has("server_content"):
+		_on_live_api_server_message(message)
+
+func _extract_live_response_chunks(message: Dictionary) -> void:
+	if not (message is Dictionary):
+		return
+	var server_content: Variant = message.get("serverContent", message.get("server_content", null))
+	var content_dict: Dictionary = server_content if server_content is Dictionary else message
+	var model_turn: Variant = content_dict.get("modelTurn", content_dict.get("model_turn", null))
+	var turn_dict: Dictionary = model_turn if model_turn is Dictionary else content_dict
+	var parts_variant: Variant = turn_dict.get("parts", null)
+	if not (parts_variant is Array):
+		return
+	var parts: Array = parts_variant
+	for part in parts:
+		if not (part is Dictionary):
+			continue
+		var part_dict: Dictionary = part
+		if part_dict.has("text"):
+			var text := str(part_dict.get("text", ""))
+			if not text.is_empty():
+				_live_accumulated_text_parts.append(text)
+		if part_dict.has("thoughtSignature"):
+			var sig := str(part_dict.get("thoughtSignature", ""))
+			if not sig.is_empty():
+				_live_accumulated_thought_signature = sig
+		elif part_dict.has("thought_signature"):
+			var sig2 := str(part_dict.get("thought_signature", ""))
+			if not sig2.is_empty():
+				_live_accumulated_thought_signature = sig2
+		var inline_variant: Variant = part_dict.get("inlineData", part_dict.get("inline_data", null))
+		if inline_variant is Dictionary:
+			var inline_dict: Dictionary = inline_variant
+			var mime := str(inline_dict.get("mimeType", inline_dict.get("mime_type", "")))
+			var data_base64 := str(inline_dict.get("data", ""))
+			if not mime.is_empty() and not data_base64.is_empty() and mime.begins_with("audio/"):
+				_live_accumulated_audio_payloads.append(
+					{
+						"mime_type": mime,
+						"data_base64": data_base64,
+						"source": "live",
+						"sample_rate": _sample_rate_from_mime(mime, DEFAULT_OUTPUT_SAMPLE_RATE),
+					},
+				)
+
+func _is_live_turn_complete(message: Dictionary) -> bool:
+	var server_content: Variant = message.get("serverContent", message.get("server_content", null))
+	if server_content is Dictionary:
+		var content_dict: Dictionary = server_content
+		if content_dict.has("turnComplete"):
+			return bool(content_dict.get("turnComplete", false))
+		if content_dict.has("turn_complete"):
+			return bool(content_dict.get("turn_complete", false))
+	return true
+
+func _sample_rate_from_mime(mime: String, fallback: int) -> int:
+	var fragments := mime.split(";")
+	for frag in fragments:
+		var trimmed := frag.strip_edges()
+		if trimmed.begins_with("rate="):
+			var rate_value := int(trimmed.substr(5, trimmed.length()))
+			if rate_value > 0:
+				return rate_value
+	return fallback
 func _on_live_api_error(error_message: String) -> void:
 	is_requesting = false
 	_emit_error("Live API error: " + error_message)

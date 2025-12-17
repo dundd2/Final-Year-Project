@@ -324,9 +324,13 @@ func _build_stats_context(context: Dictionary) -> String:
 		return "Stats: " + ", ".join(stat_parts) + "\n"
 	return ""
 func _build_voice_inline_part() -> Dictionary:
-	if not voice_bridge or not voice_bridge.has_method("build_inline_audio_part"):
+	if not voice_bridge:
 		return { }
-	return voice_bridge.build_inline_audio_part()
+	if voice_bridge.has_method("build_inline_part"):
+		return voice_bridge.build_inline_part(GameConstants.AI.DEFAULT_INPUT_SAMPLE_RATE)
+	if voice_bridge.has_method("build_inline_audio_part"):
+		return voice_bridge.build_inline_audio_part()
+	return { }
 func _sanitize_text(text: String, max_length: int = 256) -> String:
 	var sanitized := text.strip_edges()
 	if sanitized.length() > max_length and max_length > 0:

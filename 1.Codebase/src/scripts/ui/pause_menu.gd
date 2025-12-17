@@ -128,6 +128,28 @@ func _refresh_token_report() -> void:
 		return
 	var report_text := ""
 	report_text += "### Session Statistics\n"
+	
+	var provider_name = "Unknown"
+	var model_name = "Unknown"
+	var provider_enum = ai_manager.current_provider
+	var provider_keys = AIConfigManager.AIProvider.keys()
+	if provider_enum >= 0 and provider_enum < provider_keys.size():
+		provider_name = provider_keys[provider_enum]
+	
+	match provider_enum:
+		AIConfigManager.AIProvider.GEMINI:
+			model_name = ai_manager.gemini_model
+		AIConfigManager.AIProvider.OPENROUTER:
+			model_name = ai_manager.openrouter_model
+		AIConfigManager.AIProvider.OLLAMA:
+			model_name = ai_manager.ollama_model
+	
+	var provider_label = LocalizationManager.get_translation("PAUSE_AI_PROVIDER") if LocalizationManager else "AI Provider"
+	var model_label = LocalizationManager.get_translation("PAUSE_AI_MODEL") if LocalizationManager else "Active Model"
+	
+	report_text += "[b]%s[/b]: %s\n" % [provider_label, provider_name]
+	report_text += "[b]%s[/b]: %s\n" % [model_label, model_name]
+	
 	var total_calls = int(session_metrics.get("total_requests", 0))
 	var total_tokens = int(session_metrics.get("total_tokens", 0))
 	report_text += "[b]Total API Calls[/b]: %d\n" % total_calls

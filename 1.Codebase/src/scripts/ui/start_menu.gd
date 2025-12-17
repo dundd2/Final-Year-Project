@@ -15,6 +15,7 @@ const ICON_GITHUB = preload("res://1.Codebase/src/assets/ui/icon_github.svg")
 const GITHUB_URL = "https://github.com/dundd2/Final-Year-Project"
 const YOUTUBE_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ/"
 const GAME_VERSION = "v0.9 Beta"
+const _GEMINI_KEY_MISSING_MESSAGE := "Gemini is selected, but no Gemini API key is configured. Open Settings → AI Settings to enter your key, or switch to OpenRouter/Ollama."
 var current_language: String = "en"
 var audio_manager: Node = null
 var game_state: Node = null
@@ -365,6 +366,8 @@ func _on_start_button_pressed():
 	var audio := _get_audio_manager()
 	if audio:
 		audio.play_sfx("happy_click")
+	if not _can_start_game_with_current_ai_settings():
+		return
 	var state := _get_game_state()
 	if state:
 		state.new_game()
@@ -373,11 +376,42 @@ func _on_continue_button_pressed():
 	var audio := _get_audio_manager()
 	if audio:
 		audio.play_sfx("menu_click")
+	if not _can_start_game_with_current_ai_settings():
+		return
 	var state := _get_game_state()
 	if state and state.load_game():
 		get_tree().change_scene_to_file("res://1.Codebase/src/scenes/ui/story_scene_enhanced.tscn")
 	else:
 		_report_warning("Failed to load game for continue")
+
+func _can_start_game_with_current_ai_settings() -> bool:
+	if not ServiceLocator:
+		return true
+	var ai_manager = ServiceLocator.get_ai_manager()
+	if not is_instance_valid(ai_manager):
+		return true
+	if ai_manager.has_method("load_ai_settings"):
+		ai_manager.load_ai_settings()
+	var provider := int(ai_manager.current_provider)
+	if provider != AIConfigManager.AIProvider.GEMINI:
+		return true
+	var key := String(ai_manager.gemini_api_key).strip_edges()
+	if not key.is_empty():
+		return true
+	var message := _GEMINI_KEY_MISSING_MESSAGE
+	if _is_web_runtime():
+		message += " (Note: GitHub Secrets are not readable by the browser at runtime. Keys must be embedded at build-time or entered by the player.)"
+	_show_error_notification(message)
+	return false
+
+func _is_web_runtime() -> bool:
+	var normalized_name := OS.get_name().to_lower()
+	if normalized_name == "html5":
+		return true
+	for feature in ["web", "html5", "emscripten", "javascript"]:
+		if OS.has_feature(feature):
+			return true
+	return false
 func _on_save_load_button_pressed():
 	var audio := _get_audio_manager()
 	if audio:

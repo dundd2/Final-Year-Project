@@ -12,6 +12,7 @@ const ERROR_CONTEXT := "LiveAPIClient"
 var websocket: WebSocketPeer = WebSocketPeer.new()
 var is_connected: bool = false
 var _is_session_setup: bool = false
+var _queued_user_turn_parts: Array = []
 var _model_name: String
 var _generation_config: Dictionary
 var _api_key: String
@@ -51,15 +52,14 @@ func connect_to_server(
 	_session_handle = session_handle
 	_system_instruction = system_instruction
 	_speech_config = speech_config
+	_queued_user_turn_parts.clear()
 	if is_connected or websocket.get_ready_state() != WebSocketPeer.STATE_CLOSED:
 		close_connection()
 	var headers: PackedStringArray = [
 		"x-goog-api-key: " + _api_key,
 	]
-	var url := SERVICE_URL
-	if OS.get_name() == "Web":
-		url += "?key=%s" % _api_key
-	else:
+	var url := SERVICE_URL + "?key=%s" % _api_key.uri_encode()
+	if OS.get_name() != "Web":
 		websocket.set_handshake_headers(headers)
 	var err := websocket.connect_to_url(url)
 	if err != OK:
@@ -72,6 +72,7 @@ func close_connection(code: int = 1000, reason: String = "Client requested disco
 		websocket.close(code, reason)
 		is_connected = false
 		_is_session_setup = false
+		_queued_user_turn_parts.clear()
 func send_user_turn(parts: Array) -> void:
 	if not is_connected or websocket.get_ready_state() != WebSocketPeer.STATE_OPEN:
 		ErrorReporterBridge.report_warning(ERROR_CONTEXT, "Attempted to send message while not connected")
@@ -79,10 +80,13 @@ func send_user_turn(parts: Array) -> void:
 	if parts.is_empty():
 		ErrorReporterBridge.report_error(ERROR_CONTEXT, "send_user_turn called with empty parts array")
 		return
+	if not _is_session_setup:
+		_queued_user_turn_parts = parts.duplicate(true)
+		return
 	var message := {
-		"client_content": {
+		"clientContent": {
 			"turns": [{ "role": "user", "parts": parts }],
-			"turn_complete": true,
+			"turnComplete": true,
 		},
 	}
 	var err := websocket.send_text(JSON.stringify(message))
@@ -139,28 +143,41 @@ func _process_server_message(data: Dictionary) -> void:
 		)
 		error_received.emit(error_msg)
 		return
-	if data.has("sessionResumptionUpdate"):
-		var update: Dictionary = data["sessionResumptionUpdate"]
-		if update.has("newHandle") and update.get("resumable", false):
-			session_updated.emit(update["newHandle"])
-	elif data.has("serverContent"):
+	if data.has("sessionResumptionUpdate") or data.has("session_resumption_update"):
+		var update: Dictionary = data.get("sessionResumptionUpdate", data.get("session_resumption_update", { }))
+		var handle: String = str(update.get("newHandle", update.get("new_handle", "")))
+		var resumable: bool = bool(update.get("resumable", update.get("resumable", false)))
+		if not handle.is_empty() and resumable:
+			session_updated.emit(handle)
+	elif data.has("serverContent") or data.has("server_content"):
 		server_message_received.emit(data)
 	else:
 		setup_response_received.emit(data)
+		_flush_queued_user_turn()
+
+func _flush_queued_user_turn() -> void:
+	if _queued_user_turn_parts.is_empty():
+		return
+	if not is_connected or websocket.get_ready_state() != WebSocketPeer.STATE_OPEN:
+		return
+	var parts := _queued_user_turn_parts.duplicate(true)
+	_queued_user_turn_parts.clear()
+	send_user_turn(parts)
 func _setup_session() -> void:
 	var setup_config: Dictionary = {
 		"model": "models/" + _model_name,
-		"generation_config": _generation_config.duplicate(true),
-		"session_resumption": { },
+		"generationConfig": _generation_config.duplicate(true),
+		"sessionResumption": { },
 	}
 	if not _session_handle.is_empty():
-		setup_config["session_resumption"]["handle"] = _session_handle
+		setup_config["sessionResumption"]["handle"] = _session_handle
 	if not _system_instruction.is_empty():
-		setup_config["system_instruction"] = {
+		setup_config["systemInstruction"] = {
 			"parts": [{ "text": _system_instruction }],
 		}
 	if not _speech_config.is_empty():
-		setup_config["speech_config"] = _speech_config
+		setup_config["speechConfig"] = _speech_config
+	setup_config["responseModalities"] = ["TEXT", "AUDIO"] if not _speech_config.is_empty() else ["TEXT"]
 	var setup_message := { "setup": setup_config }
 	var err := websocket.send_text(JSON.stringify(setup_message))
 	if err != OK:
@@ -175,3 +192,4 @@ func _setup_session() -> void:
 func _on_setup_message_sent() -> void:
 	print("[Live API Client] Session setup message sent. Connection established.")
 	connection_established.emit()
+	_flush_queued_user_turn()

@@ -7,6 +7,7 @@ const AISafetyFilter = preload("res://1.Codebase/src/scripts/core/ai_safety_filt
 const AIEventChannels = preload("res://1.Codebase/src/scripts/core/ai/ai_event_channels.gd")
 const ERROR_CONTEXT := "AIRequestManager"
 const DEFAULT_REQUEST_TIMEOUT := GameConstants.AI.DEFAULT_REQUEST_TIMEOUT
+const LIVE_NATIVE_AUDIO_TIMEOUT := 60.0
 const DEFAULT_MAX_RETRIES := GameConstants.AI.DEFAULT_MAX_RETRIES
 const MIN_REQUEST_INTERVAL_MSEC := GameConstants.AI.MIN_REQUEST_INTERVAL_MSEC
 const MAX_REQUESTS_PER_MINUTE := GameConstants.AI.MAX_REQUESTS_PER_MINUTE
@@ -239,6 +240,8 @@ func _dispatch_to_provider(full_messages: Array[Dictionary]) -> void:
 		return
 	var current_provider = _config_manager.current_provider
 	_provider_manager.sync_provider(current_provider)
+	if _voice_manager:
+		_voice_manager.refresh_capabilities()
 	var provider = _provider_manager.get_current_provider()
 	if provider and provider.has_method("apply_configuration") and _config_manager:
 		var provider_config := _config_manager.get_provider_config(current_provider)
@@ -274,7 +277,12 @@ func _dispatch_to_provider(full_messages: Array[Dictionary]) -> void:
 		_notify_callback_of_failure(reason)
 		return
 	_is_requesting = true
-	_timeout_timer.start(_request_timeout)
+	var timeout_seconds := _request_timeout
+	if _config_manager and _config_manager.current_provider == AIProvider.GEMINI:
+		var normalized_model := String(_config_manager.gemini_model).strip_edges().to_lower()
+		if normalized_model.find("native-audio") != -1:
+			timeout_seconds = max(timeout_seconds, LIVE_NATIVE_AUDIO_TIMEOUT)
+	_timeout_timer.start(timeout_seconds)
 	request_started.emit()
 	_last_sent_messages = full_messages.duplicate(true)
 	var provider_options := _build_provider_options()

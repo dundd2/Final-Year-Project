@@ -1,7 +1,7 @@
 extends RefCounted
 class_name AIConfigManager
 const CONFIG_FILE_PATH := "user://ai_settings.cfg"
-const GEMINI_DEFAULT_MODEL := "gemini-3-pro-preview"
+const GEMINI_DEFAULT_MODEL := "gemini-3-flash-preview"
 const DEFAULT_OLLAMA_MODEL := "gemma3:1b"
 enum AIProvider {
 	GEMINI = 0,
@@ -82,13 +82,15 @@ func load_settings() -> Error:
 	print("[AIConfigManager] Loading settings from %s" % CONFIG_FILE_PATH)
 	current_provider = config.get_value("ai", "provider", AIProvider.GEMINI)
 	gemini_api_key = config.get_value("ai", "gemini_key", "")
-	if BuildSecrets.GEMINI_API_KEY != "":
+	var injected_gemini_key := BuildSecrets.get_gemini_api_key()
+	if injected_gemini_key != "":
 		print("[AIConfigManager] Using build-time injected API key")
-		gemini_api_key = BuildSecrets.GEMINI_API_KEY
+		gemini_api_key = injected_gemini_key
 	gemini_access_token = config.get_value("ai", "gemini_access_token", "")
 	gemini_project_id = config.get_value("ai", "gemini_project_id", "")
 	gemini_location = config.get_value("ai", "gemini_location", "")
-	gemini_model = config.get_value("ai", "gemini_model", GEMINI_DEFAULT_MODEL)
+	gemini_model = _normalize_gemini_model_name(str(config.get_value("ai", "gemini_model", GEMINI_DEFAULT_MODEL)))
+	var migrated_gemini := _migrate_gemini_model(config)
 	gemini_allow_web_requests = bool(config.get_value("ai", "gemini_allow_web_requests", gemini_allow_web_requests))
 	gemini_safety_settings = config.get_value("ai", "gemini_safety_settings", "BLOCK_NONE")
 	openrouter_api_key = config.get_value("ai", "openrouter_key", "")
@@ -111,7 +113,33 @@ func load_settings() -> Error:
 			voice_config[key] = config.get_value("voice", key)
 	if migrated:
 		config.save(CONFIG_FILE_PATH)
+	if migrated_gemini:
+		config.save(CONFIG_FILE_PATH)
 	return OK
+func _migrate_gemini_model(config: ConfigFile) -> bool:
+	var resolved := _normalize_gemini_model_name(gemini_model)
+	if resolved.is_empty() or resolved == gemini_model:
+		return false
+	print("[AIConfigManager] Migrating Gemini model from '%s' to '%s'" % [gemini_model, resolved])
+	gemini_model = resolved
+	config.set_value("ai", "gemini_model", gemini_model)
+	return true
+
+func set_gemini_model(value: String) -> void:
+	gemini_model = _normalize_gemini_model_name(value)
+
+func _normalize_gemini_model_name(value: String) -> String:
+	var trimmed := value.strip_edges()
+	if trimmed.is_empty():
+		return ""
+	var lower := trimmed.to_lower()
+	if lower == "gemini-2.5-flash" or lower == "gemini-flash-latest":
+		return "gemini-3-flash-preview"
+	if lower == "gemini-2.5-flash-native-audio-preview-09-2025":
+		return "gemini-2.5-flash-native-audio-preview-12-2025"
+	if lower == "gemini-live-2.5-flash-preview":
+		return "gemini-2.5-flash-native-audio-preview-12-2025"
+	return trimmed
 func _migrate_ollama_model(config: ConfigFile) -> bool:
 	var normalized := ollama_model.strip_edges().to_lower()
 	if normalized.is_empty() or normalized.begins_with("llama3"):
@@ -139,7 +167,7 @@ func load_state_snapshot(state: Dictionary) -> void:
 	if state.has("provider"):
 		current_provider = state["provider"]
 	if state.has("gemini_model"):
-		gemini_model = state["gemini_model"]
+		set_gemini_model(str(state["gemini_model"]))
 	if state.has("gemini_safety_settings"):
 		gemini_safety_settings = state["gemini_safety_settings"]
 	if state.has("openrouter_model"):

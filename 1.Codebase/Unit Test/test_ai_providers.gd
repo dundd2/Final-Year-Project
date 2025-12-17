@@ -39,8 +39,8 @@ func _test_gemini_provider_structure() -> void:
 		"Endpoint should use HTTPS")
 	_assert(gemini.GEMINI_ENDPOINT_BASE.contains("generativelanguage.googleapis.com"),
 		"Endpoint should point to Google API")
-	_assert(gemini.GEMINI_DEFAULT_MODEL == "gemini-2.5-flash",
-		"Default model should be gemini-2.5-flash")
+	_assert(gemini.GEMINI_DEFAULT_MODEL == "gemini-3-flash-preview",
+		"Default model should be gemini-3-flash-preview")
 	_assert(gemini.DEFAULT_OUTPUT_SAMPLE_RATE == 24000,
 		"Default sample rate should be 24000")
 	_assert(gemini.GEMINI_NATIVE_AUDIO_MODELS is Array,
